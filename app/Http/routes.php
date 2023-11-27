@@ -24,12 +24,18 @@ Route::get('/usuarios/deletar/{id}', 'UsuarioController@deletar');
 Route::get('/usuarios/formulario/{id}', 'UsuarioController@formulario');
 Route::get('/usuarios', 'UsuarioController@index')->name('usuarios.index');
 
-Route::group(['prefix' => 'produtos'],function(){
-Route::get('/', 'ProdutoController@index');
-Route::post('/', 'ProdutoController@formulario');
-Route::post('/', 'ProdutoController@salvar');
-Route::delete('/{usuario}', 'ProdutoController@deletar')->name('produtos.deletar');
-Route::get('deletar/{id}', 'ProdutoController@deletar');
-Route::get('formulario/{id}', 'ProdutoController@formulario');
-Route::get('/', 'ProdutoController@index')->name('produtos.index');
+Route::group(['prefix' => 'produtos'], function () {
+    Route::get('/', 'ProdutoController@index');
+    Route::post('/', 'ProdutoController@formulario');
+    Route::post('/', 'ProdutoController@salvar');
+    Route::get('deletar/{id}', 'ProdutoController@deletar');
+    Route::get('formulario/{id}', 'ProdutoController@formulario');
+});
+
+Route::group(['prefix' => 'perfis'], function () {
+    Route::get('/', 'PerfilController@index');
+    Route::post('/', 'PerfilController@formulario');
+    Route::post('/', 'PerfilController@salvar');
+    Route::get('deletar/{id}', 'PerfilController@deletar');
+    Route::get('formulario/{id}', 'PerfilController@formulario');
 });

@@ -55,12 +55,12 @@ class ProdutoController extends Controller
         else{
             Produto::whereId( $req['id'] )->update($req); 
         } 
-        return redirect()->route('produtos.index');
+        return redirect('/produtos');
     }
 
     public function deletar($id)
     {
         Produto::where("id", "=", $id)->delete();
-        return redirect()->route('produtos.index');
+        return redirect('/produtos');
     }
 }
