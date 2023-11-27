@@ -3,16 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\Perfil;
+use App\Models\Permissao;
 use Illuminate\Http\Request;
 
 class PerfilController extends Controller
 {
 
     private $objPerfil;
+    private $objPermissao;
     
     public function __construct()
     {
         $this->objPerfil = new Perfil();
+        $this->objPermissao = new Permissao();
         
     }
 
@@ -20,6 +23,7 @@ class PerfilController extends Controller
     {
         return view('perfil.index')->with([
             'perfis' => $this->objPerfil->all(),
+            'permissoes' => Permissao::lists('nomepermissoes', 'id'),
             'formulario' =>new Perfil()
         ]);
 
@@ -45,6 +49,7 @@ class PerfilController extends Controller
         $req=$request->all();
         unset( $req['_token'] );
         $req['nome'] = trim($request->nome);
+        $req['nomepermissoes'] = trim($request->nomepermissoes);
         if(empty($req['id'])){
             Perfil::create($req); 
         }

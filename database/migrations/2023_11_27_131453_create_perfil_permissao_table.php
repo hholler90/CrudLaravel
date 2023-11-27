@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUsuariosTable extends Migration
+class CreatePerfilPermissaoTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,15 +12,11 @@ class CreateUsuariosTable extends Migration
      */
     public function up()
     {
-        Schema::create('usuarios', function (Blueprint $table) {
-            $table->increments('id');
+        Schema::create('perfil_permissao', function (Blueprint $table) {
             $table->integer('perfil_id')->unsigned();
+            $table->integer('permissao_id')->unsigned();
             $table->foreign('perfil_id')->references('id')->on('perfis')->onDelete('cascade')->onUpdate('cascade');
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('password');
-            $table->rememberToken();
-            $table->timestamps();
+            $table->foreign('permissao_id')->references('id')->on('permissoes')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
@@ -31,7 +27,7 @@ class CreateUsuariosTable extends Migration
      */
     public function down()
     {
-        Schema::drop('usuarios');
+        
     }
 }
 

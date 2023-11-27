@@ -12,4 +12,8 @@ class Perfil extends Model
     public function usuarios(){
         return $this->hasMany('App\Models\Usuario','perfil_id','id');
     }
+
+    public function perfis(){
+        return $this->hasMany('App\Models\Permissao','nomepermissoes','id');
+    }
 }
