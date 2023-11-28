@@ -16,7 +16,7 @@ class CreateUsuariosTable extends Migration
             $table->increments('id');
             $table->integer('perfil_id')->unsigned();
             $table->foreign('perfil_id')->references('id')->on('perfis')->onDelete('cascade')->onUpdate('cascade');
-            $table->string('name');
+            $table->string('nome');
             $table->string('email')->unique();
             $table->string('password');
             $table->rememberToken();

@@ -24,7 +24,7 @@ class UsuarioController extends Controller
     {
         return view('usuario.index')->with([
             'usuarios' => Usuario::all(),
-            'perfis' => Perfil::lists('nomeperfil', 'id'),
+            'perfis' => Perfil::lists('nome', 'id'),
             'formulario' =>new Usuario()
 
         ]);
@@ -36,7 +36,7 @@ class UsuarioController extends Controller
     }
     public function formulario($id)
     {
-        return view('usuario.formulario')->with(['formulario' =>Usuario::find($id),'perfis' => Perfil::lists('nomeperfil', 'id'),]);
+        return view('usuario.formulario')->with(['formulario' =>Usuario::find($id),'perfis' => Perfil::lists('nome', 'id'),]);
         return redirect()->route('usuarios.index');
     }
 
@@ -50,7 +50,7 @@ class UsuarioController extends Controller
         // ]);
         $req=$request->all();
         unset( $req['_token'] );
-        $req['name'] = trim($request->name);
+        $req['nome'] = trim($request->nome);
         $req['email'] = trim($request->email);
         if(empty($req['id'])){
             Usuario::create($req); 

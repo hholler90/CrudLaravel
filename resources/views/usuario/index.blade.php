@@ -48,9 +48,9 @@
         @foreach($usuarios as $usuario)
         <tr>
           <th scope="row">{{$usuario->id}}</th>
-          <td>{{$usuario->name}}</td>
+          <td>{{$usuario->nome}}</td>
           <td>{{$usuario->email}}</td>
-          <td>{{$usuario->perfil->nomeperfil}}</td>
+          <td>{{$usuario->perfil->nome}}</td>
           <td>
             <a href="/usuarios/detetar/{{$usuario->id}}" class="btn btn-md btn-danger" title="Deletar">Deletar</a>
             <button type="button" class="btn btn-primary" onclick="editar({{$usuario->id}})">Editar</button>

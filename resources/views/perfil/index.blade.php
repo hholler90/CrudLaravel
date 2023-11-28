@@ -46,7 +46,7 @@
         @foreach($perfis as $perfil)
         <tr>
           <th scope="row">{{$perfil->id}}</th>
-          <td>{{$perfil->nomeperfil}}</td>
+          <td>{{$perfil->nome}}</td>
           <td>
             <a href="/perfis/deletar/{{$perfil->id}}" class="btn btn-md btn-danger" title="Deletar">Deletar</a>
             <button type="button" class="btn btn-primary" onclick="editar({{$perfil->id}})">Editar</button>
@@ -58,7 +58,7 @@
   </table>
 </div>
 </div>
-@include('modal.create',['titulo' =>'Cadastrar Usuario'])
+@include('modal.create',['titulo' =>'Cadastrar Perfil'])
 <template id="formPerfil">
   @include('perfil.formulario')
 </template>

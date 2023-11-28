@@ -3,8 +3,8 @@
     <div class="modal-body">
         {{ Form::hidden('id') }}
         <div class="row label">
-            {{Form::label('name','Nome de Usuário')}}
-            {{Form::text('name',null,['class' => 'inputTamanho','placeholder' => 'Nome de Usuário','style' => 'width: 466px;'])}}
+            {{Form::label('nome','Nome de Usuário')}}
+            {{Form::text('nome',null,['class' => 'inputTamanho','placeholder' => 'Nome de Usuário','style' => 'width: 466px;'])}}
         </div>
         <div class="row label">
             {{Form::label('email','Email')}}

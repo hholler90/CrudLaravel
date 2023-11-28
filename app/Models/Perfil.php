@@ -7,13 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 class Perfil extends Model
 {
     protected $table='perfis';
-    protected $fillable=['nomeperfil'];
+    protected $fillable=['nome'];
 
-    public function usuarios(){
+    public function usuarios()
+    {
         return $this->hasMany('App\Models\Usuario','perfil_id','id');
     }
 
-    public function perfis(){
-        return $this->hasMany('App\Models\Permissao','nomepermissoes','id');
+    public function permissoes()
+    {
+        return $this->belongsToMany(Permissao::class, 'perfil_permissao');
     }
 }
