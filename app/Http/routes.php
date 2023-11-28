@@ -24,7 +24,7 @@ Route::get('/usuarios/deletar/{id}', 'UsuarioController@deletar');
 Route::get('/usuarios/formulario/{id}', 'UsuarioController@formulario');
 Route::get('/usuarios', 'UsuarioController@index')->name('usuarios.index');
 
-Route::group(['prefix' => 'produtos'], function () {
+Route::group(['prefix' => 'produtos', 'middleware' => ['auth'] ], function () {
     Route::get('/', 'ProdutoController@index');
     Route::post('/', 'ProdutoController@formulario');
     Route::post('/', 'ProdutoController@salvar');
@@ -39,3 +39,9 @@ Route::group(['prefix' => 'perfis'], function () {
     Route::get('deletar/{id}', 'PerfilController@deletar');
     Route::get('formulario/{id}', 'PerfilController@formulario');
 });
+
+
+Route::get('/home', 'HomeController@index');
+Route::get('/login', 'LoginController@index');
+Route::post('/login', 'LoginController@login');
+Route::get('/logout', 'LoginController@logout');
