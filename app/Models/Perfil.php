@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Perfil extends Model
 {
+
+    const PERFIL_USUARIO=3;
+
     protected $table='perfis';
     protected $fillable=['nome'];
 

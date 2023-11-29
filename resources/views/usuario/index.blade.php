@@ -6,55 +6,43 @@
 <h1 class="text-center">Usuarios</h1>
 <hr>
 <div id="container">
-  <nav class="navbar navbar-expand-lg navbar-light bg-light col-8 m-auto">
-    <a class="navbar-brand" href="#">{{\Auth::user()->nome}}</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Features</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/logout">Logout</a>
-        </li>
-        <button type="button" class="btn btn-primary " onclick="criar()">
+  <div id="divtabela">
+
+    <div class="col-8 m-auto">
+      <table id="tabela" class="table text-center">
+      @if (Auth::user()->temPermissao('add')) 
+            <button type="button" class="btn btn-primary " onclick="criar()">
           Cadastrar
         </button>
-      </ul>
+      @endif        
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Email</th>
+            <th scope="col">Tipo Perfil</th>
+            <th scope="col">Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          @foreach($usuarios as $usuario)
+          <tr>
+            <th scope="row">{{$usuario->id}}</th>
+            <td>{{$usuario->nome}}</td>
+            <td>{{$usuario->email}}</td>
+            <td>{{$usuario->perfil->nome}}</td>
+            <td>
+            @if (Auth::user()->temPermissao('del')) 
+              <a href="/usuarios/deletar/{{$usuario->id}}" class="btn btn-md btn-danger" title="Deletar">Deletar</a>
+              @endif
+              @if (Auth::user()->temPermissao('del'))
+              <button type="button" class="btn btn-primary" onclick="editar({{$usuario->id}})">Editar</button>
+              @endif
+          </tr>
+          @endforeach
+          
     </div>
-  </nav>
-<div id="divtabela">
-  
-  <div class="col-8 m-auto">
-    <table id="tabela" class="table text-center">
-      <thead>
-        <tr>
-          <th scope="col">ID</th>
-          <th scope="col">Nome</th>
-          <th scope="col">Email</th>
-          <th scope="col">Tipo Perfil</th>
-          <th scope="col">Ações</th>
-        </tr>
-      </thead>
-      <tbody>
-        @foreach($usuarios as $usuario)
-        <tr>
-          <th scope="row">{{$usuario->id}}</th>
-          <td>{{$usuario->nome}}</td>
-          <td>{{$usuario->email}}</td>
-          <td>{{$usuario->perfil->nome}}</td>
-          <td>
-            <a href="/usuarios/detetar/{{$usuario->id}}" class="btn btn-md btn-danger" title="Deletar">Deletar</a>
-            <button type="button" class="btn btn-primary" onclick="editar({{$usuario->id}})">Editar</button>
-        </tr>
-        @endforeach
   </div>
-</div>
   </tbody>
   </table>
 </div>

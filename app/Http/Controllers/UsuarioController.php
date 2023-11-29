@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Usuario;
 use App\Models\Perfil;
 use App\Providers\EventServiceProvider;
-use Illuminate\Foundation\Auth\User;
+use Auth;
 
 class UsuarioController extends Controller
 {
@@ -29,8 +29,10 @@ class UsuarioController extends Controller
     }
     public function formulario($id)
     {
-        return view('usuario.formulario')->with(['formulario' =>Usuario::find($id),'perfis' => Perfil::lists('nome', 'id'),]);
-        return redirect()->route('usuarios.index');
+        return view('usuario.formulario')->with([
+            'formulario' =>Usuario::find($id),
+            'perfis' => Perfil::lists('nome', 'id'),
+        ]);
     }
 
     public function salvar(Request $request)
@@ -47,12 +49,15 @@ class UsuarioController extends Controller
         else{
            Usuario::whereId( $req['id'] )->update($req); 
         } 
-        return redirect()->route('usuarios.index');
+        return redirect('/usuarios');
     }
 
     public function deletar($id)
     {
+        if(!Auth::user()->temPermissao('del')){
+            abort(503);
+        }
         Usuario::where("id", "=", $id)->delete();
-        return redirect()->route('usuarios.index');
+        return redirect('/usuarios');
     }
 }

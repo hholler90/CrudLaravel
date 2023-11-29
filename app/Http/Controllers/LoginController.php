@@ -24,13 +24,15 @@ class LoginController extends Controller
         
     }
     public function login(Request $request)
-    {
-        //dd($request->except('_token'));
-        //Auth::attempt($credenciais);
-        Auth::attempt($request->except('_token'));
+    {   
+        $req=$request->except('_token');
+        $req['password'] =trim($request->password);
+        Auth::attempt($req);
+        return redirect('/produtos');
     }
     public function logout()
     {
         Auth::logout();
+        return redirect('/login');
     }
 }

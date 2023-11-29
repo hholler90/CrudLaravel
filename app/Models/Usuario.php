@@ -14,4 +14,11 @@ class Usuario extends Authenticatable
     {
         return $this->belongsTo('App\Models\Perfil','perfil_id','id','');
     }
+
+    public function temPermissao($permissao){
+       
+        return $this -> perfil -> permissoes -> contains('nome',$permissao);
+    }
+    
+        
 }

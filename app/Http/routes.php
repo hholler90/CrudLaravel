@@ -15,33 +15,33 @@
 // Route::get('/', function () {
 //     return view('index');
 // });
+Route::group(['prefix' => '', 'middleware' => ['auth']], function () {
+    Route::group(['prefix' => 'usuarios'], function () {
+        Route::get('/', 'UsuarioController@index');
+        Route::post('/', 'UsuarioController@salvar');
+        Route::get('deletar/{id}', 'UsuarioController@deletar');
+        Route::get('formulario/{id}', 'UsuarioController@formulario');
+    });
 
-Route::get('/', 'UsuarioController@index');
-Route::post('/usuarios', 'UsuarioController@formulario');
-Route::post('/usuarios', 'UsuarioController@salvar');
-Route::delete('/usuarios/{usuario}', 'UsuarioController@deletar')->name('usuarios.deletar');
-Route::get('/usuarios/deletar/{id}', 'UsuarioController@deletar');
-Route::get('/usuarios/formulario/{id}', 'UsuarioController@formulario');
-Route::get('/usuarios', 'UsuarioController@index')->name('usuarios.index');
+    Route::group(['prefix' => 'produtos'], function () {
+        Route::get('/', 'ProdutoController@index');
+        Route::post('/', 'ProdutoController@salvar');
+        Route::get('deletar/{id}', 'ProdutoController@deletar');
+        Route::get('formulario/{id}', 'ProdutoController@formulario');
+    });
 
-Route::group(['prefix' => 'produtos', 'middleware' => ['auth'] ], function () {
-    Route::get('/', 'ProdutoController@index');
-    Route::post('/', 'ProdutoController@formulario');
-    Route::post('/', 'ProdutoController@salvar');
-    Route::get('deletar/{id}', 'ProdutoController@deletar');
-    Route::get('formulario/{id}', 'ProdutoController@formulario');
+    Route::group(['prefix' => 'perfis'], function () {
+        Route::get('/', 'PerfilController@index');
+        Route::post('/', 'PerfilController@salvar');
+        Route::get('deletar/{id}', 'PerfilController@deletar');
+        Route::get('formulario/{id}', 'PerfilController@formulario');
+    });
 });
-
-Route::group(['prefix' => 'perfis'], function () {
-    Route::get('/', 'PerfilController@index');
-    Route::post('/', 'PerfilController@formulario');
-    Route::post('/', 'PerfilController@salvar');
-    Route::get('deletar/{id}', 'PerfilController@deletar');
-    Route::get('formulario/{id}', 'PerfilController@formulario');
-});
-
-
 Route::get('/home', 'HomeController@index');
 Route::get('/login', 'LoginController@index');
 Route::post('/login', 'LoginController@login');
 Route::get('/logout', 'LoginController@logout');
+
+Route::get('/register', 'CadastroController@index');
+Route::post('/register', 'CadastroController@formulario');
+Route::post('/register', 'CadastroController@salvar');

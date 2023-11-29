@@ -4,37 +4,18 @@
 <link rel="stylesheet" href="/js/DataTables/datatables.css" />
 <script src="/js/DataTables/datatables.js"></script>
 <h1 class="text-center">Perfis</h1>
-<hr>
 <div id="container">
-  <nav class="navbar navbar-expand-lg navbar-light bg-light col-8 m-auto">
-    <a class="navbar-brand" href="#">Navbar</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Features</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Pricing</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-        </li>
-        <button type="button" class="btn btn-primary " onclick="criar()">
-          Cadastrar
-        </button>
-      </ul>
-    </div>
-  </nav>
+
+  </ul>
+</div>
+</nav>
 <div id="divtabela">
-  
+
   <div class="col-8 m-auto">
     <table id="tabela" class="table text-center">
+      <button type="button" class="btn btn-primary " onclick="criar()">
+        Cadastrar
+      </button>
       <thead>
         <tr>
           <th scope="col">ID</th>
@@ -54,8 +35,8 @@
         @endforeach
   </div>
 </div>
-  </tbody>
-  </table>
+</tbody>
+</table>
 </div>
 </div>
 @include('modal.create',['titulo' =>'Cadastrar Perfil'])
