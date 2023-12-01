@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Produto;
 use App\Providers\EventServiceProvider;
-use Illuminate\Foundation\Auth\User;
+use Auth;
 
 class ProdutoController extends Controller
 {
@@ -24,11 +24,6 @@ class ProdutoController extends Controller
             'produtos' => $this->objProduto->all(),
             'formulario' =>new Produto()
         ]);
-
-        // dd($this->objUsuario->find(1)->load('perfil'));
-        // dd(Usuario::with('perfil')->find(1));
-        // dd($this->objUsuario->find(1)->perfil());
-        // dd($this->objPerfil->find(1)->usuarios());
     }
     public function formulario($id)
     {
@@ -38,12 +33,6 @@ class ProdutoController extends Controller
 
     public function salvar(Request $request)
     {
-        // $this->objUsuario->create([
-        //     'name' => trim($request->name),
-        //     'email' => trim($request->email),
-        //     'perfil_id' => $request->perfil_id,
-        //     'password' => $request->password
-        // ]);
         $req=$request->all();
         unset( $req['_token'] );
         $req['nome'] = trim($request->nome);
@@ -60,6 +49,9 @@ class ProdutoController extends Controller
 
     public function deletar($id)
     {
+        if(!Auth::user()->temPermissao('del')){
+            abort(503);
+        }
         Produto::where("id", "=", $id)->delete();
         return redirect('/produtos');
     }

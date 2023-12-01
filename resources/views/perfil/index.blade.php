@@ -13,9 +13,11 @@
 
   <div class="col-8 m-auto">
     <table id="tabela" class="table text-center">
-      <button type="button" class="btn btn-primary " onclick="criar()">
-        Cadastrar
-      </button>
+    @if (Auth::user()->temPermissao('root')) 
+            <button type="button" class="btn btn-primary " onclick="criar()">
+          Cadastrar
+        </button>
+      @endif        
       <thead>
         <tr>
           <th scope="col">ID</th>
@@ -29,8 +31,34 @@
           <th scope="row">{{$perfil->id}}</th>
           <td>{{$perfil->nome}}</td>
           <td>
-            <a href="/perfis/deletar/{{$perfil->id}}" class="btn btn-md btn-danger" title="Deletar">Deletar</a>
+          @if (Auth::user()->temPermissao('root'))
+          <button type="button" class="btn btn-md btn-danger" data-toggle="modal" data-target="#confirmDelete{{$perfil->id}}">
+                Deletar
+              </button>
+              <div class="modal fade" id="confirmDelete{{$perfil->id}}" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="confirmDeleteLabel">Confirmação de Exclusão</h5>
+                      <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <label>Deseja mesmo deletar o perfil {{$perfil->nome}}?</label>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                      <form action="{{ route('perfis.deletar', ['id' => $perfil->id]) }}" method="POST">
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        <button type="submit" class="btn btn-md btn-danger" title="Deletar">Deletar</button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            @endif 
+            @if (Auth::user()->temPermissao('root'))
             <button type="button" class="btn btn-primary" onclick="editar({{$perfil->id}})">Editar</button>
+            @endif 
         </tr>
         @endforeach
   </div>

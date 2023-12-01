@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Perfil;
 use App\Models\Permissao;
 use Illuminate\Http\Request;
-
+use Auth;
 class PerfilController extends Controller
 {
 
@@ -54,6 +54,9 @@ class PerfilController extends Controller
 
     public function deletar($id)
     {
+        if(!Auth::user()->temPermissao('del')){
+            abort(503);
+        }
         Perfil::where("id", "=", $id)->delete();
         return redirect('/perfis');
     }

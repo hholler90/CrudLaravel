@@ -11,7 +11,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script> 
 </head>
 
 <body>
@@ -25,19 +25,28 @@
         <li class="nav-item">
           <a class="nav-link active" href="/produtos">Produtos</a>
         </li>
+        @if (Auth::user()->temPermissao('del'))
         <li class="nav-item">
           <a class="nav-link active" href="/usuarios">Usuarios</a>
         </li>
+        @endif
+        @if (Auth::user()->temPermissao('root'))
         <li class="nav-item">
           <a class="nav-link active" href="/perfis">Perfis</a>
         </li>
+        @endif
+        @if (Auth::user()->temPermissao('root'))
+        <li class="nav-item">
+          <a class="nav-link active" href="/log">Logs</a>
+        </li>
+        @endif
         <li class="nav-item">
           <a class="nav-link active " href="/logout">Logout</a>
         </li>
       </ul>
     </div>
   </nav>
-  
+  @include('flash::message')
     @yield('content')
 </body>
 

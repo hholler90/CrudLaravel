@@ -1,22 +1,22 @@
-Illuminate\Database\QueryException {#491
-  #sql: "create table `perfil_permissao` () default character set utf8 collate utf8_unicode_ci"
+Illuminate\Database\QueryException {#518
+  #sql: "alter table `login_logs` add constraint `login_logs_usuario_id_foreign` foreign key (`usuario_id`) references `usuarios` (`id`)"
   #bindings: []
-  #message: "SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') default character set utf8 collate utf8_unicode_ci' at line 1 (SQL: create table `perfil_permissao` () default character set utf8 collate utf8_unicode_ci)"
-  #code: "42000"
+  #message: "SQLSTATE[HY000]: General error: 3780 Referencing column 'usuario_id' and referenced column 'id' in foreign key constraint 'login_logs_usuario_id_foreign' are incompatible. (SQL: alter table `login_logs` add constraint `login_logs_usuario_id_foreign` foreign key (`usuario_id`) references `usuarios` (`id`))"
+  #code: "HY000"
   #file: "/var/www/html/sulvale2/vendor/laravel/framework/src/Illuminate/Database/Connection.php"
   #line: 729
-  -previous: PDOException {#499
-    #message: "SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') default character set utf8 collate utf8_unicode_ci' at line 1"
-    #code: "42000"
+  -previous: PDOException {#519
+    #message: "SQLSTATE[HY000]: General error: 3780 Referencing column 'usuario_id' and referenced column 'id' in foreign key constraint 'login_logs_usuario_id_foreign' are incompatible."
+    #code: "HY000"
     #file: "/var/www/html/sulvale2/vendor/laravel/framework/src/Illuminate/Database/Connection.php"
     #line: 457
     +errorInfo: array:3 [
-      0 => "42000"
-      1 => 1064
-      2 => "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') default character set utf8 collate utf8_unicode_ci' at line 1"
+      0 => "HY000"
+      1 => 3780
+      2 => "Referencing column 'usuario_id' and referenced column 'id' in foreign key constraint 'login_logs_usuario_id_foreign' are incompatible."
     ]
     -trace: {
-      25. PDO->prepare() ==> new PDOException(): {
+      25. PDOStatement->execute() ==> new PDOException(): {
         src: {
           /var/www/html/sulvale2/vendor/laravel/framework/src/Illuminate/Database/Connection.php:457: """
             \n
@@ -25,7 +25,7 @@ Illuminate\Database\QueryException {#491
             """
         }
       }
-      24. Illuminate\Database\Connection->Illuminate\Database\{closure}() ==> PDO->prepare(): {
+      24. Illuminate\Database\Connection->Illuminate\Database\{closure}() ==> PDOStatement->execute(): {
         src: {
           /var/www/html/sulvale2/vendor/laravel/framework/src/Illuminate/Database/Connection.php:457: """
             \n
@@ -34,7 +34,7 @@ Illuminate\Database\QueryException {#491
             """
         }
         args: array:1 [
-          0 => "create table `perfil_permissao` () default character set utf8 collate utf8_unicode_ci"
+          0 => []
         ]
       }
       23. Illuminate\Database\Connection->runQueryCallback() ==> Illuminate\Database\Connection->Illuminate\Database\{closure}(): {
@@ -46,8 +46,8 @@ Illuminate\Database\QueryException {#491
             """
         }
         args: array:3 [
-          0 => Illuminate\Database\MySqlConnection {#481
-            #pdo: PDO {#493
+          0 => Illuminate\Database\MySqlConnection {#496
+            #pdo: PDO {#508
               inTransaction: false
               attributes: {
                 CASE: NATURAL
@@ -55,10 +55,10 @@ Illuminate\Database\QueryException {#491
                 AUTOCOMMIT: 1
                 PERSISTENT: false
                 DRIVER_NAME: "mysql"
-                SERVER_INFO: "Uptime: 23997  Threads: 3  Questions: 1024  Slow queries: 0  Opens: 447  Flush tables: 3  Open tables: 341  Queries per second avg: 0.042"
+                SERVER_INFO: "Uptime: 6921  Threads: 3  Questions: 198  Slow queries: 0  Opens: 289  Flush tables: 3  Open tables: 201  Queries per second avg: 0.028"
                 ORACLE_NULLS: NATURAL
                 CLIENT_VERSION: "mysqlnd 5.0.11-dev - 20120503 - $Id: 76b08b24596e12d4553bd41fc93cccd5bac2fe7a $"
-                SERVER_VERSION: "8.0.34-0ubuntu0.22.04.1"
+                SERVER_VERSION: "8.0.35-0ubuntu0.22.04.1"
                 STATEMENT_CLASS: array:1 [
                   0 => "PDOStatement"
                 ]
@@ -68,7 +68,7 @@ Illuminate\Database\QueryException {#491
               }
             }
             #readPdo: null
-            #reconnector: Closure {#488
+            #reconnector: Closure {#503
               class: "Illuminate\Database\DatabaseManager"
               this: Illuminate\Database\DatabaseManager {#51 …}
               parameters: {
@@ -77,7 +77,7 @@ Illuminate\Database\QueryException {#491
               file: "/var/www/html/sulvale2/vendor/laravel/framework/src/Illuminate/Database/DatabaseManager.php"
               line: "196 to 198"
             }
-            #queryGrammar: Illuminate\Database\Query\Grammars\MySqlGrammar {#486
+            #queryGrammar: Illuminate\Database\Query\Grammars\MySqlGrammar {#501
               #selectComponents: array:11 [
                 0 => "aggregate"
                 1 => "columns"
@@ -94,7 +94,7 @@ Illuminate\Database\QueryException {#491
               #operators: []
               #tablePrefix: ""
             }
-            #schemaGrammar: Illuminate\Database\Schema\Grammars\MySqlGrammar {#489
+            #schemaGrammar: Illuminate\Database\Schema\Grammars\MySqlGrammar {#504
               #modifiers: array:11 [
                 0 => "VirtualAs"
                 1 => "StoredAs"
@@ -117,7 +117,7 @@ Illuminate\Database\QueryException {#491
               ]
               #tablePrefix: ""
             }
-            #postProcessor: Illuminate\Database\Query\Processors\MySqlProcessor {#487}
+            #postProcessor: Illuminate\Database\Query\Processors\MySqlProcessor {#502}
             #events: Illuminate\Events\Dispatcher {#5
               #container: Illuminate\Foundation\Application {#3
                 #basePath: "/var/www/html/sulvale2"
@@ -131,16 +131,16 @@ Illuminate\Database\QueryException {#491
                       #commands: []
                       #app: Illuminate\Foundation\Application {#3}
                       #events: Illuminate\Events\Dispatcher {#5}
-                      #artisan: Illuminate\Console\Application {#231
+                      #artisan: Illuminate\Console\Application {#246
                         #laravel: Illuminate\Foundation\Application {#3}
                         #lastOutput: null
                         -commands: array:54 [
-                          "help" => Symfony\Component\Console\Command\HelpCommand {#247 …15}
-                          "list" => Symfony\Component\Console\Command\ListCommand {#252 …14}
-                          "cache:clear" => Illuminate\Cache\Console\ClearCommand {#258
+                          "help" => Symfony\Component\Console\Command\HelpCommand {#262 …15}
+                          "list" => Symfony\Component\Console\Command\ListCommand {#267 …14}
+                          "cache:clear" => Illuminate\Cache\Console\ClearCommand {#273
                             #name: "cache:clear"
                             #description: "Flush the application cache"
-                            #cache: Illuminate\Cache\CacheManager {#259
+                            #cache: Illuminate\Cache\CacheManager {#274
                               #app: Illuminate\Foundation\Application {#3}
                               #stores: []
                               #customCreators: []
@@ -151,161 +151,7 @@ Illuminate\Database\QueryException {#491
                             #signature: null
                             #verbosity: 32
                             #verbosityMap: array:5 [ …5]
-                            -application: Illuminate\Console\Application {#231}
-                            -processTitle: null
-                            -aliases: []
-                            -definition: Symfony\Component\Console\Input\InputDefinition {#260 …6}
-                            -help: null
-                            -ignoreValidationErrors: false
-                            -applicationDefinitionMerged: false
-                            -applicationDefinitionMergedWithArgs: false
-                            -code: null
-                            -synopsis: []
-                            -usages: []
-                            -helperSet: Symfony\Component\Console\Helper\HelperSet {#232
-                              -helpers: array:4 [
-                                "formatter" => Symfony\Component\Console\Helper\FormatterHelper {#233 …1}
-                                "debug_formatter" => Symfony\Component\Console\Helper\DebugFormatterHelper {#234 …4}
-                                "process" => Symfony\Component\Console\Helper\ProcessHelper {#235 …1}
-                                "question" => Symfony\Component\Console\Helper\QuestionHelper {#236 …2}
-                              ]
-                              -command: null
-                            }
-                            -name: "cache:clear"
-                            -description: "Flush the application cache"
-                          }
-                          "clear-compiled" => Illuminate\Foundation\Console\ClearCompiledCommand {#263
-                            #name: "clear-compiled"
-                            #description: "Remove the compiled class file"
-                            #laravel: Illuminate\Foundation\Application {#3}
-                            #input: null
-                            #output: null
-                            #signature: null
-                            #verbosity: 32
-                            #verbosityMap: array:5 [ …5]
-                            -application: Illuminate\Console\Application {#231}
-                            -processTitle: null
-                            -aliases: []
-                            -definition: Symfony\Component\Console\Input\InputDefinition {#264 …6}
-                            -help: null
-                            -ignoreValidationErrors: false
-                            -applicationDefinitionMerged: false
-                            -applicationDefinitionMergedWithArgs: false
-                            -code: null
-                            -synopsis: []
-                            -usages: []
-                            -helperSet: Symfony\Component\Console\Helper\HelperSet {#232}
-                            -name: "clear-compiled"
-                            -description: "Remove the compiled class file"
-                          }
-                          "auth:clear-resets" => Illuminate\Auth\Console\ClearResetsCommand {#265
-                            #signature: "auth:clear-resets {name? : The name of the password broker}"
-                            #description: "Flush expired password reset tokens"
-                            #laravel: Illuminate\Foundation\Application {#3}
-                            #input: null
-                            #output: null
-                            #name: null
-                            #verbosity: 32
-                            #verbosityMap: array:5 [ …5]
-                            -application: Illuminate\Console\Application {#231}
-                            -processTitle: null
-                            -aliases: []
-                            -definition: Symfony\Component\Console\Input\InputDefinition {#267 …6}
-                            -help: null
-                            -ignoreValidationErrors: false
-                            -applicationDefinitionMerged: false
-                            -applicationDefinitionMergedWithArgs: false
-                            -code: null
-                            -synopsis: []
-                            -usages: []
-                            -helperSet: Symfony\Component\Console\Helper\HelperSet {#232}
-                            -name: "auth:clear-resets"
-                            -description: "Flush expired password reset tokens"
-                          }
-                          "config:cache" => Illuminate\Foundation\Console\ConfigCacheCommand {#268
-                            #name: "config:cache"
-                            #description: "Create a cache file for faster configuration loading"
-                            #files: Illuminate\Filesystem\Filesystem {#103}
-                            #laravel: Illuminate\Foundation\Application {#3}
-                            #input: null
-                            #output: null
-                            #signature: null
-                            #verbosity: 32
-                            #verbosityMap: array:5 [ …5]
-                            -application: Illuminate\Console\Application {#231}
-                            -processTitle: null
-                            -aliases: []
-                            -definition: Symfony\Component\Console\Input\InputDefinition {#269 …6}
-                            -help: null
-                            -ignoreValidationErrors: false
-                            -applicationDefinitionMerged: false
-                            -applicationDefinitionMergedWithArgs: false
-                            -code: null
-                            -synopsis: []
-                            -usages: []
-                            -helperSet: Symfony\Component\Console\Helper\HelperSet {#232}
-                            -name: "config:cache"
-                            -description: "Create a cache file for faster configuration loading"
-                          }
-                          "config:clear" => Illuminate\Foundation\Console\ConfigClearCommand {#270
-                            #name: "config:clear"
-                            #description: "Remove the configuration cache file"
-                            #files: Illuminate\Filesystem\Filesystem {#103}
-                            #laravel: Illuminate\Foundation\Application {#3}
-                            #input: null
-                            #output: null
-                            #signature: null
-                            #verbosity: 32
-                            #verbosityMap: array:5 [ …5]
-                            -application: Illuminate\Console\Application {#231}
-                            -processTitle: null
-                            -aliases: []
-                            -definition: Symfony\Component\Console\Input\InputDefinition {#271 …6}
-                            -help: null
-                            -ignoreValidationErrors: false
-                            -applicationDefinitionMerged: false
-                            -applicationDefinitionMergedWithArgs: false
-                            -code: null
-                            -synopsis: []
-                            -usages: []
-                            -helperSet: Symfony\Component\Console\Helper\HelperSet {#232}
-                            -name: "config:clear"
-                            -description: "Remove the configuration cache file"
-                          }
-                          "down" => Illuminate\Foundation\Console\DownCommand {#272
-                            #name: "down"
-                            #description: "Put the application into maintenance mode"
-                            #laravel: Illuminate\Foundation\Application {#3}
-                            #input: null
-                            #output: null
-                            #signature: null
-                            #verbosity: 32
-                            #verbosityMap: array:5 [ …5]
-                            -application: Illuminate\Console\Application {#231}
-                            -processTitle: null
-                            -aliases: []
-                            -definition: Symfony\Component\Console\Input\InputDefinition {#273 …6}
-                            -help: null
-                            -ignoreValidationErrors: false
-                            -applicationDefinitionMerged: false
-                            -applicationDefinitionMergedWithArgs: false
-                            -code: null
-                            -synopsis: []
-                            -usages: []
-                            -helperSet: Symfony\Component\Console\Helper\HelperSet {#232}
-                            -name: "down"
-                            -description: "Put the application into maintenance mode"
-                          }
-                          "env" => Illuminate\Foundation\Console\EnvironmentCommand {#274
-                            #name: "env"
-                            #description: "Display the current framework environment"
-                            #laravel: Illuminate\Foundation\Application {#3}
-                            #input: null
-                            #output: null
-                            #signature: null
-                            #verbosity: 32
-                            #verbosityMap: array:5 [ …5]
-                            -application: Illuminate\Console\Application {#231}
+                            -application: Illuminate\Console\Application {#246}
                             -processTitle: null
                             -aliases: []
                             -definition: Symfony\Component\Console\Input\InputDefinition {#275 …6}
@@ -316,11 +162,165 @@ Illuminate\Database\QueryException {#491
                             -code: null
                             -synopsis: []
                             -usages: []
-                            -helperSet: Symfony\Component\Console\Helper\HelperSet {#232}
+                            -helperSet: Symfony\Component\Console\Helper\HelperSet {#247
+                              -helpers: array:4 [
+                                "formatter" => Symfony\Component\Console\Helper\FormatterHelper {#248 …1}
+                                "debug_formatter" => Symfony\Component\Console\Helper\DebugFormatterHelper {#249 …4}
+                                "process" => Symfony\Component\Console\Helper\ProcessHelper {#250 …1}
+                                "question" => Symfony\Component\Console\Helper\QuestionHelper {#251 …2}
+                              ]
+                              -command: null
+                            }
+                            -name: "cache:clear"
+                            -description: "Flush the application cache"
+                          }
+                          "clear-compiled" => Illuminate\Foundation\Console\ClearCompiledCommand {#278
+                            #name: "clear-compiled"
+                            #description: "Remove the compiled class file"
+                            #laravel: Illuminate\Foundation\Application {#3}
+                            #input: null
+                            #output: null
+                            #signature: null
+                            #verbosity: 32
+                            #verbosityMap: array:5 [ …5]
+                            -application: Illuminate\Console\Application {#246}
+                            -processTitle: null
+                            -aliases: []
+                            -definition: Symfony\Component\Console\Input\InputDefinition {#279 …6}
+                            -help: null
+                            -ignoreValidationErrors: false
+                            -applicationDefinitionMerged: false
+                            -applicationDefinitionMergedWithArgs: false
+                            -code: null
+                            -synopsis: []
+                            -usages: []
+                            -helperSet: Symfony\Component\Console\Helper\HelperSet {#247}
+                            -name: "clear-compiled"
+                            -description: "Remove the compiled class file"
+                          }
+                          "auth:clear-resets" => Illuminate\Auth\Console\ClearResetsCommand {#280
+                            #signature: "auth:clear-resets {name? : The name of the password broker}"
+                            #description: "Flush expired password reset tokens"
+                            #laravel: Illuminate\Foundation\Application {#3}
+                            #input: null
+                            #output: null
+                            #name: null
+                            #verbosity: 32
+                            #verbosityMap: array:5 [ …5]
+                            -application: Illuminate\Console\Application {#246}
+                            -processTitle: null
+                            -aliases: []
+                            -definition: Symfony\Component\Console\Input\InputDefinition {#282 …6}
+                            -help: null
+                            -ignoreValidationErrors: false
+                            -applicationDefinitionMerged: false
+                            -applicationDefinitionMergedWithArgs: false
+                            -code: null
+                            -synopsis: []
+                            -usages: []
+                            -helperSet: Symfony\Component\Console\Helper\HelperSet {#247}
+                            -name: "auth:clear-resets"
+                            -description: "Flush expired password reset tokens"
+                          }
+                          "config:cache" => Illuminate\Foundation\Console\ConfigCacheCommand {#283
+                            #name: "config:cache"
+                            #description: "Create a cache file for faster configuration loading"
+                            #files: Illuminate\Filesystem\Filesystem {#101}
+                            #laravel: Illuminate\Foundation\Application {#3}
+                            #input: null
+                            #output: null
+                            #signature: null
+                            #verbosity: 32
+                            #verbosityMap: array:5 [ …5]
+                            -application: Illuminate\Console\Application {#246}
+                            -processTitle: null
+                            -aliases: []
+                            -definition: Symfony\Component\Console\Input\InputDefinition {#284 …6}
+                            -help: null
+                            -ignoreValidationErrors: false
+                            -applicationDefinitionMerged: false
+                            -applicationDefinitionMergedWithArgs: false
+                            -code: null
+                            -synopsis: []
+                            -usages: []
+                            -helperSet: Symfony\Component\Console\Helper\HelperSet {#247}
+                            -name: "config:cache"
+                            -description: "Create a cache file for faster configuration loading"
+                          }
+                          "config:clear" => Illuminate\Foundation\Console\ConfigClearCommand {#285
+                            #name: "config:clear"
+                            #description: "Remove the configuration cache file"
+                            #files: Illuminate\Filesystem\Filesystem {#101}
+                            #laravel: Illuminate\Foundation\Application {#3}
+                            #input: null
+                            #output: null
+                            #signature: null
+                            #verbosity: 32
+                            #verbosityMap: array:5 [ …5]
+                            -application: Illuminate\Console\Application {#246}
+                            -processTitle: null
+                            -aliases: []
+                            -definition: Symfony\Component\Console\Input\InputDefinition {#286 …6}
+                            -help: null
+                            -ignoreValidationErrors: false
+                            -applicationDefinitionMerged: false
+                            -applicationDefinitionMergedWithArgs: false
+                            -code: null
+                            -synopsis: []
+                            -usages: []
+                            -helperSet: Symfony\Component\Console\Helper\HelperSet {#247}
+                            -name: "config:clear"
+                            -description: "Remove the configuration cache file"
+                          }
+                          "down" => Illuminate\Foundation\Console\DownCommand {#287
+                            #name: "down"
+                            #description: "Put the application into maintenance mode"
+                            #laravel: Illuminate\Foundation\Application {#3}
+                            #input: null
+                            #output: null
+                            #signature: null
+                            #verbosity: 32
+                            #verbosityMap: array:5 [ …5]
+                            -application: Illuminate\Console\Application {#246}
+                            -processTitle: null
+                            -aliases: []
+                            -definition: Symfony\Component\Console\Input\InputDefinition {#288 …6}
+                            -help: null
+                            -ignoreValidationErrors: false
+                            -applicationDefinitionMerged: false
+                            -applicationDefinitionMergedWithArgs: false
+                            -code: null
+                            -synopsis: []
+                            -usages: []
+                            -helperSet: Symfony\Component\Console\Helper\HelperSet {#247}
+                            -name: "down"
+                            -description: "Put the application into maintenance mode"
+                          }
+                          "env" => Illuminate\Foundation\Console\EnvironmentCommand {#289
+                            #name: "env"
+                            #description: "Display the current framework environment"
+                            #laravel: Illuminate\Foundation\Application {#3}
+                            #input: null
+                            #output: null
+                            #signature: null
+                            #verbosity: 32
+                            #verbosityMap: array:5 [ …5]
+                            -application: Illuminate\Console\Application {#246}
+                            -processTitle: null
+                            -aliases: []
+                            -definition: Symfony\Component\Console\Input\InputDefinition {#290 …6}
+                            -help: null
+                            -ignoreValidationErrors: false
+                            -applicationDefinitionMerged: false
+                            -applicationDefinitionMergedWithArgs: false
+                            -code: null
+                            -synopsis: []
+                            -usages: []
+                            -helperSet: Symfony\Component\Console\Helper\HelperSet {#247}
                             -name: "env"
                             -description: "Display the current framework environment"
                           }
-                          "key:generate" => Illuminate\Foundation\Console\KeyGenerateCommand {#276
+                          "key:generate" => Illuminate\Foundation\Console\KeyGenerateCommand {#291
                             #signature: "key:generate {--show : Display the key instead of modifying files}"
                             #description: "Set the application key"
                             #laravel: Illuminate\Foundation\Application {#3}
@@ -329,10 +329,10 @@ Illuminate\Database\QueryException {#491
                             #name: null
                             #verbosity: 32
                             #verbosityMap: array:5 [ …5]
-                            -application: Illuminate\Console\Application {#231}
+                            -application: Illuminate\Console\Application {#246}
                             -processTitle: null
                             -aliases: []
-                            -definition: Symfony\Component\Console\Input\InputDefinition {#278 …6}
+                            -definition: Symfony\Component\Console\Input\InputDefinition {#293 …6}
                             -help: null
                             -ignoreValidationErrors: false
                             -applicationDefinitionMerged: false
@@ -340,15 +340,15 @@ Illuminate\Database\QueryException {#491
                             -code: null
                             -synopsis: []
                             -usages: []
-                            -helperSet: Symfony\Component\Console\Helper\HelperSet {#232}
+                            -helperSet: Symfony\Component\Console\Helper\HelperSet {#247}
                             -name: "key:generate"
                             -description: "Set the application key"
                           }
-                          "optimize" => Illuminate\Foundation\Console\OptimizeCommand {#279
+                          "optimize" => Illuminate\Foundation\Console\OptimizeCommand {#294
                             #name: "optimize"
                             #description: "Optimize the framework for better performance"
-                            #composer: Illuminate\Support\Composer {#280
-                              #files: Illuminate\Filesystem\Filesystem {#103}
+                            #composer: Illuminate\Support\Composer {#295
+                              #files: Illuminate\Filesystem\Filesystem {#101}
                               #workingPath: "/var/www/html/sulvale2"
                             }
                             #laravel: Illuminate\Foundation\Application {#3}
@@ -357,114 +357,7 @@ Illuminate\Database\QueryException {#491
                             #signature: null
                             #verbosity: 32
                             #verbosityMap: array:5 [ …5]
-                            -application: Illuminate\Console\Application {#231}
-                            -processTitle: null
-                            -aliases: []
-                            -definition: Symfony\Component\Console\Input\InputDefinition {#281 …6}
-                            -help: null
-                            -ignoreValidationErrors: false
-                            -applicationDefinitionMerged: false
-                            -applicationDefinitionMergedWithArgs: false
-                            -code: null
-                            -synopsis: []
-                            -usages: []
-                            -helperSet: Symfony\Component\Console\Helper\HelperSet {#232}
-                            -name: "optimize"
-                            -description: "Optimize the framework for better performance"
-                          }
-                          "route:cache" => Illuminate\Foundation\Console\RouteCacheCommand {#284
-                            #name: "route:cache"
-                            #description: "Create a route cache file for faster route registration"
-                            #files: Illuminate\Filesystem\Filesystem {#103}
-                            #laravel: Illuminate\Foundation\Application {#3}
-                            #input: null
-                            #output: null
-                            #signature: null
-                            #verbosity: 32
-                            #verbosityMap: array:5 [ …5]
-                            -application: Illuminate\Console\Application {#231}
-                            -processTitle: null
-                            -aliases: []
-                            -definition: Symfony\Component\Console\Input\InputDefinition {#285 …6}
-                            -help: null
-                            -ignoreValidationErrors: false
-                            -applicationDefinitionMerged: false
-                            -applicationDefinitionMergedWithArgs: false
-                            -code: null
-                            -synopsis: []
-                            -usages: []
-                            -helperSet: Symfony\Component\Console\Helper\HelperSet {#232}
-                            -name: "route:cache"
-                            -description: "Create a route cache file for faster route registration"
-                          }
-                          "route:clear" => Illuminate\Foundation\Console\RouteClearCommand {#286
-                            #name: "route:clear"
-                            #description: "Remove the route cache file"
-                            #files: Illuminate\Filesystem\Filesystem {#103}
-                            #laravel: Illuminate\Foundation\Application {#3}
-                            #input: null
-                            #output: null
-                            #signature: null
-                            #verbosity: 32
-                            #verbosityMap: array:5 [ …5]
-                            -application: Illuminate\Console\Application {#231}
-                            -processTitle: null
-                            -aliases: []
-                            -definition: Symfony\Component\Console\Input\InputDefinition {#287 …6}
-                            -help: null
-                            -ignoreValidationErrors: false
-                            -applicationDefinitionMerged: false
-                            -applicationDefinitionMergedWithArgs: false
-                            -code: null
-                            -synopsis: []
-                            -usages: []
-                            -helperSet: Symfony\Component\Console\Helper\HelperSet {#232}
-                            -name: "route:clear"
-                            -description: "Remove the route cache file"
-                          }
-                          "route:list" => Illuminate\Foundation\Console\RouteListCommand {#288
-                            #name: "route:list"
-                            #description: "List all registered routes"
-                            #router: Illuminate\Routing\Router {#92 …10}
-                            #routes: Illuminate\Routing\RouteCollection {#98
-                              #routes: array:4 [ …4]
-                              #allRoutes: array:14 [ …14]
-                              #nameList: array:2 [ …2]
-                              #actionList: array:12 [ …12]
-                            }
-                            #headers: array:6 [ …6]
-                            #laravel: Illuminate\Foundation\Application {#3}
-                            #input: null
-                            #output: null
-                            #signature: null
-                            #verbosity: 32
-                            #verbosityMap: array:5 [ …5]
-                            -application: Illuminate\Console\Application {#231}
-                            -processTitle: null
-                            -aliases: []
-                            -definition: Symfony\Component\Console\Input\InputDefinition {#289 …6}
-                            -help: null
-                            -ignoreValidationErrors: false
-                            -applicationDefinitionMerged: false
-                            -applicationDefinitionMergedWithArgs: false
-                            -code: null
-                            -synopsis: []
-                            -usages: []
-                            -helperSet: Symfony\Component\Console\Helper\HelperSet {#232}
-                            -name: "route:list"
-                            -description: "List all registered routes"
-                          }
-                          "tinker" => Illuminate\Foundation\Console\TinkerCommand {#295
-                            #commandWhitelist: array:7 [ …7]
-                            #name: "tinker"
-                            #description: "Interact with your application"
-                            #laravel: Illuminate\Foundation\Application {#3}
-                            #input: null
-                            #output: null
-                            #signature: null
-                            #verbosity: 32
-                            #verbosityMap: array:5 [ …5]
-                            -application: Illuminate\Console\Application {#231}
+                            -application: Illuminate\Console\Application {#246}
                             -processTitle: null
                             -aliases: []
                             -definition: Symfony\Component\Console\Input\InputDefinition {#296 …6}
@@ -475,23 +368,24 @@ Illuminate\Database\QueryException {#491
                             -code: null
                             -synopsis: []
                             -usages: []
-                            -helperSet: Symfony\Component\Console\Helper\HelperSet {#232}
-                            -name: "tinker"
-                            -description: "Interact with your application"
+                            -helperSet: Symfony\Component\Console\Helper\HelperSet {#247}
+                            -name: "optimize"
+                            -description: "Optimize the framework for better performance"
                           }
-                          "up" => Illuminate\Foundation\Console\UpCommand {#298
-                            #name: "up"
-                            #description: "Bring the application out of maintenance mode"
+                          "route:cache" => Illuminate\Foundation\Console\RouteCacheCommand {#299
+                            #name: "route:cache"
+                            #description: "Create a route cache file for faster route registration"
+                            #files: Illuminate\Filesystem\Filesystem {#101}
                             #laravel: Illuminate\Foundation\Application {#3}
                             #input: null
                             #output: null
                             #signature: null
                             #verbosity: 32
                             #verbosityMap: array:5 [ …5]
-                            -application: Illuminate\Console\Application {#231}
+                            -application: Illuminate\Console\Application {#246}
                             -processTitle: null
                             -aliases: []
-                            -definition: Symfony\Component\Console\Input\InputDefinition {#299 …6}
+                            -definition: Symfony\Component\Console\Input\InputDefinition {#300 …6}
                             -help: null
                             -ignoreValidationErrors: false
                             -applicationDefinitionMerged: false
@@ -499,24 +393,24 @@ Illuminate\Database\QueryException {#491
                             -code: null
                             -synopsis: []
                             -usages: []
-                            -helperSet: Symfony\Component\Console\Helper\HelperSet {#232}
-                            -name: "up"
-                            -description: "Bring the application out of maintenance mode"
+                            -helperSet: Symfony\Component\Console\Helper\HelperSet {#247}
+                            -name: "route:cache"
+                            -description: "Create a route cache file for faster route registration"
                           }
-                          "view:clear" => Illuminate\Foundation\Console\ViewClearCommand {#300
-                            #name: "view:clear"
-                            #description: "Clear all compiled view files"
-                            #files: Illuminate\Filesystem\Filesystem {#103}
+                          "route:clear" => Illuminate\Foundation\Console\RouteClearCommand {#301
+                            #name: "route:clear"
+                            #description: "Remove the route cache file"
+                            #files: Illuminate\Filesystem\Filesystem {#101}
                             #laravel: Illuminate\Foundation\Application {#3}
                             #input: null
                             #output: null
                             #signature: null
                             #verbosity: 32
                             #verbosityMap: array:5 [ …5]
-                            -application: Illuminate\Console\Application {#231}
+                            -application: Illuminate\Console\Application {#246}
                             -processTitle: null
                             -aliases: []
-                            -definition: Symfony\Component\Console\Input\InputDefinition {#301 …6}
+                            -definition: Symfony\Component\Console\Input\InputDefinition {#302 …6}
                             -help: null
                             -ignoreValidationErrors: false
                             -applicationDefinitionMerged: false
@@ -524,26 +418,31 @@ Illuminate\Database\QueryException {#491
                             -code: null
                             -synopsis: []
                             -usages: []
-                            -helperSet: Symfony\Component\Console\Helper\HelperSet {#232}
-                            -name: "view:clear"
-                            -description: "Clear all compiled view files"
+                            -helperSet: Symfony\Component\Console\Helper\HelperSet {#247}
+                            -name: "route:clear"
+                            -description: "Remove the route cache file"
                           }
-                          "app:name" => Illuminate\Foundation\Console\AppNameCommand {#302
-                            #name: "app:name"
-                            #description: "Set the application namespace"
-                            #composer: Illuminate\Support\Composer {#280}
-                            #files: Illuminate\Filesystem\Filesystem {#103}
-                            #currentRoot: null
+                          "route:list" => Illuminate\Foundation\Console\RouteListCommand {#303
+                            #name: "route:list"
+                            #description: "List all registered routes"
+                            #router: Illuminate\Routing\Router {#104 …10}
+                            #routes: Illuminate\Routing\RouteCollection {#108
+                              #routes: array:3 [ …3]
+                              #allRoutes: array:19 [ …19]
+                              #nameList: array:4 [ …4]
+                              #actionList: array:20 [ …20]
+                            }
+                            #headers: array:6 [ …6]
                             #laravel: Illuminate\Foundation\Application {#3}
                             #input: null
                             #output: null
                             #signature: null
                             #verbosity: 32
                             #verbosityMap: array:5 [ …5]
-                            -application: Illuminate\Console\Application {#231}
+                            -application: Illuminate\Console\Application {#246}
                             -processTitle: null
                             -aliases: []
-                            -definition: Symfony\Component\Console\Input\InputDefinition {#303 …6}
+                            -definition: Symfony\Component\Console\Input\InputDefinition {#304 …6}
                             -help: null
                             -ignoreValidationErrors: false
                             -applicationDefinitionMerged: false
@@ -551,73 +450,21 @@ Illuminate\Database\QueryException {#491
                             -code: null
                             -synopsis: []
                             -usages: []
-                            -helperSet: Symfony\Component\Console\Helper\HelperSet {#232}
-                            -name: "app:name"
-                            -description: "Set the application namespace"
+                            -helperSet: Symfony\Component\Console\Helper\HelperSet {#247}
+                            -name: "route:list"
+                            -description: "List all registered routes"
                           }
-                          "make:auth" => Illuminate\Auth\Console\MakeAuthCommand {#305
-                            #signature: "make:auth {--views : Only scaffold the authentication views}"
-                            #description: "Scaffold basic login and registration views and routes"
-                            #views: array:8 [ …8]
-                            #laravel: Illuminate\Foundation\Application {#3}
-                            #input: null
-                            #output: null
-                            #name: null
-                            #verbosity: 32
-                            #verbosityMap: array:5 [ …5]
-                            -application: Illuminate\Console\Application {#231}
-                            -processTitle: null
-                            -aliases: []
-                            -definition: Symfony\Component\Console\Input\InputDefinition {#307 …6}
-                            -help: null
-                            -ignoreValidationErrors: false
-                            -applicationDefinitionMerged: false
-                            -applicationDefinitionMergedWithArgs: false
-                            -code: null
-                            -synopsis: []
-                            -usages: []
-                            -helperSet: Symfony\Component\Console\Helper\HelperSet {#232}
-                            -name: "make:auth"
-                            -description: "Scaffold basic login and registration views and routes"
-                          }
-                          "cache:table" => Illuminate\Cache\Console\CacheTableCommand {#308
-                            #name: "cache:table"
-                            #description: "Create a migration for the cache database table"
-                            #files: Illuminate\Filesystem\Filesystem {#103}
-                            #composer: Illuminate\Support\Composer {#280}
+                          "tinker" => Illuminate\Foundation\Console\TinkerCommand {#310
+                            #commandWhitelist: array:7 [ …7]
+                            #name: "tinker"
+                            #description: "Interact with your application"
                             #laravel: Illuminate\Foundation\Application {#3}
                             #input: null
                             #output: null
                             #signature: null
                             #verbosity: 32
                             #verbosityMap: array:5 [ …5]
-                            -application: Illuminate\Console\Application {#231}
-                            -processTitle: null
-                            -aliases: []
-                            -definition: Symfony\Component\Console\Input\InputDefinition {#309 …6}
-                            -help: null
-                            -ignoreValidationErrors: false
-                            -applicationDefinitionMerged: false
-                            -applicationDefinitionMergedWithArgs: false
-                            -code: null
-                            -synopsis: []
-                            -usages: []
-                            -helperSet: Symfony\Component\Console\Helper\HelperSet {#232}
-                            -name: "cache:table"
-                            -description: "Create a migration for the cache database table"
-                          }
-                          "make:console" => Illuminate\Foundation\Console\ConsoleMakeCommand {#310
-                            #name: "make:console"
-                            #description: "Create a new Artisan command"
-                            #type: "Console command"
-                            #files: Illuminate\Filesystem\Filesystem {#103}
-                            #laravel: Illuminate\Foundation\Application {#3}
-                            #input: null
-                            #output: null
-                            #signature: null
-                            #verbosity: 32
-                            #verbosityMap: array:5 [ …5]
-                            -application: Illuminate\Console\Application {#231}
+                            -application: Illuminate\Console\Application {#246}
                             -processTitle: null
                             -aliases: []
                             -definition: Symfony\Component\Console\Input\InputDefinition {#311 …6}
@@ -628,25 +475,23 @@ Illuminate\Database\QueryException {#491
                             -code: null
                             -synopsis: []
                             -usages: []
-                            -helperSet: Symfony\Component\Console\Helper\HelperSet {#232}
-                            -name: "make:console"
-                            -description: "Create a new Artisan command"
+                            -helperSet: Symfony\Component\Console\Helper\HelperSet {#247}
+                            -name: "tinker"
+                            -description: "Interact with your application"
                           }
-                          "make:controller" => Illuminate\Routing\Console\ControllerMakeCommand {#314
-                            #name: "make:controller"
-                            #description: "Create a new controller class"
-                            #type: "Controller"
-                            #files: Illuminate\Filesystem\Filesystem {#103}
+                          "up" => Illuminate\Foundation\Console\UpCommand {#313
+                            #name: "up"
+                            #description: "Bring the application out of maintenance mode"
                             #laravel: Illuminate\Foundation\Application {#3}
                             #input: null
                             #output: null
                             #signature: null
                             #verbosity: 32
                             #verbosityMap: array:5 [ …5]
-                            -application: Illuminate\Console\Application {#231}
+                            -application: Illuminate\Console\Application {#246}
                             -processTitle: null
                             -aliases: []
-                            -definition: Symfony\Component\Console\Input\InputDefinition {#315 …6}
+                            -definition: Symfony\Component\Console\Input\InputDefinition {#314 …6}
                             -help: null
                             -ignoreValidationErrors: false
                             -applicationDefinitionMerged: false
@@ -654,23 +499,24 @@ Illuminate\Database\QueryException {#491
                             -code: null
                             -synopsis: []
                             -usages: []
-                            -helperSet: Symfony\Component\Console\Helper\HelperSet {#232}
-                            -name: "make:controller"
-                            -description: "Create a new controller class"
+                            -helperSet: Symfony\Component\Console\Helper\HelperSet {#247}
+                            -name: "up"
+                            -description: "Bring the application out of maintenance mode"
                           }
-                          "event:generate" => Illuminate\Foundation\Console\EventGenerateCommand {#318
-                            #name: "event:generate"
-                            #description: "Generate the missing events and listeners based on registration"
+                          "view:clear" => Illuminate\Foundation\Console\ViewClearCommand {#315
+                            #name: "view:clear"
+                            #description: "Clear all compiled view files"
+                            #files: Illuminate\Filesystem\Filesystem {#101}
                             #laravel: Illuminate\Foundation\Application {#3}
                             #input: null
                             #output: null
                             #signature: null
                             #verbosity: 32
                             #verbosityMap: array:5 [ …5]
-                            -application: Illuminate\Console\Application {#231}
+                            -application: Illuminate\Console\Application {#246}
                             -processTitle: null
                             -aliases: []
-                            -definition: Symfony\Component\Console\Input\InputDefinition {#319 …6}
+                            -definition: Symfony\Component\Console\Input\InputDefinition {#316 …6}
                             -help: null
                             -ignoreValidationErrors: false
                             -applicationDefinitionMerged: false
@@ -678,25 +524,26 @@ Illuminate\Database\QueryException {#491
                             -code: null
                             -synopsis: []
                             -usages: []
-                            -helperSet: Symfony\Component\Console\Helper\HelperSet {#232}
-                            -name: "event:generate"
-                            -description: "Generate the missing events and listeners based on registration"
+                            -helperSet: Symfony\Component\Console\Helper\HelperSet {#247}
+                            -name: "view:clear"
+                            -description: "Clear all compiled view files"
                           }
-                          "make:event" => Illuminate\Foundation\Console\EventMakeCommand {#320
-                            #name: "make:event"
-                            #description: "Create a new event class"
-                            #type: "Event"
-                            #files: Illuminate\Filesystem\Filesystem {#103}
+                          "app:name" => Illuminate\Foundation\Console\AppNameCommand {#317
+                            #name: "app:name"
+                            #description: "Set the application namespace"
+                            #composer: Illuminate\Support\Composer {#295}
+                            #files: Illuminate\Filesystem\Filesystem {#101}
+                            #currentRoot: null
                             #laravel: Illuminate\Foundation\Application {#3}
                             #input: null
                             #output: null
                             #signature: null
                             #verbosity: 32
                             #verbosityMap: array:5 [ …5]
-                            -application: Illuminate\Console\Application {#231}
+                            -application: Illuminate\Console\Application {#246}
                             -processTitle: null
                             -aliases: []
-                            -definition: Symfony\Component\Console\Input\InputDefinition {#321 …6}
+                            -definition: Symfony\Component\Console\Input\InputDefinition {#318 …6}
                             -help: null
                             -ignoreValidationErrors: false
                             -applicationDefinitionMerged: false
@@ -704,22 +551,47 @@ Illuminate\Database\QueryException {#491
                             -code: null
                             -synopsis: []
                             -usages: []
-                            -helperSet: Symfony\Component\Console\Helper\HelperSet {#232}
-                            -name: "make:event"
-                            -description: "Create a new event class"
+                            -helperSet: Symfony\Component\Console\Helper\HelperSet {#247}
+                            -name: "app:name"
+                            -description: "Set the application namespace"
                           }
-                          "make:job" => Illuminate\Foundation\Console\JobMakeCommand {#323
-                            #name: "make:job"
-                            #description: "Create a new job class"
-                            #type: "Job"
-                            #files: Illuminate\Filesystem\Filesystem {#103}
+                          "make:auth" => Illuminate\Auth\Console\MakeAuthCommand {#320
+                            #signature: "make:auth {--views : Only scaffold the authentication views}"
+                            #description: "Scaffold basic login and registration views and routes"
+                            #views: array:8 [ …8]
+                            #laravel: Illuminate\Foundation\Application {#3}
+                            #input: null
+                            #output: null
+                            #name: null
+                            #verbosity: 32
+                            #verbosityMap: array:5 [ …5]
+                            -application: Illuminate\Console\Application {#246}
+                            -processTitle: null
+                            -aliases: []
+                            -definition: Symfony\Component\Console\Input\InputDefinition {#322 …6}
+                            -help: null
+                            -ignoreValidationErrors: false
+                            -applicationDefinitionMerged: false
+                            -applicationDefinitionMergedWithArgs: false
+                            -code: null
+                            -synopsis: []
+                            -usages: []
+                            -helperSet: Symfony\Component\Console\Helper\HelperSet {#247}
+                            -name: "make:auth"
+                            -description: "Scaffold basic login and registration views and routes"
+                          }
+                          "cache:table" => Illuminate\Cache\Console\CacheTableCommand {#323
+                            #name: "cache:table"
+                            #description: "Create a migration for the cache database table"
+                            #files: Illuminate\Filesystem\Filesystem {#101}
+                            #composer: Illuminate\Support\Composer {#295}
                             #laravel: Illuminate\Foundation\Application {#3}
                             #input: null
                             #output: null
                             #signature: null
                             #verbosity: 32
                             #verbosityMap: array:5 [ …5]
-                            -application: Illuminate\Console\Application {#231}
+                            -application: Illuminate\Console\Application {#246}
                             -processTitle: null
                             -aliases: []
                             -definition: Symfony\Component\Console\Input\InputDefinition {#324 …6}
@@ -730,25 +602,25 @@ Illuminate\Database\QueryException {#491
                             -code: null
                             -synopsis: []
                             -usages: []
-                            -helperSet: Symfony\Component\Console\Helper\HelperSet {#232}
-                            -name: "make:job"
-                            -description: "Create a new job class"
+                            -helperSet: Symfony\Component\Console\Helper\HelperSet {#247}
+                            -name: "cache:table"
+                            -description: "Create a migration for the cache database table"
                           }
-                          "make:listener" => Illuminate\Foundation\Console\ListenerMakeCommand {#327
-                            #name: "make:listener"
-                            #description: "Create a new event listener class"
-                            #type: "Listener"
-                            #files: Illuminate\Filesystem\Filesystem {#103}
+                          "make:console" => Illuminate\Foundation\Console\ConsoleMakeCommand {#325
+                            #name: "make:console"
+                            #description: "Create a new Artisan command"
+                            #type: "Console command"
+                            #files: Illuminate\Filesystem\Filesystem {#101}
                             #laravel: Illuminate\Foundation\Application {#3}
                             #input: null
                             #output: null
                             #signature: null
                             #verbosity: 32
                             #verbosityMap: array:5 [ …5]
-                            -application: Illuminate\Console\Application {#231}
+                            -application: Illuminate\Console\Application {#246}
                             -processTitle: null
                             -aliases: []
-                            -definition: Symfony\Component\Console\Input\InputDefinition {#328 …6}
+                            -definition: Symfony\Component\Console\Input\InputDefinition {#326 …6}
                             -help: null
                             -ignoreValidationErrors: false
                             -applicationDefinitionMerged: false
@@ -756,25 +628,25 @@ Illuminate\Database\QueryException {#491
                             -code: null
                             -synopsis: []
                             -usages: []
-                            -helperSet: Symfony\Component\Console\Helper\HelperSet {#232}
-                            -name: "make:listener"
-                            -description: "Create a new event listener class"
+                            -helperSet: Symfony\Component\Console\Helper\HelperSet {#247}
+                            -name: "make:console"
+                            -description: "Create a new Artisan command"
                           }
-                          "make:middleware" => Illuminate\Routing\Console\MiddlewareMakeCommand {#332
-                            #name: "make:middleware"
-                            #description: "Create a new middleware class"
-                            #type: "Middleware"
-                            #files: Illuminate\Filesystem\Filesystem {#103}
+                          "make:controller" => Illuminate\Routing\Console\ControllerMakeCommand {#329
+                            #name: "make:controller"
+                            #description: "Create a new controller class"
+                            #type: "Controller"
+                            #files: Illuminate\Filesystem\Filesystem {#101}
                             #laravel: Illuminate\Foundation\Application {#3}
                             #input: null
                             #output: null
                             #signature: null
                             #verbosity: 32
                             #verbosityMap: array:5 [ …5]
-                            -application: Illuminate\Console\Application {#231}
+                            -application: Illuminate\Console\Application {#246}
                             -processTitle: null
                             -aliases: []
-                            -definition: Symfony\Component\Console\Input\InputDefinition {#333 …6}
+                            -definition: Symfony\Component\Console\Input\InputDefinition {#330 …6}
                             -help: null
                             -ignoreValidationErrors: false
                             -applicationDefinitionMerged: false
@@ -782,22 +654,46 @@ Illuminate\Database\QueryException {#491
                             -code: null
                             -synopsis: []
                             -usages: []
-                            -helperSet: Symfony\Component\Console\Helper\HelperSet {#232}
-                            -name: "make:middleware"
-                            -description: "Create a new middleware class"
+                            -helperSet: Symfony\Component\Console\Helper\HelperSet {#247}
+                            -name: "make:controller"
+                            -description: "Create a new controller class"
                           }
-                          "make:model" => Illuminate\Foundation\Console\ModelMakeCommand {#335
-                            #name: "make:model"
-                            #description: "Create a new Eloquent model class"
-                            #type: "Model"
-                            #files: Illuminate\Filesystem\Filesystem {#103}
+                          "event:generate" => Illuminate\Foundation\Console\EventGenerateCommand {#333
+                            #name: "event:generate"
+                            #description: "Generate the missing events and listeners based on registration"
                             #laravel: Illuminate\Foundation\Application {#3}
                             #input: null
                             #output: null
                             #signature: null
                             #verbosity: 32
                             #verbosityMap: array:5 [ …5]
-                            -application: Illuminate\Console\Application {#231}
+                            -application: Illuminate\Console\Application {#246}
+                            -processTitle: null
+                            -aliases: []
+                            -definition: Symfony\Component\Console\Input\InputDefinition {#334 …6}
+                            -help: null
+                            -ignoreValidationErrors: false
+                            -applicationDefinitionMerged: false
+                            -applicationDefinitionMergedWithArgs: false
+                            -code: null
+                            -synopsis: []
+                            -usages: []
+                            -helperSet: Symfony\Component\Console\Helper\HelperSet {#247}
+                            -name: "event:generate"
+                            -description: "Generate the missing events and listeners based on registration"
+                          }
+                          "make:event" => Illuminate\Foundation\Console\EventMakeCommand {#335
+                            #name: "make:event"
+                            #description: "Create a new event class"
+                            #type: "Event"
+                            #files: Illuminate\Filesystem\Filesystem {#101}
+                            #laravel: Illuminate\Foundation\Application {#3}
+                            #input: null
+                            #output: null
+                            #signature: null
+                            #verbosity: 32
+                            #verbosityMap: array:5 [ …5]
+                            -application: Illuminate\Console\Application {#246}
                             -processTitle: null
                             -aliases: []
                             -definition: Symfony\Component\Console\Input\InputDefinition {#336 …6}
@@ -808,25 +704,25 @@ Illuminate\Database\QueryException {#491
                             -code: null
                             -synopsis: []
                             -usages: []
-                            -helperSet: Symfony\Component\Console\Helper\HelperSet {#232}
-                            -name: "make:model"
-                            -description: "Create a new Eloquent model class"
+                            -helperSet: Symfony\Component\Console\Helper\HelperSet {#247}
+                            -name: "make:event"
+                            -description: "Create a new event class"
                           }
-                          "make:policy" => Illuminate\Foundation\Console\PolicyMakeCommand {#339
-                            #name: "make:policy"
-                            #description: "Create a new policy class"
-                            #type: "Policy"
-                            #files: Illuminate\Filesystem\Filesystem {#103}
+                          "make:job" => Illuminate\Foundation\Console\JobMakeCommand {#338
+                            #name: "make:job"
+                            #description: "Create a new job class"
+                            #type: "Job"
+                            #files: Illuminate\Filesystem\Filesystem {#101}
                             #laravel: Illuminate\Foundation\Application {#3}
                             #input: null
                             #output: null
                             #signature: null
                             #verbosity: 32
                             #verbosityMap: array:5 [ …5]
-                            -application: Illuminate\Console\Application {#231}
+                            -application: Illuminate\Console\Application {#246}
                             -processTitle: null
                             -aliases: []
-                            -definition: Symfony\Component\Console\Input\InputDefinition {#340 …6}
+                            -definition: Symfony\Component\Console\Input\InputDefinition {#339 …6}
                             -help: null
                             -ignoreValidationErrors: false
                             -applicationDefinitionMerged: false
@@ -834,22 +730,22 @@ Illuminate\Database\QueryException {#491
                             -code: null
                             -synopsis: []
                             -usages: []
-                            -helperSet: Symfony\Component\Console\Helper\HelperSet {#232}
-                            -name: "make:policy"
-                            -description: "Create a new policy class"
+                            -helperSet: Symfony\Component\Console\Helper\HelperSet {#247}
+                            -name: "make:job"
+                            -description: "Create a new job class"
                           }
-                          "make:provider" => Illuminate\Foundation\Console\ProviderMakeCommand {#342
-                            #name: "make:provider"
-                            #description: "Create a new service provider class"
-                            #type: "Provider"
-                            #files: Illuminate\Filesystem\Filesystem {#103}
+                          "make:listener" => Illuminate\Foundation\Console\ListenerMakeCommand {#342
+                            #name: "make:listener"
+                            #description: "Create a new event listener class"
+                            #type: "Listener"
+                            #files: Illuminate\Filesystem\Filesystem {#101}
                             #laravel: Illuminate\Foundation\Application {#3}
                             #input: null
                             #output: null
                             #signature: null
                             #verbosity: 32
                             #verbosityMap: array:5 [ …5]
-                            -application: Illuminate\Console\Application {#231}
+                            -application: Illuminate\Console\Application {#246}
                             -processTitle: null
                             -aliases: []
                             -definition: Symfony\Component\Console\Input\InputDefinition {#343 …6}
@@ -860,48 +756,22 @@ Illuminate\Database\QueryException {#491
                             -code: null
                             -synopsis: []
                             -usages: []
-                            -helperSet: Symfony\Component\Console\Helper\HelperSet {#232}
-                            -name: "make:provider"
-                            -description: "Create a new service provider class"
+                            -helperSet: Symfony\Component\Console\Helper\HelperSet {#247}
+                            -name: "make:listener"
+                            -description: "Create a new event listener class"
                           }
-                          "queue:failed-table" => Illuminate\Queue\Console\FailedTableCommand {#345
-                            #name: "queue:failed-table"
-                            #description: "Create a migration for the failed queue jobs database table"
-                            #files: Illuminate\Filesystem\Filesystem {#103}
-                            #composer: Illuminate\Support\Composer {#280}
+                          "make:middleware" => Illuminate\Routing\Console\MiddlewareMakeCommand {#347
+                            #name: "make:middleware"
+                            #description: "Create a new middleware class"
+                            #type: "Middleware"
+                            #files: Illuminate\Filesystem\Filesystem {#101}
                             #laravel: Illuminate\Foundation\Application {#3}
                             #input: null
                             #output: null
                             #signature: null
                             #verbosity: 32
                             #verbosityMap: array:5 [ …5]
-                            -application: Illuminate\Console\Application {#231}
-                            -processTitle: null
-                            -aliases: []
-                            -definition: Symfony\Component\Console\Input\InputDefinition {#346 …6}
-                            -help: null
-                            -ignoreValidationErrors: false
-                            -applicationDefinitionMerged: false
-                            -applicationDefinitionMergedWithArgs: false
-                            -code: null
-                            -synopsis: []
-                            -usages: []
-                            -helperSet: Symfony\Component\Console\Helper\HelperSet {#232}
-                            -name: "queue:failed-table"
-                            -description: "Create a migration for the failed queue jobs database table"
-                          }
-                          "queue:table" => Illuminate\Queue\Console\TableCommand {#347
-                            #name: "queue:table"
-                            #description: "Create a migration for the queue jobs database table"
-                            #files: Illuminate\Filesystem\Filesystem {#103}
-                            #composer: Illuminate\Support\Composer {#280}
-                            #laravel: Illuminate\Foundation\Application {#3}
-                            #input: null
-                            #output: null
-                            #signature: null
-                            #verbosity: 32
-                            #verbosityMap: array:5 [ …5]
-                            -application: Illuminate\Console\Application {#231}
+                            -application: Illuminate\Console\Application {#246}
                             -processTitle: null
                             -aliases: []
                             -definition: Symfony\Component\Console\Input\InputDefinition {#348 …6}
@@ -912,25 +782,25 @@ Illuminate\Database\QueryException {#491
                             -code: null
                             -synopsis: []
                             -usages: []
-                            -helperSet: Symfony\Component\Console\Helper\HelperSet {#232}
-                            -name: "queue:table"
-                            -description: "Create a migration for the queue jobs database table"
+                            -helperSet: Symfony\Component\Console\Helper\HelperSet {#247}
+                            -name: "make:middleware"
+                            -description: "Create a new middleware class"
                           }
-                          "make:request" => Illuminate\Foundation\Console\RequestMakeCommand {#349
-                            #name: "make:request"
-                            #description: "Create a new form request class"
-                            #type: "Request"
-                            #files: Illuminate\Filesystem\Filesystem {#103}
+                          "make:model" => Illuminate\Foundation\Console\ModelMakeCommand {#350
+                            #name: "make:model"
+                            #description: "Create a new Eloquent model class"
+                            #type: "Model"
+                            #files: Illuminate\Filesystem\Filesystem {#101}
                             #laravel: Illuminate\Foundation\Application {#3}
                             #input: null
                             #output: null
                             #signature: null
                             #verbosity: 32
                             #verbosityMap: array:5 [ …5]
-                            -application: Illuminate\Console\Application {#231}
+                            -application: Illuminate\Console\Application {#246}
                             -processTitle: null
                             -aliases: []
-                            -definition: Symfony\Component\Console\Input\InputDefinition {#350 …6}
+                            -definition: Symfony\Component\Console\Input\InputDefinition {#351 …6}
                             -help: null
                             -ignoreValidationErrors: false
                             -applicationDefinitionMerged: false
@@ -938,26 +808,25 @@ Illuminate\Database\QueryException {#491
                             -code: null
                             -synopsis: []
                             -usages: []
-                            -helperSet: Symfony\Component\Console\Helper\HelperSet {#232}
-                            -name: "make:request"
-                            -description: "Create a new form request class"
+                            -helperSet: Symfony\Component\Console\Helper\HelperSet {#247}
+                            -name: "make:model"
+                            -description: "Create a new Eloquent model class"
                           }
-                          "make:seeder" => Illuminate\Database\Console\Seeds\SeederMakeCommand {#352
-                            #name: "make:seeder"
-                            #description: "Create a new seeder class"
-                            #type: "Seeder"
-                            #composer: Illuminate\Support\Composer {#280}
-                            #files: Illuminate\Filesystem\Filesystem {#103}
+                          "make:policy" => Illuminate\Foundation\Console\PolicyMakeCommand {#354
+                            #name: "make:policy"
+                            #description: "Create a new policy class"
+                            #type: "Policy"
+                            #files: Illuminate\Filesystem\Filesystem {#101}
                             #laravel: Illuminate\Foundation\Application {#3}
                             #input: null
                             #output: null
                             #signature: null
                             #verbosity: 32
                             #verbosityMap: array:5 [ …5]
-                            -application: Illuminate\Console\Application {#231}
+                            -application: Illuminate\Console\Application {#246}
                             -processTitle: null
                             -aliases: []
-                            -definition: Symfony\Component\Console\Input\InputDefinition {#353 …6}
+                            -definition: Symfony\Component\Console\Input\InputDefinition {#355 …6}
                             -help: null
                             -ignoreValidationErrors: false
                             -applicationDefinitionMerged: false
@@ -965,46 +834,22 @@ Illuminate\Database\QueryException {#491
                             -code: null
                             -synopsis: []
                             -usages: []
-                            -helperSet: Symfony\Component\Console\Helper\HelperSet {#232}
-                            -name: "make:seeder"
-                            -description: "Create a new seeder class"
+                            -helperSet: Symfony\Component\Console\Helper\HelperSet {#247}
+                            -name: "make:policy"
+                            -description: "Create a new policy class"
                           }
-                          "session:table" => Illuminate\Session\Console\SessionTableCommand {#355
-                            #name: "session:table"
-                            #description: "Create a migration for the session database table"
-                            #files: Illuminate\Filesystem\Filesystem {#103}
-                            #composer: Illuminate\Support\Composer {#280}
+                          "make:provider" => Illuminate\Foundation\Console\ProviderMakeCommand {#357
+                            #name: "make:provider"
+                            #description: "Create a new service provider class"
+                            #type: "Provider"
+                            #files: Illuminate\Filesystem\Filesystem {#101}
                             #laravel: Illuminate\Foundation\Application {#3}
                             #input: null
                             #output: null
                             #signature: null
                             #verbosity: 32
                             #verbosityMap: array:5 [ …5]
-                            -application: Illuminate\Console\Application {#231}
-                            -processTitle: null
-                            -aliases: []
-                            -definition: Symfony\Component\Console\Input\InputDefinition {#356 …6}
-                            -help: null
-                            -ignoreValidationErrors: false
-                            -applicationDefinitionMerged: false
-                            -applicationDefinitionMergedWithArgs: false
-                            -code: null
-                            -synopsis: []
-                            -usages: []
-                            -helperSet: Symfony\Component\Console\Helper\HelperSet {#232}
-                            -name: "session:table"
-                            -description: "Create a migration for the session database table"
-                          }
-                          "serve" => Illuminate\Foundation\Console\ServeCommand {#357
-                            #name: "serve"
-                            #description: "Serve the application on the PHP development server"
-                            #laravel: Illuminate\Foundation\Application {#3}
-                            #input: null
-                            #output: null
-                            #signature: null
-                            #verbosity: 32
-                            #verbosityMap: array:5 [ …5]
-                            -application: Illuminate\Console\Application {#231}
+                            -application: Illuminate\Console\Application {#246}
                             -processTitle: null
                             -aliases: []
                             -definition: Symfony\Component\Console\Input\InputDefinition {#358 …6}
@@ -1015,25 +860,25 @@ Illuminate\Database\QueryException {#491
                             -code: null
                             -synopsis: []
                             -usages: []
-                            -helperSet: Symfony\Component\Console\Helper\HelperSet {#232}
-                            -name: "serve"
-                            -description: "Serve the application on the PHP development server"
+                            -helperSet: Symfony\Component\Console\Helper\HelperSet {#247}
+                            -name: "make:provider"
+                            -description: "Create a new service provider class"
                           }
-                          "make:test" => Illuminate\Foundation\Console\TestMakeCommand {#361
-                            #name: "make:test"
-                            #description: "Create a new test class"
-                            #type: "Test"
-                            #files: Illuminate\Filesystem\Filesystem {#103}
+                          "queue:failed-table" => Illuminate\Queue\Console\FailedTableCommand {#360
+                            #name: "queue:failed-table"
+                            #description: "Create a migration for the failed queue jobs database table"
+                            #files: Illuminate\Filesystem\Filesystem {#101}
+                            #composer: Illuminate\Support\Composer {#295}
                             #laravel: Illuminate\Foundation\Application {#3}
                             #input: null
                             #output: null
                             #signature: null
                             #verbosity: 32
                             #verbosityMap: array:5 [ …5]
-                            -application: Illuminate\Console\Application {#231}
+                            -application: Illuminate\Console\Application {#246}
                             -processTitle: null
                             -aliases: []
-                            -definition: Symfony\Component\Console\Input\InputDefinition {#362 …6}
+                            -definition: Symfony\Component\Console\Input\InputDefinition {#361 …6}
                             -help: null
                             -ignoreValidationErrors: false
                             -applicationDefinitionMerged: false
@@ -1041,12 +886,167 @@ Illuminate\Database\QueryException {#491
                             -code: null
                             -synopsis: []
                             -usages: []
-                            -helperSet: Symfony\Component\Console\Helper\HelperSet {#232}
+                            -helperSet: Symfony\Component\Console\Helper\HelperSet {#247}
+                            -name: "queue:failed-table"
+                            -description: "Create a migration for the failed queue jobs database table"
+                          }
+                          "queue:table" => Illuminate\Queue\Console\TableCommand {#362
+                            #name: "queue:table"
+                            #description: "Create a migration for the queue jobs database table"
+                            #files: Illuminate\Filesystem\Filesystem {#101}
+                            #composer: Illuminate\Support\Composer {#295}
+                            #laravel: Illuminate\Foundation\Application {#3}
+                            #input: null
+                            #output: null
+                            #signature: null
+                            #verbosity: 32
+                            #verbosityMap: array:5 [ …5]
+                            -application: Illuminate\Console\Application {#246}
+                            -processTitle: null
+                            -aliases: []
+                            -definition: Symfony\Component\Console\Input\InputDefinition {#363 …6}
+                            -help: null
+                            -ignoreValidationErrors: false
+                            -applicationDefinitionMerged: false
+                            -applicationDefinitionMergedWithArgs: false
+                            -code: null
+                            -synopsis: []
+                            -usages: []
+                            -helperSet: Symfony\Component\Console\Helper\HelperSet {#247}
+                            -name: "queue:table"
+                            -description: "Create a migration for the queue jobs database table"
+                          }
+                          "make:request" => Illuminate\Foundation\Console\RequestMakeCommand {#364
+                            #name: "make:request"
+                            #description: "Create a new form request class"
+                            #type: "Request"
+                            #files: Illuminate\Filesystem\Filesystem {#101}
+                            #laravel: Illuminate\Foundation\Application {#3}
+                            #input: null
+                            #output: null
+                            #signature: null
+                            #verbosity: 32
+                            #verbosityMap: array:5 [ …5]
+                            -application: Illuminate\Console\Application {#246}
+                            -processTitle: null
+                            -aliases: []
+                            -definition: Symfony\Component\Console\Input\InputDefinition {#365 …6}
+                            -help: null
+                            -ignoreValidationErrors: false
+                            -applicationDefinitionMerged: false
+                            -applicationDefinitionMergedWithArgs: false
+                            -code: null
+                            -synopsis: []
+                            -usages: []
+                            -helperSet: Symfony\Component\Console\Helper\HelperSet {#247}
+                            -name: "make:request"
+                            -description: "Create a new form request class"
+                          }
+                          "make:seeder" => Illuminate\Database\Console\Seeds\SeederMakeCommand {#367
+                            #name: "make:seeder"
+                            #description: "Create a new seeder class"
+                            #type: "Seeder"
+                            #composer: Illuminate\Support\Composer {#295}
+                            #files: Illuminate\Filesystem\Filesystem {#101}
+                            #laravel: Illuminate\Foundation\Application {#3}
+                            #input: null
+                            #output: null
+                            #signature: null
+                            #verbosity: 32
+                            #verbosityMap: array:5 [ …5]
+                            -application: Illuminate\Console\Application {#246}
+                            -processTitle: null
+                            -aliases: []
+                            -definition: Symfony\Component\Console\Input\InputDefinition {#368 …6}
+                            -help: null
+                            -ignoreValidationErrors: false
+                            -applicationDefinitionMerged: false
+                            -applicationDefinitionMergedWithArgs: false
+                            -code: null
+                            -synopsis: []
+                            -usages: []
+                            -helperSet: Symfony\Component\Console\Helper\HelperSet {#247}
+                            -name: "make:seeder"
+                            -description: "Create a new seeder class"
+                          }
+                          "session:table" => Illuminate\Session\Console\SessionTableCommand {#370
+                            #name: "session:table"
+                            #description: "Create a migration for the session database table"
+                            #files: Illuminate\Filesystem\Filesystem {#101}
+                            #composer: Illuminate\Support\Composer {#295}
+                            #laravel: Illuminate\Foundation\Application {#3}
+                            #input: null
+                            #output: null
+                            #signature: null
+                            #verbosity: 32
+                            #verbosityMap: array:5 [ …5]
+                            -application: Illuminate\Console\Application {#246}
+                            -processTitle: null
+                            -aliases: []
+                            -definition: Symfony\Component\Console\Input\InputDefinition {#371 …6}
+                            -help: null
+                            -ignoreValidationErrors: false
+                            -applicationDefinitionMerged: false
+                            -applicationDefinitionMergedWithArgs: false
+                            -code: null
+                            -synopsis: []
+                            -usages: []
+                            -helperSet: Symfony\Component\Console\Helper\HelperSet {#247}
+                            -name: "session:table"
+                            -description: "Create a migration for the session database table"
+                          }
+                          "serve" => Illuminate\Foundation\Console\ServeCommand {#372
+                            #name: "serve"
+                            #description: "Serve the application on the PHP development server"
+                            #laravel: Illuminate\Foundation\Application {#3}
+                            #input: null
+                            #output: null
+                            #signature: null
+                            #verbosity: 32
+                            #verbosityMap: array:5 [ …5]
+                            -application: Illuminate\Console\Application {#246}
+                            -processTitle: null
+                            -aliases: []
+                            -definition: Symfony\Component\Console\Input\InputDefinition {#373 …6}
+                            -help: null
+                            -ignoreValidationErrors: false
+                            -applicationDefinitionMerged: false
+                            -applicationDefinitionMergedWithArgs: false
+                            -code: null
+                            -synopsis: []
+                            -usages: []
+                            -helperSet: Symfony\Component\Console\Helper\HelperSet {#247}
+                            -name: "serve"
+                            -description: "Serve the application on the PHP development server"
+                          }
+                          "make:test" => Illuminate\Foundation\Console\TestMakeCommand {#376
+                            #name: "make:test"
+                            #description: "Create a new test class"
+                            #type: "Test"
+                            #files: Illuminate\Filesystem\Filesystem {#101}
+                            #laravel: Illuminate\Foundation\Application {#3}
+                            #input: null
+                            #output: null
+                            #signature: null
+                            #verbosity: 32
+                            #verbosityMap: array:5 [ …5]
+                            -application: Illuminate\Console\Application {#246}
+                            -processTitle: null
+                            -aliases: []
+                            -definition: Symfony\Component\Console\Input\InputDefinition {#377 …6}
+                            -help: null
+                            -ignoreValidationErrors: false
+                            -applicationDefinitionMerged: false
+                            -applicationDefinitionMergedWithArgs: false
+                            -code: null
+                            -synopsis: []
+                            -usages: []
+                            -helperSet: Symfony\Component\Console\Helper\HelperSet {#247}
                             -name: "make:test"
                             -description: "Create a new test class"
                           }
-                          "vendor:publish" => Illuminate\Foundation\Console\VendorPublishCommand {#364
-                            #files: Illuminate\Filesystem\Filesystem {#103}
+                          "vendor:publish" => Illuminate\Foundation\Console\VendorPublishCommand {#379
+                            #files: Illuminate\Filesystem\Filesystem {#101}
                             #signature: """
                               vendor:publish {--force : Overwrite any existing files.}\n
                                           {--provider= : The service provider that has assets you want to publish.}\n
@@ -1059,10 +1059,10 @@ Illuminate\Database\QueryException {#491
                             #name: null
                             #verbosity: 32
                             #verbosityMap: array:5 [ …5]
-                            -application: Illuminate\Console\Application {#231}
+                            -application: Illuminate\Console\Application {#246}
                             -processTitle: null
                             -aliases: []
-                            -definition: Symfony\Component\Console\Input\InputDefinition {#368 …6}
+                            -definition: Symfony\Component\Console\Input\InputDefinition {#383 …6}
                             -help: null
                             -ignoreValidationErrors: false
                             -applicationDefinitionMerged: false
@@ -1070,21 +1070,21 @@ Illuminate\Database\QueryException {#491
                             -code: null
                             -synopsis: []
                             -usages: []
-                            -helperSet: Symfony\Component\Console\Helper\HelperSet {#232}
+                            -helperSet: Symfony\Component\Console\Helper\HelperSet {#247}
                             -name: "vendor:publish"
                             -description: "Publish any publishable assets from vendor packages"
                           }
-                          "schedule:run" => Illuminate\Console\Scheduling\ScheduleRunCommand {#372 …23}
-                          "migrate" => Illuminate\Database\Console\Migrations\MigrateCommand {#371
+                          "schedule:run" => Illuminate\Console\Scheduling\ScheduleRunCommand {#387 …23}
+                          "migrate" => Illuminate\Database\Console\Migrations\MigrateCommand {#386
                             #name: "migrate"
                             #description: "Run the database migrations"
-                            #migrator: Illuminate\Database\Migrations\Migrator {#369
-                              #repository: Illuminate\Database\Migrations\DatabaseMigrationRepository {#370
+                            #migrator: Illuminate\Database\Migrations\Migrator {#384
+                              #repository: Illuminate\Database\Migrations\DatabaseMigrationRepository {#385
                                 #resolver: Illuminate\Database\DatabaseManager {#51 …}
                                 #table: "migrations"
                                 #connection: null
                               }
-                              #files: Illuminate\Filesystem\Filesystem {#103}
+                              #files: Illuminate\Filesystem\Filesystem {#101}
                               #resolver: Illuminate\Database\DatabaseManager {#51 …}
                               #connection: null
                               #notes: []
@@ -1095,9 +1095,9 @@ Illuminate\Database\QueryException {#491
                                 0 => "migrate"
                               ]
                               -parsed: []
-                              #definition: Symfony\Component\Console\Input\InputDefinition {#374
+                              #definition: Symfony\Component\Console\Input\InputDefinition {#389
                                 -arguments: array:1 [
-                                  "command" => Symfony\Component\Console\Input\InputArgument {#238
+                                  "command" => Symfony\Component\Console\Input\InputArgument {#253
                                     -name: "command"
                                     -mode: 1
                                     -default: null
@@ -1108,98 +1108,98 @@ Illuminate\Database\QueryException {#491
                                 -hasAnArrayArgument: false
                                 -hasOptional: false
                                 -options: array:14 [
-                                  "database" => Symfony\Component\Console\Input\InputOption {#375
+                                  "database" => Symfony\Component\Console\Input\InputOption {#390
                                     -name: "database"
                                     -shortcut: null
                                     -mode: 4
                                     -default: null
                                     -description: "The database connection to use."
                                   }
-                                  "force" => Symfony\Component\Console\Input\InputOption {#376
+                                  "force" => Symfony\Component\Console\Input\InputOption {#391
                                     -name: "force"
                                     -shortcut: null
                                     -mode: 1
                                     -default: false
                                     -description: "Force the operation to run when in production."
                                   }
-                                  "path" => Symfony\Component\Console\Input\InputOption {#377
+                                  "path" => Symfony\Component\Console\Input\InputOption {#392
                                     -name: "path"
                                     -shortcut: null
                                     -mode: 4
                                     -default: null
                                     -description: "The path of migrations files to be executed."
                                   }
-                                  "pretend" => Symfony\Component\Console\Input\InputOption {#378
+                                  "pretend" => Symfony\Component\Console\Input\InputOption {#393
                                     -name: "pretend"
                                     -shortcut: null
                                     -mode: 1
                                     -default: false
                                     -description: "Dump the SQL queries that would be run."
                                   }
-                                  "seed" => Symfony\Component\Console\Input\InputOption {#379
+                                  "seed" => Symfony\Component\Console\Input\InputOption {#394
                                     -name: "seed"
                                     -shortcut: null
                                     -mode: 1
                                     -default: false
                                     -description: "Indicates if the seed task should be re-run."
                                   }
-                                  "step" => Symfony\Component\Console\Input\InputOption {#380
+                                  "step" => Symfony\Component\Console\Input\InputOption {#395
                                     -name: "step"
                                     -shortcut: null
                                     -mode: 1
                                     -default: false
                                     -description: "Force the migrations to be run so they can be rolled back individually."
                                   }
-                                  "help" => Symfony\Component\Console\Input\InputOption {#239
+                                  "help" => Symfony\Component\Console\Input\InputOption {#254
                                     -name: "help"
                                     -shortcut: "h"
                                     -mode: 1
                                     -default: false
                                     -description: "Display this help message"
                                   }
-                                  "quiet" => Symfony\Component\Console\Input\InputOption {#240
+                                  "quiet" => Symfony\Component\Console\Input\InputOption {#255
                                     -name: "quiet"
                                     -shortcut: "q"
                                     -mode: 1
                                     -default: false
                                     -description: "Do not output any message"
                                   }
-                                  "verbose" => Symfony\Component\Console\Input\InputOption {#241
+                                  "verbose" => Symfony\Component\Console\Input\InputOption {#256
                                     -name: "verbose"
                                     -shortcut: "v|vv|vvv"
                                     -mode: 1
                                     -default: false
                                     -description: "Increase the verbosity of messages: 1 for normal output, 2 for more verbose output and 3 for debug"
                                   }
-                                  "version" => Symfony\Component\Console\Input\InputOption {#242
+                                  "version" => Symfony\Component\Console\Input\InputOption {#257
                                     -name: "version"
                                     -shortcut: "V"
                                     -mode: 1
                                     -default: false
                                     -description: "Display this application version"
                                   }
-                                  "ansi" => Symfony\Component\Console\Input\InputOption {#243
+                                  "ansi" => Symfony\Component\Console\Input\InputOption {#258
                                     -name: "ansi"
                                     -shortcut: null
                                     -mode: 1
                                     -default: false
                                     -description: "Force ANSI output"
                                   }
-                                  "no-ansi" => Symfony\Component\Console\Input\InputOption {#244
+                                  "no-ansi" => Symfony\Component\Console\Input\InputOption {#259
                                     -name: "no-ansi"
                                     -shortcut: null
                                     -mode: 1
                                     -default: false
                                     -description: "Disable ANSI output"
                                   }
-                                  "no-interaction" => Symfony\Component\Console\Input\InputOption {#245
+                                  "no-interaction" => Symfony\Component\Console\Input\InputOption {#260
                                     -name: "no-interaction"
                                     -shortcut: "n"
                                     -mode: 1
                                     -default: false
                                     -description: "Do not ask any interactive question"
                                   }
-                                  "env" => Symfony\Component\Console\Input\InputOption {#246
+                                  "env" => Symfony\Component\Console\Input\InputOption {#261
                                     -name: "env"
                                     -shortcut: null
                                     -mode: 4
@@ -1223,10 +1223,10 @@ Illuminate\Database\QueryException {#491
                               ]
                               #interactive: true
                             }
-                            #output: Illuminate\Console\OutputStyle {#458
+                            #output: Illuminate\Console\OutputStyle {#473
                               -output: Symfony\Component\Console\Output\ConsoleOutput {#21
                                 -stderr: Symfony\Component\Console\Output\StreamOutput {#32
-                                  -stream: stream resource {@59
+                                  -stream: stream resource {@60
                                     timed_out: false
                                     blocked: true
                                     eof: false
@@ -1273,7 +1273,7 @@ Illuminate\Database\QueryException {#491
                                     }
                                   }
                                 }
-                                -stream: stream resource {@53
+                                -stream: stream resource {@54
                                   timed_out: false
                                   blocked: true
                                   eof: false
@@ -1292,10 +1292,10 @@ Illuminate\Database\QueryException {#491
                               -questionHelper: null
                               -progressBar: null
                               -lineLength: 120
-                              -bufferedOutput: Symfony\Component\Console\Output\BufferedOutput {#253
+                              -bufferedOutput: Symfony\Component\Console\Output\BufferedOutput {#268
                                 -buffer: ""
                                 -verbosity: 32
-                                -formatter: Symfony\Component\Console\Formatter\OutputFormatter {#459 …3}
+                                -formatter: Symfony\Component\Console\Formatter\OutputFormatter {#474 …3}
                               }
                               -output: Symfony\Component\Console\Output\ConsoleOutput {#21}
                             }
@@ -1308,10 +1308,10 @@ Illuminate\Database\QueryException {#491
                               "quiet" => 16
                               "normal" => 32
                             ]
-                            -application: Illuminate\Console\Application {#231}
+                            -application: Illuminate\Console\Application {#246}
                             -processTitle: null
                             -aliases: []
-                            -definition: Symfony\Component\Console\Input\InputDefinition {#374}
+                            -definition: Symfony\Component\Console\Input\InputDefinition {#389}
                             -help: null
                             -ignoreValidationErrors: false
                             -applicationDefinitionMerged: true
@@ -1322,100 +1322,32 @@ Illuminate\Database\QueryException {#491
                               "long" => "migrate [--database [DATABASE]] [--force] [--path [PATH]] [--pretend] [--seed] [--step]"
                             ]
                             -usages: []
-                            -helperSet: Symfony\Component\Console\Helper\HelperSet {#232}
+                            -helperSet: Symfony\Component\Console\Helper\HelperSet {#247}
                             -name: "migrate"
                             -description: "Run the database migrations"
                           }
-                          "make:migration" => Illuminate\Database\Console\Migrations\MigrateMakeCommand {#382
-                            #signature: """
-                              make:migration {name : The name of the migration.}\n
-                                      {--create= : The table to be created.}\n
-                                      {--table= : The table to migrate.}\n
-                                      {--path= : The location where the migration file should be created.}
-                              """
-                            #description: "Create a new migration file"
-                            #creator: Illuminate\Database\Migrations\MigrationCreator {#381
-                              #files: Illuminate\Filesystem\Filesystem {#103}
-                              #postCreate: []
-                            }
-                            #composer: Illuminate\Support\Composer {#280}
-                            #laravel: Illuminate\Foundation\Application {#3}
-                            #input: null
-                            #output: null
-                            #name: null
-                            #verbosity: 32
-                            #verbosityMap: array:5 [ …5]
-                            -application: Illuminate\Console\Application {#231}
-                            -processTitle: null
-                            -aliases: []
-                            -definition: Symfony\Component\Console\Input\InputDefinition {#387 …6}
-                            -help: null
-                            -ignoreValidationErrors: false
-                            -applicationDefinitionMerged: false
-                            -applicationDefinitionMergedWithArgs: false
-                            -code: null
-                            -synopsis: []
-                            -usages: []
-                            -helperSet: Symfony\Component\Console\Helper\HelperSet {#232}
-                            -name: "make:migration"
-                            -description: "Create a new migration file"
-                          }
-                          "migrate:install" => Illuminate\Database\Console\Migrations\InstallCommand {#388
-                            #name: "migrate:install"
-                            #description: "Create the migration repository"
-                            #repository: Illuminate\Database\Migrations\DatabaseMigrationRepository {#370}
-                            #laravel: Illuminate\Foundation\Application {#3}
-                            #input: null
-                            #output: null
-                            #signature: null
-                            #verbosity: 32
-                            #verbosityMap: array:5 [ …5]
-                            -application: Illuminate\Console\Application {#231}
-                            -processTitle: null
-                            -aliases: []
-                            -definition: Symfony\Component\Console\Input\InputDefinition {#389 …6}
-                            -help: null
-                            -ignoreValidationErrors: false
-                            -applicationDefinitionMerged: false
-                            -applicationDefinitionMergedWithArgs: false
-                            -code: null
-                            -synopsis: []
-                            -usages: []
-                            -helperSet: Symfony\Component\Console\Helper\HelperSet {#232}
-                            -name: "migrate:install"
-                            -description: "Create the migration repository"
-                          }
-                          "migrate:rollback" => Illuminate\Database\Console\Migrations\RollbackCommand {#391
-                            #name: "migrate:rollback"
-                            #description: "Rollback the last database migration"
-                            #migrator: Illuminate\Database\Migrations\Migrator {#369}
-                            #laravel: Illuminate\Foundation\Application {#3}
-                            #input: null
-                            #output: null
-                            #signature: null
-                            #verbosity: 32
-                            #verbosityMap: array:5 [ …5]
-                             …14
-                          }
-                          "migrate:reset" => Illuminate\Database\Console\Migrations\ResetCommand {#396 …23}
-                          "migrate:refresh" => Illuminate\Database\Console\Migrations\RefreshCommand {#401 …22}
-                          "migrate:status" => Illuminate\Database\Console\Migrations\StatusCommand {#408 …23}
-                          "db:seed" => Illuminate\Database\Console\Seeds\SeedCommand {#412 …23}
-                          "queue:failed" => Illuminate\Queue\Console\ListFailedCommand {#417 …23}
-                          "queue:retry" => Illuminate\Queue\Console\RetryCommand {#419 …22}
-                          "queue:forget" => Illuminate\Queue\Console\ForgetFailedCommand {#422 …22}
-                          "queue:flush" => Illuminate\Queue\Console\FlushFailedCommand {#425 …22}
-                          "queue:work" => Illuminate\Queue\Console\WorkCommand {#427 …23}
-                          "queue:restart" => Illuminate\Queue\Console\RestartCommand {#446 …22}
-                          "queue:listen" => Illuminate\Queue\Console\ListenCommand {#448 …23}
+                          "make:migration" => Illuminate\Database\Console\Migrations\MigrateMakeCommand {#397 …24}
+                          "migrate:install" => Illuminate\Database\Console\Migrations\InstallCommand {#403 …23}
+                          "migrate:rollback" => Illuminate\Database\Console\Migrations\RollbackCommand {#406 …23}
+                          "migrate:reset" => Illuminate\Database\Console\Migrations\ResetCommand {#411 …23}
+                          "migrate:refresh" => Illuminate\Database\Console\Migrations\RefreshCommand {#416 …22}
+                          "migrate:status" => Illuminate\Database\Console\Migrations\StatusCommand {#423 …23}
+                          "db:seed" => Illuminate\Database\Console\Seeds\SeedCommand {#427 …23}
+                          "queue:failed" => Illuminate\Queue\Console\ListFailedCommand {#432 …23}
+                          "queue:retry" => Illuminate\Queue\Console\RetryCommand {#434 …22}
+                          "queue:forget" => Illuminate\Queue\Console\ForgetFailedCommand {#437 …22}
+                          "queue:flush" => Illuminate\Queue\Console\FlushFailedCommand {#440 …22}
+                          "queue:work" => Illuminate\Queue\Console\WorkCommand {#442 …23}
+                          "queue:restart" => Illuminate\Queue\Console\RestartCommand {#461 …22}
+                          "queue:listen" => Illuminate\Queue\Console\ListenCommand {#463 …23}
                         ]
                         -wantHelps: false
-                        -runningCommand: Illuminate\Database\Console\Migrations\MigrateCommand {#371}
+                        -runningCommand: Illuminate\Database\Console\Migrations\MigrateCommand {#386}
                         -name: "Laravel Framework"
                         -version: "5.2.45"
                         -catchExceptions: false
                         -autoExit: false
-                        -definition: Symfony\Component\Console\Input\InputDefinition {#237
+                        -definition: Symfony\Component\Console\Input\InputDefinition {#252
                           -arguments: array:1 [ …1]
                           -requiredCount: 1
                           -hasAnArrayArgument: false
@@ -1423,7 +1355,7 @@ Illuminate\Database\QueryException {#491
                           -options: array:8 [ …8]
                           -shortcuts: array:7 [ …7]
                         }
-                        -helperSet: Symfony\Component\Console\Helper\HelperSet {#232}
+                        -helperSet: Symfony\Component\Console\Helper\HelperSet {#247}
                         -dispatcher: null
                         -terminalDimensions: null
                         -defaultCommand: "list"
@@ -1433,9 +1365,9 @@ Illuminate\Database\QueryException {#491
                     file: "/var/www/html/sulvale2/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php"
                     line: "76 to 78"
                   }
-                  1 => Closure {#105
+                  1 => Closure {#114
                     class: "Illuminate\Foundation\Support\Providers\RouteServiceProvider"
-                    this: App\Providers\RouteServiceProvider {#89
+                    this: App\Providers\RouteServiceProvider {#92
                       #namespace: "App\Http\Controllers"
                       #app: Illuminate\Foundation\Application {#3}
                       #defer: false
@@ -1446,7 +1378,7 @@ Illuminate\Database\QueryException {#491
                   }
                 ]
                 #terminatingCallbacks: []
-                #serviceProviders: array:34 [
+                #serviceProviders: array:35 [
                   0 => Illuminate\Events\EventServiceProvider {#2 …}
                   1 => Illuminate\Routing\RoutingServiceProvider {#7
                     #app: Illuminate\Foundation\Application {#3}
@@ -1488,104 +1420,108 @@ Illuminate\Database\QueryException {#491
                     #app: Illuminate\Foundation\Application {#3}
                     #defer: false
                   }
-                  11 => App\Providers\AppServiceProvider {#86
+                  11 => Laracasts\Flash\FlashServiceProvider {#86
+                    #defer: false
+                    #app: Illuminate\Foundation\Application {#3}
+                  }
+                  12 => App\Providers\AppServiceProvider {#89
                     #app: Illuminate\Foundation\Application {#3}
                     #defer: false
                   }
-                  12 => App\Providers\AuthServiceProvider {#87
+                  13 => App\Providers\AuthServiceProvider {#90
                     #policies: array:1 [ …1]
                     #app: Illuminate\Foundation\Application {#3}
                     #defer: false
                   }
-                  13 => App\Providers\EventServiceProvider {#88
+                  14 => App\Providers\EventServiceProvider {#91
                     #listen: array:1 [ …1]
                     #subscribe: []
                     #app: Illuminate\Foundation\Application {#3}
                     #defer: false
                   }
-                  14 => App\Providers\RouteServiceProvider {#89}
-                  15 => Illuminate\Broadcasting\BroadcastServiceProvider {#36
+                  15 => App\Providers\RouteServiceProvider {#92}
+                  16 => Illuminate\Broadcasting\BroadcastServiceProvider {#36
                     #defer: true
                     #app: Illuminate\Foundation\Application {#3}
                   }
-                  16 => Illuminate\Bus\BusServiceProvider {#121
+                  17 => Illuminate\Bus\BusServiceProvider {#136
                     #defer: true
                     #app: Illuminate\Foundation\Application {#3}
                   }
-                  17 => Illuminate\Cache\CacheServiceProvider {#123
+                  18 => Illuminate\Cache\CacheServiceProvider {#138
                     #defer: true
                     #app: Illuminate\Foundation\Application {#3}
                   }
-                  18 => Illuminate\Foundation\Providers\ArtisanServiceProvider {#130
+                  19 => Illuminate\Foundation\Providers\ArtisanServiceProvider {#145
                     #defer: true
                     #commands: array:14 [ …14]
                     #devCommands: array:21 [ …21]
                     #app: Illuminate\Foundation\Application {#3}
                   }
-                  19 => Illuminate\Console\ScheduleServiceProvider {#168
+                  20 => Illuminate\Console\ScheduleServiceProvider {#183
                     #defer: true
                     #app: Illuminate\Foundation\Application {#3}
                   }
-                  20 => Illuminate\Database\MigrationServiceProvider {#170
+                  21 => Illuminate\Database\MigrationServiceProvider {#185
                     #defer: true
                     #app: Illuminate\Foundation\Application {#3}
                   }
-                  21 => Illuminate\Database\SeedServiceProvider {#182
+                  22 => Illuminate\Database\SeedServiceProvider {#197
                     #defer: true
                     #app: Illuminate\Foundation\Application {#3}
                   }
-                  22 => Illuminate\Foundation\Providers\ComposerServiceProvider {#186
+                  23 => Illuminate\Foundation\Providers\ComposerServiceProvider {#201
                     #defer: true
                     #app: Illuminate\Foundation\Application {#3}
                   }
-                  23 => Illuminate\Queue\ConsoleServiceProvider {#188
+                  24 => Illuminate\Queue\ConsoleServiceProvider {#203
                     #defer: true
                     #app: Illuminate\Foundation\Application {#3}
                   }
-                  24 => Illuminate\Foundation\Providers\ConsoleSupportServiceProvider {#129
+                  25 => Illuminate\Foundation\Providers\ConsoleSupportServiceProvider {#144
                     #defer: true
                     #providers: array:6 [ …6]
                     #instances: array:6 [ …6]
                     #app: Illuminate\Foundation\Application {#3}
                   }
-                  25 => Illuminate\Hashing\HashServiceProvider {#194
+                  26 => Illuminate\Hashing\HashServiceProvider {#209
                     #defer: true
                     #app: Illuminate\Foundation\Application {#3}
                   }
-                  26 => Illuminate\Mail\MailServiceProvider {#196
+                  27 => Illuminate\Mail\MailServiceProvider {#211
                     #defer: true
                     #app: Illuminate\Foundation\Application {#3}
                   }
-                  27 => Illuminate\Pipeline\PipelineServiceProvider {#202
+                  28 => Illuminate\Pipeline\PipelineServiceProvider {#217
                     #defer: true
                     #app: Illuminate\Foundation\Application {#3}
                   }
-                  28 => Illuminate\Queue\QueueServiceProvider {#204
+                  29 => Illuminate\Queue\QueueServiceProvider {#219
                     #defer: true
                     #app: Illuminate\Foundation\Application {#3}
                   }
-                  29 => Illuminate\Redis\RedisServiceProvider {#217
+                  30 => Illuminate\Redis\RedisServiceProvider {#232
                     #defer: true
                     #app: Illuminate\Foundation\Application {#3}
                   }
-                  30 => Illuminate\Auth\Passwords\PasswordResetServiceProvider {#219
+                  31 => Illuminate\Auth\Passwords\PasswordResetServiceProvider {#234
                     #defer: true
                     #app: Illuminate\Foundation\Application {#3}
                   }
-                  31 => Illuminate\Translation\TranslationServiceProvider {#222
+                  32 => Illuminate\Translation\TranslationServiceProvider {#237
                     #defer: true
                     #app: Illuminate\Foundation\Application {#3}
                   }
-                  32 => Illuminate\Validation\ValidationServiceProvider {#225
+                  33 => Illuminate\Validation\ValidationServiceProvider {#240
                     #defer: true
                     #app: Illuminate\Foundation\Application {#3}
                   }
-                  33 => Collective\Html\HtmlServiceProvider {#228
+                  34 => Collective\Html\HtmlServiceProvider {#243
                     #defer: true
                     #app: Illuminate\Foundation\Application {#3}
                   }
                 ]
-                #loadedProviders: array:34 [
+                #loadedProviders: array:35 [
                   "Illuminate\Events\EventServiceProvider" => true
                   "Illuminate\Routing\RoutingServiceProvider" => true
                   "Illuminate\Auth\AuthServiceProvider" => true
@@ -1597,6 +1533,7 @@ Illuminate\Database\QueryException {#491
                   "Illuminate\Pagination\PaginationServiceProvider" => true
                   "Illuminate\Session\SessionServiceProvider" => true
                   "Illuminate\View\ViewServiceProvider" => true
+                  "Laracasts\Flash\FlashServiceProvider" => true
                   "App\Providers\AppServiceProvider" => true
                   "App\Providers\AuthServiceProvider" => true
                   "App\Providers\EventServiceProvider" => true
@@ -1628,7 +1565,7 @@ Illuminate\Database\QueryException {#491
                 #environmentPath: null
                 #environmentFile: ".env"
                 #namespace: null
-                #resolved: array:81 [
+                #resolved: array:84 [
                   "events" => true
                   "App\Console\Kernel" => true
                   "Illuminate\Contracts\Console\Kernel" => true
@@ -1643,10 +1580,13 @@ Illuminate\Database\QueryException {#491
                   "Illuminate\Foundation\Bootstrap\BootProviders" => true
                   "db.factory" => true
                   "db" => true
+                  "view.engine.resolver" => true
+                  "files" => true
+                  "view.finder" => true
+                  "view" => true
                   "Illuminate\Contracts\Auth\Access\Gate" => true
                   "router" => true
                   "url" => true
-                  "files" => true
                   "cache" => true
                   "command.cache.clear" => true
                   "command.clear-compiled" => true
@@ -1711,7 +1651,7 @@ Illuminate\Database\QueryException {#491
                   "App\Exceptions\Handler" => true
                   "Illuminate\Contracts\Debug\ExceptionHandler" => true
                 ]
-                #bindings: array:115 [
+                #bindings: array:118 [
                   "events" => array:2 [
                     "concrete" => Closure {#4 …5}
                     "shared" => true
@@ -1844,336 +1784,348 @@ Illuminate\Database\QueryException {#491
                     "concrete" => Closure {#85 …5}
                     "shared" => true
                   ]
+                  "Laracasts\Flash\SessionStore" => array:2 [
+                    "concrete" => Closure {#87 …6}
+                    "shared" => false
+                  ]
+                  "flash" => array:2 [
+                    "concrete" => Closure {#88 …4}
+                    "shared" => true
+                  ]
+                  "blade.compiler" => array:2 [
+                    "concrete" => Closure {#98 …5}
+                    "shared" => true
+                  ]
                   "Illuminate\Broadcasting\BroadcastManager" => array:2 [
-                    "concrete" => Closure {#111 …5}
-                    "shared" => true
-                  ]
-                  "Illuminate\Contracts\Broadcasting\Broadcaster" => array:2 [
-                    "concrete" => Closure {#117 …5}
-                    "shared" => true
-                  ]
-                  "Illuminate\Bus\Dispatcher" => array:2 [
-                    "concrete" => Closure {#122 …5}
-                    "shared" => true
-                  ]
-                  "cache" => array:2 [
-                    "concrete" => Closure {#124 …5}
-                    "shared" => true
-                  ]
-                  "cache.store" => array:2 [
-                    "concrete" => Closure {#125 …5}
-                    "shared" => true
-                  ]
-                  "memcached.connector" => array:2 [
-                    "concrete" => Closure {#126 …4}
-                    "shared" => true
-                  ]
-                  "command.cache.clear" => array:2 [
-                    "concrete" => Closure {#127 …5}
-                    "shared" => true
-                  ]
-                  "command.clear-compiled" => array:2 [
-                    "concrete" => Closure {#131 …4}
-                    "shared" => true
-                  ]
-                  "command.auth.resets.clear" => array:2 [
-                    "concrete" => Closure {#132 …4}
-                    "shared" => true
-                  ]
-                  "command.config.cache" => array:2 [
-                    "concrete" => Closure {#133 …5}
-                    "shared" => true
-                  ]
-                  "command.config.clear" => array:2 [
                     "concrete" => Closure {#134 …5}
                     "shared" => true
                   ]
-                  "command.down" => array:2 [
-                    "concrete" => Closure {#135 …4}
+                  "Illuminate\Contracts\Broadcasting\Broadcaster" => array:2 [
+                    "concrete" => Closure {#135 …5}
                     "shared" => true
                   ]
-                  "command.environment" => array:2 [
-                    "concrete" => Closure {#136 …4}
+                  "Illuminate\Bus\Dispatcher" => array:2 [
+                    "concrete" => Closure {#137 …5}
                     "shared" => true
                   ]
-                  "command.key.generate" => array:2 [
-                    "concrete" => Closure {#137 …4}
-                    "shared" => true
-                  ]
-                  "command.optimize" => array:2 [
-                    "concrete" => Closure {#138 …5}
-                    "shared" => true
-                  ]
-                  "command.route.cache" => array:2 [
+                  "cache" => array:2 [
                     "concrete" => Closure {#139 …5}
                     "shared" => true
                   ]
-                  "command.route.clear" => array:2 [
+                  "cache.store" => array:2 [
                     "concrete" => Closure {#140 …5}
                     "shared" => true
                   ]
-                  "command.route.list" => array:2 [
-                    "concrete" => Closure {#141 …5}
+                  "memcached.connector" => array:2 [
+                    "concrete" => Closure {#141 …4}
                     "shared" => true
                   ]
-                  "command.tinker" => array:2 [
-                    "concrete" => Closure {#142 …4}
+                  "command.cache.clear" => array:2 [
+                    "concrete" => Closure {#142 …5}
                     "shared" => true
                   ]
-                  "command.up" => array:2 [
-                    "concrete" => Closure {#143 …4}
+                  "command.clear-compiled" => array:2 [
+                    "concrete" => Closure {#146 …4}
                     "shared" => true
                   ]
-                  "command.view.clear" => array:2 [
-                    "concrete" => Closure {#144 …5}
+                  "command.auth.resets.clear" => array:2 [
+                    "concrete" => Closure {#147 …4}
                     "shared" => true
                   ]
-                  "command.app.name" => array:2 [
-                    "concrete" => Closure {#146 …5}
-                    "shared" => true
-                  ]
-                  "command.auth.make" => array:2 [
-                    "concrete" => Closure {#147 …5}
-                    "shared" => true
-                  ]
-                  "command.cache.table" => array:2 [
+                  "command.config.cache" => array:2 [
                     "concrete" => Closure {#148 …5}
                     "shared" => true
                   ]
-                  "command.console.make" => array:2 [
+                  "command.config.clear" => array:2 [
                     "concrete" => Closure {#149 …5}
                     "shared" => true
                   ]
-                  "command.controller.make" => array:2 [
-                    "concrete" => Closure {#150 …5}
+                  "command.down" => array:2 [
+                    "concrete" => Closure {#150 …4}
                     "shared" => true
                   ]
-                  "command.event.generate" => array:2 [
+                  "command.environment" => array:2 [
                     "concrete" => Closure {#151 …4}
                     "shared" => true
                   ]
-                  "command.event.make" => array:2 [
-                    "concrete" => Closure {#152 …5}
+                  "command.key.generate" => array:2 [
+                    "concrete" => Closure {#152 …4}
                     "shared" => true
                   ]
-                  "command.job.make" => array:2 [
+                  "command.optimize" => array:2 [
                     "concrete" => Closure {#153 …5}
                     "shared" => true
                   ]
-                  "command.listener.make" => array:2 [
+                  "command.route.cache" => array:2 [
                     "concrete" => Closure {#154 …5}
                     "shared" => true
                   ]
-                  "command.middleware.make" => array:2 [
+                  "command.route.clear" => array:2 [
                     "concrete" => Closure {#155 …5}
                     "shared" => true
                   ]
-                  "command.model.make" => array:2 [
+                  "command.route.list" => array:2 [
                     "concrete" => Closure {#156 …5}
                     "shared" => true
                   ]
-                  "command.policy.make" => array:2 [
-                    "concrete" => Closure {#157 …5}
+                  "command.tinker" => array:2 [
+                    "concrete" => Closure {#157 …4}
                     "shared" => true
                   ]
-                  "command.provider.make" => array:2 [
-                    "concrete" => Closure {#158 …5}
+                  "command.up" => array:2 [
+                    "concrete" => Closure {#158 …4}
                     "shared" => true
                   ]
-                  "command.queue.failed-table" => array:2 [
+                  "command.view.clear" => array:2 [
                     "concrete" => Closure {#159 …5}
                     "shared" => true
                   ]
-                  "command.queue.table" => array:2 [
-                    "concrete" => Closure {#160 …5}
-                    "shared" => true
-                  ]
-                  "command.request.make" => array:2 [
+                  "command.app.name" => array:2 [
                     "concrete" => Closure {#161 …5}
                     "shared" => true
                   ]
-                  "command.seeder.make" => array:2 [
+                  "command.auth.make" => array:2 [
                     "concrete" => Closure {#162 …5}
                     "shared" => true
                   ]
-                  "command.session.table" => array:2 [
+                  "command.cache.table" => array:2 [
                     "concrete" => Closure {#163 …5}
                     "shared" => true
                   ]
-                  "command.serve" => array:2 [
-                    "concrete" => Closure {#164 …4}
+                  "command.console.make" => array:2 [
+                    "concrete" => Closure {#164 …5}
                     "shared" => true
                   ]
-                  "command.test.make" => array:2 [
+                  "command.controller.make" => array:2 [
                     "concrete" => Closure {#165 …5}
                     "shared" => true
                   ]
-                  "command.vendor.publish" => array:2 [
-                    "concrete" => Closure {#166 …5}
+                  "command.event.generate" => array:2 [
+                    "concrete" => Closure {#166 …4}
                     "shared" => true
                   ]
-                  "migration.repository" => array:2 [
+                  "command.event.make" => array:2 [
+                    "concrete" => Closure {#167 …5}
+                    "shared" => true
+                  ]
+                  "command.job.make" => array:2 [
+                    "concrete" => Closure {#168 …5}
+                    "shared" => true
+                  ]
+                  "command.listener.make" => array:2 [
+                    "concrete" => Closure {#169 …5}
+                    "shared" => true
+                  ]
+                  "command.middleware.make" => array:2 [
+                    "concrete" => Closure {#170 …5}
+                    "shared" => true
+                  ]
+                  "command.model.make" => array:2 [
                     "concrete" => Closure {#171 …5}
                     "shared" => true
                   ]
-                  "migrator" => array:2 [
+                  "command.policy.make" => array:2 [
                     "concrete" => Closure {#172 …5}
                     "shared" => true
                   ]
-                  "migration.creator" => array:2 [
+                  "command.provider.make" => array:2 [
                     "concrete" => Closure {#173 …5}
                     "shared" => true
                   ]
-                  "command.migrate" => array:2 [
+                  "command.queue.failed-table" => array:2 [
                     "concrete" => Closure {#174 …5}
                     "shared" => true
                   ]
-                  "command.migrate.rollback" => array:2 [
+                  "command.queue.table" => array:2 [
                     "concrete" => Closure {#175 …5}
                     "shared" => true
                   ]
-                  "command.migrate.reset" => array:2 [
+                  "command.request.make" => array:2 [
                     "concrete" => Closure {#176 …5}
                     "shared" => true
                   ]
-                  "command.migrate.refresh" => array:2 [
-                    "concrete" => Closure {#177 …4}
+                  "command.seeder.make" => array:2 [
+                    "concrete" => Closure {#177 …5}
                     "shared" => true
                   ]
-                  "command.migrate.install" => array:2 [
+                  "command.session.table" => array:2 [
                     "concrete" => Closure {#178 …5}
                     "shared" => true
                   ]
-                  "command.migrate.make" => array:2 [
-                    "concrete" => Closure {#179 …5}
+                  "command.serve" => array:2 [
+                    "concrete" => Closure {#179 …4}
                     "shared" => true
                   ]
-                  "command.migrate.status" => array:2 [
+                  "command.test.make" => array:2 [
                     "concrete" => Closure {#180 …5}
                     "shared" => true
                   ]
-                  "seeder" => array:2 [
-                    "concrete" => Closure {#183 …4}
+                  "command.vendor.publish" => array:2 [
+                    "concrete" => Closure {#181 …5}
                     "shared" => true
                   ]
-                  "command.seed" => array:2 [
-                    "concrete" => Closure {#184 …5}
+                  "migration.repository" => array:2 [
+                    "concrete" => Closure {#186 …5}
                     "shared" => true
                   ]
-                  "composer" => array:2 [
+                  "migrator" => array:2 [
                     "concrete" => Closure {#187 …5}
                     "shared" => true
                   ]
-                  "command.queue.failed" => array:2 [
-                    "concrete" => Closure {#189 …4}
+                  "migration.creator" => array:2 [
+                    "concrete" => Closure {#188 …5}
                     "shared" => true
                   ]
-                  "command.queue.retry" => array:2 [
-                    "concrete" => Closure {#190 …4}
+                  "command.migrate" => array:2 [
+                    "concrete" => Closure {#189 …5}
                     "shared" => true
                   ]
-                  "command.queue.forget" => array:2 [
-                    "concrete" => Closure {#191 …4}
+                  "command.migrate.rollback" => array:2 [
+                    "concrete" => Closure {#190 …5}
                     "shared" => true
                   ]
-                  "command.queue.flush" => array:2 [
+                  "command.migrate.reset" => array:2 [
+                    "concrete" => Closure {#191 …5}
+                    "shared" => true
+                  ]
+                  "command.migrate.refresh" => array:2 [
                     "concrete" => Closure {#192 …4}
                     "shared" => true
                   ]
+                  "command.migrate.install" => array:2 [
+                    "concrete" => Closure {#193 …5}
+                    "shared" => true
+                  ]
+                  "command.migrate.make" => array:2 [
+                    "concrete" => Closure {#194 …5}
+                    "shared" => true
+                  ]
+                  "command.migrate.status" => array:2 [
+                    "concrete" => Closure {#195 …5}
+                    "shared" => true
+                  ]
+                  "seeder" => array:2 [
+                    "concrete" => Closure {#198 …4}
+                    "shared" => true
+                  ]
+                  "command.seed" => array:2 [
+                    "concrete" => Closure {#199 …5}
+                    "shared" => true
+                  ]
+                  "composer" => array:2 [
+                    "concrete" => Closure {#202 …5}
+                    "shared" => true
+                  ]
+                  "command.queue.failed" => array:2 [
+                    "concrete" => Closure {#204 …4}
+                    "shared" => true
+                  ]
+                  "command.queue.retry" => array:2 [
+                    "concrete" => Closure {#205 …4}
+                    "shared" => true
+                  ]
+                  "command.queue.forget" => array:2 [
+                    "concrete" => Closure {#206 …4}
+                    "shared" => true
+                  ]
+                  "command.queue.flush" => array:2 [
+                    "concrete" => Closure {#207 …4}
+                    "shared" => true
+                  ]
                   "hash" => array:2 [
-                    "concrete" => Closure {#195 …4}
+                    "concrete" => Closure {#210 …4}
                     "shared" => true
                   ]
                   "swift.transport" => array:2 [
-                    "concrete" => Closure {#198 …6}
+                    "concrete" => Closure {#213 …6}
                     "shared" => false
                   ]
                   "swift.mailer" => array:2 [
-                    "concrete" => Closure {#200 …6}
+                    "concrete" => Closure {#215 …6}
                     "shared" => false
                   ]
                   "mailer" => array:2 [
-                    "concrete" => Closure {#201 …5}
-                    "shared" => true
-                  ]
-                  "Illuminate\Contracts\Pipeline\Hub" => array:2 [
-                    "concrete" => Closure {#203 …6}
-                    "shared" => true
-                  ]
-                  "queue" => array:2 [
-                    "concrete" => Closure {#205 …5}
-                    "shared" => true
-                  ]
-                  "queue.connection" => array:2 [
-                    "concrete" => Closure {#206 …5}
-                    "shared" => true
-                  ]
-                  "command.queue.work" => array:2 [
-                    "concrete" => Closure {#207 …5}
-                    "shared" => true
-                  ]
-                  "command.queue.restart" => array:2 [
-                    "concrete" => Closure {#209 …4}
-                    "shared" => true
-                  ]
-                  "queue.worker" => array:2 [
-                    "concrete" => Closure {#211 …5}
-                    "shared" => true
-                  ]
-                  "command.queue.listen" => array:2 [
-                    "concrete" => Closure {#212 …5}
-                    "shared" => true
-                  ]
-                  "queue.listener" => array:2 [
-                    "concrete" => Closure {#214 …5}
-                    "shared" => true
-                  ]
-                  "queue.failer" => array:2 [
-                    "concrete" => Closure {#215 …5}
-                    "shared" => true
-                  ]
-                  "IlluminateQueueClosure" => array:2 [
                     "concrete" => Closure {#216 …5}
                     "shared" => true
                   ]
-                  "redis" => array:2 [
-                    "concrete" => Closure {#218 …5}
+                  "Illuminate\Contracts\Pipeline\Hub" => array:2 [
+                    "concrete" => Closure {#218 …6}
                     "shared" => true
                   ]
-                  "auth.password" => array:2 [
+                  "queue" => array:2 [
                     "concrete" => Closure {#220 …5}
                     "shared" => true
                   ]
-                  "auth.password.broker" => array:2 [
+                  "queue.connection" => array:2 [
                     "concrete" => Closure {#221 …5}
-                    "shared" => false
-                  ]
-                  "translation.loader" => array:2 [
-                    "concrete" => Closure {#223 …5}
                     "shared" => true
                   ]
-                  "translator" => array:2 [
-                    "concrete" => Closure {#224 …5}
+                  "command.queue.work" => array:2 [
+                    "concrete" => Closure {#222 …5}
                     "shared" => true
                   ]
-                  "validation.presence" => array:2 [
+                  "command.queue.restart" => array:2 [
+                    "concrete" => Closure {#224 …4}
+                    "shared" => true
+                  ]
+                  "queue.worker" => array:2 [
                     "concrete" => Closure {#226 …5}
                     "shared" => true
                   ]
-                  "validator" => array:2 [
+                  "command.queue.listen" => array:2 [
                     "concrete" => Closure {#227 …5}
                     "shared" => true
                   ]
-                  "html" => array:2 [
+                  "queue.listener" => array:2 [
                     "concrete" => Closure {#229 …5}
                     "shared" => true
                   ]
-                  "form" => array:2 [
+                  "queue.failer" => array:2 [
                     "concrete" => Closure {#230 …5}
                     "shared" => true
                   ]
+                  "IlluminateQueueClosure" => array:2 [
+                    "concrete" => Closure {#231 …5}
+                    "shared" => true
+                  ]
+                  "redis" => array:2 [
+                    "concrete" => Closure {#233 …5}
+                    "shared" => true
+                  ]
+                  "auth.password" => array:2 [
+                    "concrete" => Closure {#235 …5}
+                    "shared" => true
+                  ]
+                  "auth.password.broker" => array:2 [
+                    "concrete" => Closure {#236 …5}
+                    "shared" => false
+                  ]
+                  "translation.loader" => array:2 [
+                    "concrete" => Closure {#238 …5}
+                    "shared" => true
+                  ]
+                  "translator" => array:2 [
+                    "concrete" => Closure {#239 …5}
+                    "shared" => true
+                  ]
+                  "validation.presence" => array:2 [
+                    "concrete" => Closure {#241 …5}
+                    "shared" => true
+                  ]
+                  "validator" => array:2 [
+                    "concrete" => Closure {#242 …5}
+                    "shared" => true
+                  ]
+                  "html" => array:2 [
+                    "concrete" => Closure {#244 …5}
+                    "shared" => true
+                  ]
+                  "form" => array:2 [
+                    "concrete" => Closure {#245 …5}
+                    "shared" => true
+                  ]
                 ]
-                #instances: array:82 [
+                #instances: array:84 [
                   "app" => Illuminate\Foundation\Application {#3}
                   "Illuminate\Container\Container" => Illuminate\Foundation\Application {#3}
                   "events" => Illuminate\Events\Dispatcher {#5}
@@ -2221,84 +2173,104 @@ Illuminate\Database\QueryException {#491
                     #locale: null
                     #defaultLocale: "en"
                   }
-                  "db.factory" => Illuminate\Database\Connectors\ConnectionFactory {#90
+                  "db.factory" => Illuminate\Database\Connectors\ConnectionFactory {#93
                     #container: Illuminate\Foundation\Application {#3}
                   }
                   "db" => Illuminate\Database\DatabaseManager {#51 …}
-                  "Illuminate\Contracts\Auth\Access\Gate" => Illuminate\Auth\Access\Gate {#94
+                  "view.engine.resolver" => Illuminate\View\Engines\EngineResolver {#97
+                    #resolvers: array:2 [ …2]
+                    #resolved: []
+                  }
+                  "files" => Illuminate\Filesystem\Filesystem {#101}
+                  "view" => Illuminate\View\Factory {#102
+                    #engines: Illuminate\View\Engines\EngineResolver {#97}
+                    #finder: Illuminate\View\FileViewFinder {#100 …5}
+                    #events: Illuminate\Events\Dispatcher {#5}
                     #container: Illuminate\Foundation\Application {#3}
-                    #userResolver: Closure {#95 …5}
+                    #shared: array:2 [ …2]
+                    #aliases: []
+                    #names: []
+                    #extensions: array:2 [ …2]
+                    #composers: []
+                    #sections: []
+                    #sectionStack: []
+                    #pushes: []
+                    #pushStack: []
+                    #renderCount: 0
+                  }
+                  "Illuminate\Contracts\Auth\Access\Gate" => Illuminate\Auth\Access\Gate {#103
+                    #container: Illuminate\Foundation\Application {#3}
+                    #userResolver: Closure {#105 …5}
                     #abilities: []
                     #policies: array:1 [ …1]
                     #beforeCallbacks: []
                     #afterCallbacks: []
                   }
-                  "routes" => Illuminate\Routing\RouteCollection {#98}
-                  "files" => Illuminate\Filesystem\Filesystem {#103}
+                  "routes" => Illuminate\Routing\RouteCollection {#108}
                   "Illuminate\Console\Scheduling\Schedule" => Illuminate\Console\Scheduling\Schedule {#50
                     #events: []
                   }
-                  "cache" => Illuminate\Cache\CacheManager {#259}
-                  "command.cache.clear" => Illuminate\Cache\Console\ClearCommand {#258}
-                  "command.clear-compiled" => Illuminate\Foundation\Console\ClearCompiledCommand {#263}
-                  "command.auth.resets.clear" => Illuminate\Auth\Console\ClearResetsCommand {#265}
-                  "command.config.cache" => Illuminate\Foundation\Console\ConfigCacheCommand {#268}
-                  "command.config.clear" => Illuminate\Foundation\Console\ConfigClearCommand {#270}
-                  "command.down" => Illuminate\Foundation\Console\DownCommand {#272}
-                  "command.environment" => Illuminate\Foundation\Console\EnvironmentCommand {#274}
-                  "command.key.generate" => Illuminate\Foundation\Console\KeyGenerateCommand {#276}
-                  "composer" => Illuminate\Support\Composer {#280}
-                  "command.optimize" => Illuminate\Foundation\Console\OptimizeCommand {#279}
-                  "command.route.cache" => Illuminate\Foundation\Console\RouteCacheCommand {#284}
-                  "command.route.clear" => Illuminate\Foundation\Console\RouteClearCommand {#286}
-                  "command.route.list" => Illuminate\Foundation\Console\RouteListCommand {#288}
-                  "command.tinker" => Illuminate\Foundation\Console\TinkerCommand {#295}
-                  "command.up" => Illuminate\Foundation\Console\UpCommand {#298}
-                  "command.view.clear" => Illuminate\Foundation\Console\ViewClearCommand {#300}
-                  "command.app.name" => Illuminate\Foundation\Console\AppNameCommand {#302}
-                  "command.auth.make" => Illuminate\Auth\Console\MakeAuthCommand {#305}
-                  "command.cache.table" => Illuminate\Cache\Console\CacheTableCommand {#308}
-                  "command.console.make" => Illuminate\Foundation\Console\ConsoleMakeCommand {#310}
-                  "command.controller.make" => Illuminate\Routing\Console\ControllerMakeCommand {#314}
-                  "command.event.generate" => Illuminate\Foundation\Console\EventGenerateCommand {#318}
-                  "command.event.make" => Illuminate\Foundation\Console\EventMakeCommand {#320}
-                  "command.job.make" => Illuminate\Foundation\Console\JobMakeCommand {#323}
-                  "command.listener.make" => Illuminate\Foundation\Console\ListenerMakeCommand {#327}
-                  "command.middleware.make" => Illuminate\Routing\Console\MiddlewareMakeCommand {#332}
-                  "command.model.make" => Illuminate\Foundation\Console\ModelMakeCommand {#335}
-                  "command.policy.make" => Illuminate\Foundation\Console\PolicyMakeCommand {#339}
-                  "command.provider.make" => Illuminate\Foundation\Console\ProviderMakeCommand {#342}
-                  "command.queue.failed-table" => Illuminate\Queue\Console\FailedTableCommand {#345}
-                  "command.queue.table" => Illuminate\Queue\Console\TableCommand {#347}
-                  "command.request.make" => Illuminate\Foundation\Console\RequestMakeCommand {#349}
-                  "command.seeder.make" => Illuminate\Database\Console\Seeds\SeederMakeCommand {#352}
-                  "command.session.table" => Illuminate\Session\Console\SessionTableCommand {#355}
-                  "command.serve" => Illuminate\Foundation\Console\ServeCommand {#357}
-                  "command.test.make" => Illuminate\Foundation\Console\TestMakeCommand {#361}
-                  "command.vendor.publish" => Illuminate\Foundation\Console\VendorPublishCommand {#364}
-                  "migration.repository" => Illuminate\Database\Migrations\DatabaseMigrationRepository {#370}
-                  "migrator" => Illuminate\Database\Migrations\Migrator {#369}
-                  "command.migrate" => Illuminate\Database\Console\Migrations\MigrateCommand {#371}
-                  "migration.creator" => Illuminate\Database\Migrations\MigrationCreator {#381}
-                  "command.migrate.make" => Illuminate\Database\Console\Migrations\MigrateMakeCommand {#382}
-                  "command.migrate.install" => Illuminate\Database\Console\Migrations\InstallCommand {#388}
-                  "command.migrate.rollback" => Illuminate\Database\Console\Migrations\RollbackCommand {#391 …14}
-                  "command.migrate.reset" => Illuminate\Database\Console\Migrations\ResetCommand {#396 …23}
-                  "command.migrate.refresh" => Illuminate\Database\Console\Migrations\RefreshCommand {#401 …22}
-                  "command.migrate.status" => Illuminate\Database\Console\Migrations\StatusCommand {#408 …23}
-                  "command.seed" => Illuminate\Database\Console\Seeds\SeedCommand {#412 …23}
-                  "command.queue.failed" => Illuminate\Queue\Console\ListFailedCommand {#417 …23}
-                  "command.queue.retry" => Illuminate\Queue\Console\RetryCommand {#419 …22}
-                  "command.queue.forget" => Illuminate\Queue\Console\ForgetFailedCommand {#422 …22}
-                  "command.queue.flush" => Illuminate\Queue\Console\FlushFailedCommand {#425 …22}
-                  "queue" => Illuminate\Queue\QueueManager {#429 …3}
-                  "queue.failer" => Illuminate\Queue\Failed\DatabaseFailedJobProvider {#436 …3}
-                  "queue.worker" => Illuminate\Queue\Worker {#428 …5}
-                  "command.queue.work" => Illuminate\Queue\Console\WorkCommand {#427 …23}
-                  "command.queue.restart" => Illuminate\Queue\Console\RestartCommand {#446 …22}
-                  "queue.listener" => Illuminate\Queue\Listener {#449 …6}
-                  "command.queue.listen" => Illuminate\Queue\Console\ListenCommand {#448 …23}
-                  "Illuminate\Contracts\Debug\ExceptionHandler" => App\Exceptions\Handler {#502 …2}
+                  "cache" => Illuminate\Cache\CacheManager {#274}
+                  "command.cache.clear" => Illuminate\Cache\Console\ClearCommand {#273}
+                  "command.clear-compiled" => Illuminate\Foundation\Console\ClearCompiledCommand {#278}
+                  "command.auth.resets.clear" => Illuminate\Auth\Console\ClearResetsCommand {#280}
+                  "command.config.cache" => Illuminate\Foundation\Console\ConfigCacheCommand {#283}
+                  "command.config.clear" => Illuminate\Foundation\Console\ConfigClearCommand {#285}
+                  "command.down" => Illuminate\Foundation\Console\DownCommand {#287}
+                  "command.environment" => Illuminate\Foundation\Console\EnvironmentCommand {#289}
+                  "command.key.generate" => Illuminate\Foundation\Console\KeyGenerateCommand {#291}
+                  "composer" => Illuminate\Support\Composer {#295}
+                  "command.optimize" => Illuminate\Foundation\Console\OptimizeCommand {#294}
+                  "command.route.cache" => Illuminate\Foundation\Console\RouteCacheCommand {#299}
+                  "command.route.clear" => Illuminate\Foundation\Console\RouteClearCommand {#301}
+                  "command.route.list" => Illuminate\Foundation\Console\RouteListCommand {#303}
+                  "command.tinker" => Illuminate\Foundation\Console\TinkerCommand {#310}
+                  "command.up" => Illuminate\Foundation\Console\UpCommand {#313}
+                  "command.view.clear" => Illuminate\Foundation\Console\ViewClearCommand {#315}
+                  "command.app.name" => Illuminate\Foundation\Console\AppNameCommand {#317}
+                  "command.auth.make" => Illuminate\Auth\Console\MakeAuthCommand {#320}
+                  "command.cache.table" => Illuminate\Cache\Console\CacheTableCommand {#323}
+                  "command.console.make" => Illuminate\Foundation\Console\ConsoleMakeCommand {#325}
+                  "command.controller.make" => Illuminate\Routing\Console\ControllerMakeCommand {#329}
+                  "command.event.generate" => Illuminate\Foundation\Console\EventGenerateCommand {#333}
+                  "command.event.make" => Illuminate\Foundation\Console\EventMakeCommand {#335}
+                  "command.job.make" => Illuminate\Foundation\Console\JobMakeCommand {#338}
+                  "command.listener.make" => Illuminate\Foundation\Console\ListenerMakeCommand {#342}
+                  "command.middleware.make" => Illuminate\Routing\Console\MiddlewareMakeCommand {#347}
+                  "command.model.make" => Illuminate\Foundation\Console\ModelMakeCommand {#350}
+                  "command.policy.make" => Illuminate\Foundation\Console\PolicyMakeCommand {#354}
+                  "command.provider.make" => Illuminate\Foundation\Console\ProviderMakeCommand {#357}
+                  "command.queue.failed-table" => Illuminate\Queue\Console\FailedTableCommand {#360}
+                  "command.queue.table" => Illuminate\Queue\Console\TableCommand {#362}
+                  "command.request.make" => Illuminate\Foundation\Console\RequestMakeCommand {#364}
+                  "command.seeder.make" => Illuminate\Database\Console\Seeds\SeederMakeCommand {#367}
+                  "command.session.table" => Illuminate\Session\Console\SessionTableCommand {#370}
+                  "command.serve" => Illuminate\Foundation\Console\ServeCommand {#372}
+                  "command.test.make" => Illuminate\Foundation\Console\TestMakeCommand {#376}
+                  "command.vendor.publish" => Illuminate\Foundation\Console\VendorPublishCommand {#379}
+                  "migration.repository" => Illuminate\Database\Migrations\DatabaseMigrationRepository {#385}
+                  "migrator" => Illuminate\Database\Migrations\Migrator {#384}
+                  "command.migrate" => Illuminate\Database\Console\Migrations\MigrateCommand {#386}
+                  "migration.creator" => Illuminate\Database\Migrations\MigrationCreator {#396 …2}
+                  "command.migrate.make" => Illuminate\Database\Console\Migrations\MigrateMakeCommand {#397 …24}
+                  "command.migrate.install" => Illuminate\Database\Console\Migrations\InstallCommand {#403 …23}
+                  "command.migrate.rollback" => Illuminate\Database\Console\Migrations\RollbackCommand {#406 …23}
+                  "command.migrate.reset" => Illuminate\Database\Console\Migrations\ResetCommand {#411 …23}
+                  "command.migrate.refresh" => Illuminate\Database\Console\Migrations\RefreshCommand {#416 …22}
+                  "command.migrate.status" => Illuminate\Database\Console\Migrations\StatusCommand {#423 …23}
+                  "command.seed" => Illuminate\Database\Console\Seeds\SeedCommand {#427 …23}
+                  "command.queue.failed" => Illuminate\Queue\Console\ListFailedCommand {#432 …23}
+                  "command.queue.retry" => Illuminate\Queue\Console\RetryCommand {#434 …22}
+                  "command.queue.forget" => Illuminate\Queue\Console\ForgetFailedCommand {#437 …22}
+                  "command.queue.flush" => Illuminate\Queue\Console\FlushFailedCommand {#440 …22}
+                  "queue" => Illuminate\Queue\QueueManager {#444 …3}
+                  "queue.failer" => Illuminate\Queue\Failed\DatabaseFailedJobProvider {#451 …3}
+                  "queue.worker" => Illuminate\Queue\Worker {#443 …5}
+                  "command.queue.work" => Illuminate\Queue\Console\WorkCommand {#442 …23}
+                  "command.queue.restart" => Illuminate\Queue\Console\RestartCommand {#461 …22}
+                  "queue.listener" => Illuminate\Queue\Listener {#464 …6}
+                  "command.queue.listen" => Illuminate\Queue\Console\ListenCommand {#463 …23}
+                  "Illuminate\Contracts\Debug\ExceptionHandler" => App\Exceptions\Handler {#522 …2}
                 ]
                 #aliases: array:67 [
                   "Illuminate\Foundation\Application" => "app"
@@ -2395,7 +2367,7 @@ Illuminate\Database\QueryException {#491
                 ]
               ]
               #wildcards: []
-              #sorted: array:52 [
+              #sorted: array:53 [
                 "Illuminate\Events\EventServiceProvider" => []
                 "Illuminate\Routing\RoutingServiceProvider" => []
                 "bootstrapping: Illuminate\Foundation\Bootstrap\DetectEnvironment" => []
@@ -2420,6 +2392,7 @@ Illuminate\Database\QueryException {#491
                 "Illuminate\Pagination\PaginationServiceProvider" => []
                 "Illuminate\Session\SessionServiceProvider" => []
                 "Illuminate\View\ViewServiceProvider" => []
+                "Laracasts\Flash\FlashServiceProvider" => []
                 "App\Providers\AppServiceProvider" => []
                 "App\Providers\AuthServiceProvider" => []
                 "App\Providers\EventServiceProvider" => []
@@ -2447,16 +2420,16 @@ Illuminate\Database\QueryException {#491
                 "Illuminate\Validation\ValidationServiceProvider" => []
                 "Collective\Html\HtmlServiceProvider" => []
                 "Illuminate\Console\Events\ArtisanStarting" => array:10 [
-                  0 => Closure {#128 …6}
-                  1 => Closure {#145 …6}
-                  2 => Closure {#167 …6}
-                  3 => Closure {#169 …6}
-                  4 => Closure {#181 …6}
-                  5 => Closure {#185 …6}
-                  6 => Closure {#193 …6}
-                  7 => Closure {#208 …6}
-                  8 => Closure {#210 …6}
-                  9 => Closure {#213 …6}
+                  0 => Closure {#143 …6}
+                  1 => Closure {#160 …6}
+                  2 => Closure {#182 …6}
+                  3 => Closure {#184 …6}
+                  4 => Closure {#196 …6}
+                  5 => Closure {#200 …6}
+                  6 => Closure {#208 …6}
+                  7 => Closure {#223 …6}
+                  8 => Closure {#225 …6}
+                  9 => Closure {#228 …6}
                 ]
                 "Illuminate\Database\Events\QueryExecuted" => []
               ]
@@ -2496,7 +2469,7 @@ Illuminate\Database\QueryException {#491
               "name" => "mysql"
             ]
           }
-          1 => "create table `perfil_permissao` () default character set utf8 collate utf8_unicode_ci"
+          1 => "alter table `login_logs` add constraint `login_logs_usuario_id_foreign` foreign key (`usuario_id`) references `usuarios` (`id`)"
           2 => []
         ]
       }
@@ -2509,11 +2482,11 @@ Illuminate\Database\QueryException {#491
             """
         }
         args: array:3 [
-          0 => &74 "create table `perfil_permissao` () default character set utf8 collate utf8_unicode_ci"
+          0 => &74 "alter table `login_logs` add constraint `login_logs_usuario_id_foreign` foreign key (`usuario_id`) references `usuarios` (`id`)"
           1 => &75 []
-          2 => Closure {#492
+          2 => Closure {#517
             class: "Illuminate\Database\Connection"
-            this: Illuminate\Database\MySqlConnection {#481}
+            this: Illuminate\Database\MySqlConnection {#496}
             parameters: {
               $me: {}
               $query: {}
@@ -2533,9 +2506,9 @@ Illuminate\Database\QueryException {#491
             """
         }
         args: array:3 [
-          0 => &77 "create table `perfil_permissao` () default character set utf8 collate utf8_unicode_ci"
+          0 => &77 "alter table `login_logs` add constraint `login_logs_usuario_id_foreign` foreign key (`usuario_id`) references `usuarios` (`id`)"
           1 => &78 []
-          2 => Closure {#492}
+          2 => Closure {#517}
         ]
       }
       20. Illuminate\Database\Schema\Blueprint->build() ==> Illuminate\Database\Connection->statement(): {
@@ -2547,7 +2520,7 @@ Illuminate\Database\QueryException {#491
             """
         }
         args: array:1 [
-          0 => &79 "create table `perfil_permissao` () default character set utf8 collate utf8_unicode_ci"
+          0 => &79 "alter table `login_logs` add constraint `login_logs_usuario_id_foreign` foreign key (`usuario_id`) references `usuarios` (`id`)"
         ]
       }
       19. Illuminate\Database\Schema\Builder->build() ==> Illuminate\Database\Schema\Blueprint->build(): {
@@ -2559,8 +2532,8 @@ Illuminate\Database\QueryException {#491
             """
         }
         args: array:2 [
-          0 => Illuminate\Database\MySqlConnection {#481}
-          1 => Illuminate\Database\Schema\Grammars\MySqlGrammar {#489}
+          0 => Illuminate\Database\MySqlConnection {#496}
+          1 => Illuminate\Database\Schema\Grammars\MySqlGrammar {#504}
         ]
       }
       18. Illuminate\Database\Schema\Builder->create() ==> Illuminate\Database\Schema\Builder->build(): {
@@ -2572,35 +2545,68 @@ Illuminate\Database\QueryException {#491
             """
         }
         args: array:1 [
-          0 => Illuminate\Database\Schema\Blueprint {#497
-            #table: "perfil_permissao"
-            #columns: []
-            #commands: array:3 [
-              0 => Illuminate\Support\Fluent {#495
+          0 => Illuminate\Database\Schema\Blueprint {#511
+            #table: "login_logs"
+            #columns: array:6 [
+              0 => Illuminate\Support\Fluent {#22
+                #attributes: array:4 [
+                  "type" => "integer"
+                  "name" => "id"
+                  "autoIncrement" => true
+                  "unsigned" => true
+                ]
+              }
+              1 => Illuminate\Support\Fluent {#507
+                #attributes: array:4 [
+                  "type" => "integer"
+                  "name" => "usuario_id"
+                  "autoIncrement" => false
+                  "unsigned" => false
+                ]
+              }
+              2 => Illuminate\Support\Fluent {#506
+                #attributes: array:3 [
+                  "type" => "string"
+                  "name" => "acao"
+                  "length" => 255
+                ]
+              }
+              3 => Illuminate\Support\Fluent {#513
+                #attributes: array:3 [
+                  "type" => "string"
+                  "name" => "ip_address"
+                  "length" => 255
+                ]
+              }
+              4 => Illuminate\Support\Fluent {#514
+                #attributes: array:4 [
+                  "type" => "integer"
+                  "name" => "datahora"
+                  "autoIncrement" => false
+                  "unsigned" => false
+                ]
+              }
+              5 => Illuminate\Support\Fluent {#515
+                #attributes: array:3 [
+                  "type" => "timestamp"
+                  "name" => "created_at"
+                  "nullable" => true
+                ]
+              }
+            ]
+            #commands: array:2 [
+              0 => Illuminate\Support\Fluent {#509
                 #attributes: array:1 [
                   "name" => "create"
                 ]
               }
-              1 => Illuminate\Support\Fluent {#494
-                #attributes: array:7 [
+              1 => Illuminate\Support\Fluent {#516
+                #attributes: array:5 [
                   "name" => "foreign"
-                  "index" => "perfil_permissao_perfil_id_foreign"
+                  "index" => "login_logs_usuario_id_foreign"
                   "columns" => array:1 [ …1]
                   "references" => "id"
-                  "on" => "perfis"
-                  "onDelete" => "cascade"
-                  "onUpdate" => "cascade"
-                ]
-              }
-              2 => Illuminate\Support\Fluent {#22
-                #attributes: array:7 [
-                  "name" => "foreign"
-                  "index" => "perfil_permissao_permissao_id_foreign"
-                  "columns" => array:1 [ …1]
-                  "references" => "id"
-                  "on" => "permissoes"
-                  "onDelete" => "cascade"
-                  "onUpdate" => "cascade"
+                  "on" => "usuarios"
                 ]
               }
             ]
@@ -2620,24 +2626,24 @@ Illuminate\Database\QueryException {#491
             """
         }
         args: array:2 [
-          0 => &81 "perfil_permissao"
-          1 => Closure {#496
-            class: "CreatePerfilPermissaoTable"
-            this: CreatePerfilPermissaoTable {#490 …}
+          0 => &81 "login_logs"
+          1 => Closure {#510
+            class: "CreateLoginLogsTable"
+            this: CreateLoginLogsTable {#505 …}
             parameters: {
               $table: {
                 typeHint: "Illuminate\Database\Schema\Blueprint"
               }
             }
-            file: "/var/www/html/sulvale2/database/migrations/2023_11_27_131453_create_perfil_permissao_table.php"
-            line: "15 to 18"
+            file: "/var/www/html/sulvale2/database/migrations/2023_12_01_115558_create_login_logs_table.php"
+            line: "11 to 19"
           }
         ]
       }
       16. Illuminate\Support\Facades\Schema::create() ==> Illuminate\Support\Facades\Facade::__callStatic(): {
         src: {
-          /var/www/html/sulvale2/database/migrations/2023_11_27_131453_create_perfil_permissao_table.php:18: """
-                    $table->foreign('permissao_id')->references('id')->on('permissoes')->onDelete('cascade')->onUpdate('cascade');\n
+          /var/www/html/sulvale2/database/migrations/2023_12_01_115558_create_login_logs_table.php:19: """
+                    $table->foreign('usuario_id')->references('id')->on('usuarios');\n
                 });\n
             }\n
             """
@@ -2645,25 +2651,25 @@ Illuminate\Database\QueryException {#491
         args: array:2 [
           0 => &83 "create"
           1 => &84 array:2 [
-            0 => "perfil_permissao"
-            1 => Closure {#496}
+            0 => "login_logs"
+            1 => Closure {#510}
           ]
         ]
       }
-      15. CreatePerfilPermissaoTable->up() ==> Illuminate\Support\Facades\Schema::create(): {
+      15. CreateLoginLogsTable->up() ==> Illuminate\Support\Facades\Schema::create(): {
         src: {
-          /var/www/html/sulvale2/database/migrations/2023_11_27_131453_create_perfil_permissao_table.php:18: """
-                    $table->foreign('permissao_id')->references('id')->on('permissoes')->onDelete('cascade')->onUpdate('cascade');\n
+          /var/www/html/sulvale2/database/migrations/2023_12_01_115558_create_login_logs_table.php:19: """
+                    $table->foreign('usuario_id')->references('id')->on('usuarios');\n
                 });\n
             }\n
             """
         }
         args: array:2 [
-          0 => &85 "perfil_permissao"
-          1 => Closure {#496}
+          0 => &85 "login_logs"
+          1 => Closure {#510}
         ]
       }
-      14. Illuminate\Database\Migrations\Migrator->runUp() ==> CreatePerfilPermissaoTable->up(): {
+      14. Illuminate\Database\Migrations\Migrator->runUp() ==> CreateLoginLogsTable->up(): {
         src: {
           /var/www/html/sulvale2/vendor/laravel/framework/src/Illuminate/Database/Migrations/Migrator.php:147: """
             \n
@@ -2682,8 +2688,8 @@ Illuminate\Database\QueryException {#491
             """
         }
         args: array:3 [
-          0 => &86 "2023_11_27_131453_create_perfil_permissao_table"
-          1 => &87 3
+          0 => &86 "2023_12_01_115558_create_login_logs_table"
+          1 => &87 2
           2 => &88 false
         ]
       }
@@ -2696,8 +2702,9 @@ Illuminate\Database\QueryException {#491
             """
         }
         args: array:2 [
-          0 => &89 array:1 [
-            4 => "2023_11_27_131453_create_perfil_permissao_table"
+          0 => &89 array:2 [
+            5 => "2023_12_01_115558_create_login_logs_table"
+            6 => "2023_12_01_115901_create_acoes_logs_table"
           ]
           1 => &90 array:2 [
             "pretend" => false
@@ -2734,7 +2741,7 @@ Illuminate\Database\QueryException {#491
         }
         args: array:2 [
           0 => &93 array:2 [
-            0 => Illuminate\Database\Console\Migrations\MigrateCommand {#371}
+            0 => Illuminate\Database\Console\Migrations\MigrateCommand {#386}
             1 => "fire"
           ]
           1 => &94 []
@@ -2750,7 +2757,7 @@ Illuminate\Database\QueryException {#491
         }
         args: array:1 [
           0 => &95 array:2 [
-            0 => Illuminate\Database\Console\Migrations\MigrateCommand {#371}
+            0 => Illuminate\Database\Console\Migrations\MigrateCommand {#386}
             1 => "fire"
           ]
         ]
@@ -2803,7 +2810,7 @@ Illuminate\Database\QueryException {#491
             """
         }
         args: array:3 [
-          0 => Illuminate\Database\Console\Migrations\MigrateCommand {#371}
+          0 => Illuminate\Database\Console\Migrations\MigrateCommand {#386}
           1 => Symfony\Component\Console\Input\ArgvInput {#23}
           2 => Symfony\Component\Console\Output\ConsoleOutput {#21}
         ]
@@ -2850,11 +2857,11 @@ Illuminate\Database\QueryException {#491
     }
   }
   +errorInfo: array:3 [
-    0 => "42000"
-    1 => 1064
-    2 => "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') default character set utf8 collate utf8_unicode_ci' at line 1"
+    0 => "HY000"
+    1 => 3780
+    2 => "Referencing column 'usuario_id' and referenced column 'id' in foreign key constraint 'login_logs_usuario_id_foreign' are incompatible."
   ]
-  +"previous": PDOException {#499}
+  +"previous": PDOException {#519}
   -trace: {
     23. Illuminate\Database\Connection->runQueryCallback() ==> new Illuminate\Database\QueryException(): {
       src: {
@@ -2874,9 +2881,9 @@ Illuminate\Database\QueryException {#491
           """
       }
       args: array:3 [
-        0 => &74 "create table `perfil_permissao` () default character set utf8 collate utf8_unicode_ci"
+        0 => &74 "alter table `login_logs` add constraint `login_logs_usuario_id_foreign` foreign key (`usuario_id`) references `usuarios` (`id`)"
         1 => &75 []
-        2 => Closure {#492}
+        2 => Closure {#517}
       ]
     }
     21. Illuminate\Database\Connection->statement() ==> Illuminate\Database\Connection->run(): {
@@ -2888,9 +2895,9 @@ Illuminate\Database\QueryException {#491
           """
       }
       args: array:3 [
-        0 => &77 "create table `perfil_permissao` () default character set utf8 collate utf8_unicode_ci"
+        0 => &77 "alter table `login_logs` add constraint `login_logs_usuario_id_foreign` foreign key (`usuario_id`) references `usuarios` (`id`)"
         1 => &78 []
-        2 => Closure {#492}
+        2 => Closure {#517}
       ]
     }
     20. Illuminate\Database\Schema\Blueprint->build() ==> Illuminate\Database\Connection->statement(): {
@@ -2902,7 +2909,7 @@ Illuminate\Database\QueryException {#491
           """
       }
       args: array:1 [
-        0 => &79 "create table `perfil_permissao` () default character set utf8 collate utf8_unicode_ci"
+        0 => &79 "alter table `login_logs` add constraint `login_logs_usuario_id_foreign` foreign key (`usuario_id`) references `usuarios` (`id`)"
       ]
     }
     19. Illuminate\Database\Schema\Builder->build() ==> Illuminate\Database\Schema\Blueprint->build(): {
@@ -2914,8 +2921,8 @@ Illuminate\Database\QueryException {#491
           """
       }
       args: array:2 [
-        0 => Illuminate\Database\MySqlConnection {#481}
-        1 => Illuminate\Database\Schema\Grammars\MySqlGrammar {#489}
+        0 => Illuminate\Database\MySqlConnection {#496}
+        1 => Illuminate\Database\Schema\Grammars\MySqlGrammar {#504}
       ]
     }
     18. Illuminate\Database\Schema\Builder->create() ==> Illuminate\Database\Schema\Builder->build(): {
@@ -2927,7 +2934,7 @@ Illuminate\Database\QueryException {#491
           """
       }
       args: array:1 [
-        0 => Illuminate\Database\Schema\Blueprint {#497}
+        0 => Illuminate\Database\Schema\Blueprint {#511}
       ]
     }
     17. Illuminate\Support\Facades\Facade::__callStatic() ==> Illuminate\Database\Schema\Builder->create(): {
@@ -2939,14 +2946,14 @@ Illuminate\Database\QueryException {#491
           """
       }
       args: array:2 [
-        0 => &81 "perfil_permissao"
-        1 => Closure {#496}
+        0 => &81 "login_logs"
+        1 => Closure {#510}
       ]
     }
     16. Illuminate\Support\Facades\Schema::create() ==> Illuminate\Support\Facades\Facade::__callStatic(): {
       src: {
-        /var/www/html/sulvale2/database/migrations/2023_11_27_131453_create_perfil_permissao_table.php:18: """
-                  $table->foreign('permissao_id')->references('id')->on('permissoes')->onDelete('cascade')->onUpdate('cascade');\n
+        /var/www/html/sulvale2/database/migrations/2023_12_01_115558_create_login_logs_table.php:19: """
+                  $table->foreign('usuario_id')->references('id')->on('usuarios');\n
               });\n
           }\n
           """
@@ -2956,20 +2963,20 @@ Illuminate\Database\QueryException {#491
         1 => &84 array:2 [&84]
       ]
     }
-    15. CreatePerfilPermissaoTable->up() ==> Illuminate\Support\Facades\Schema::create(): {
+    15. CreateLoginLogsTable->up() ==> Illuminate\Support\Facades\Schema::create(): {
       src: {
-        /var/www/html/sulvale2/database/migrations/2023_11_27_131453_create_perfil_permissao_table.php:18: """
-                  $table->foreign('permissao_id')->references('id')->on('permissoes')->onDelete('cascade')->onUpdate('cascade');\n
+        /var/www/html/sulvale2/database/migrations/2023_12_01_115558_create_login_logs_table.php:19: """
+                  $table->foreign('usuario_id')->references('id')->on('usuarios');\n
               });\n
           }\n
           """
       }
       args: array:2 [
-        0 => &85 "perfil_permissao"
-        1 => Closure {#496}
+        0 => &85 "login_logs"
+        1 => Closure {#510}
       ]
     }
-    14. Illuminate\Database\Migrations\Migrator->runUp() ==> CreatePerfilPermissaoTable->up(): {
+    14. Illuminate\Database\Migrations\Migrator->runUp() ==> CreateLoginLogsTable->up(): {
       src: {
         /var/www/html/sulvale2/vendor/laravel/framework/src/Illuminate/Database/Migrations/Migrator.php:147: """
           \n
@@ -2988,8 +2995,8 @@ Illuminate\Database\QueryException {#491
           """
       }
       args: array:3 [
-        0 => &86 "2023_11_27_131453_create_perfil_permissao_table"
-        1 => &87 3
+        0 => &86 "2023_12_01_115558_create_login_logs_table"
+        1 => &87 2
         2 => &88 false
       ]
     }
@@ -3002,7 +3009,7 @@ Illuminate\Database\QueryException {#491
           """
       }
       args: array:2 [
-        0 => &89 array:1 [&89]
+        0 => &89 array:2 [&89]
         1 => &90 array:2 [&90]
       ]
     }
@@ -3095,7 +3102,7 @@ Illuminate\Database\QueryException {#491
           """
       }
       args: array:3 [
-        0 => Illuminate\Database\Console\Migrations\MigrateCommand {#371}
+        0 => Illuminate\Database\Console\Migrations\MigrateCommand {#386}
         1 => Symfony\Component\Console\Input\ArgvInput {#23}
         2 => Symfony\Component\Console\Output\ConsoleOutput {#21}
       ]

@@ -20,5 +20,13 @@ class Usuario extends Authenticatable
         return $this -> perfil -> permissoes -> contains('nome',$permissao);
     }
     
-        
+    public function loginLogs()
+    {
+        return $this->hasMany(LoginLog::class);
+    }
+
+    public function acaoLogs()
+    {
+        return $this->hasMany(AcaoLog::class);
+    }
 }
