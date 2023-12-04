@@ -4,17 +4,19 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Produto;
-use App\Providers\EventServiceProvider;
+use App\Models\AcaoLog;
+
 use Auth;
 
 class ProdutoController extends Controller
 {
-
+    private $log;
     private $objProduto;
     
     public function __construct()
     {
         $this->objProduto = new Produto();
+        $this->log=new AcaoLog('Produto');
         
     }
 
@@ -38,12 +40,15 @@ class ProdutoController extends Controller
         $req['nome'] = trim($request->nome);
         $req['preco'] = trim($request->preco);
         $req['quantidade'] = trim($request->quantidade);
+        $acao='criar';
         if(empty($req['id'])){
             Produto::create($req); 
         }
         else{
+            $acao='Editar';
             Produto::whereId( $req['id'] )->update($req); 
         } 
+        $this->log->registrar($acao);
         return redirect('/produtos');
     }
 
@@ -52,6 +57,7 @@ class ProdutoController extends Controller
         if(!Auth::user()->temPermissao('del')){
             abort(503);
         }
+        $this->log->registrar('Delete');
         Produto::where("id", "=", $id)->delete();
         return redirect('/produtos');
     }

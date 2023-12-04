@@ -5,13 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\Perfil;
 use App\Models\Permissao;
 use Illuminate\Http\Request;
+use App\Models\AcaoLog;
 use Auth;
 class PerfilController extends Controller
 {
-
+    private $log;
     public function __construct()
     {
-        
+        $this->log=new AcaoLog('Perfil');
     }
 
     public function index()
@@ -39,9 +40,11 @@ class PerfilController extends Controller
         unset($req['_token']);
         unset($req['permissoes']);
         $req['nome'] = trim($request->nome);
+        $acao='criar';
         if (empty($req['id'])) {
             $perfil= Perfil::create($req);
         } else {
+            $acao='Editar';
             $perfil = Perfil::find($req['id']);
             Perfil::whereId($req['id'])->update($req);
         }
@@ -49,6 +52,7 @@ class PerfilController extends Controller
         if ($request->has('permissoes')) {
             $perfil->permissoes()->sync($request->permissoes);
         }
+        $this->log->registrar($acao);
         return redirect('/perfis');
     }
 
@@ -57,6 +61,7 @@ class PerfilController extends Controller
         if(!Auth::user()->temPermissao('del')){
             abort(503);
         }
+        $this->log->registrar('Delete');
         Perfil::where("id", "=", $id)->delete();
         return redirect('/perfis');
     }

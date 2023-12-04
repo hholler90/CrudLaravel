@@ -2,7 +2,7 @@
 
 @section('content')
     
-<style>/* Adicione este CSS em um arquivo .css separado ou insira diretamente na seção de estilos da sua aplicação Laravel */
+<style>
 
 body {
     font-family: Arial, sans-serif;
@@ -53,7 +53,7 @@ table + table {
         <thead>
             <tr>
                 <th>Usuario ID</th>
-                <th>Acao</th>
+                <th>Ação</th>
                 <th>Timestamp</th>
             </tr>
         </thead>
@@ -68,12 +68,12 @@ table + table {
         </tbody>
     </table>
 
-    <h2>Action Logs</h2>
+    <h2>Ações Logs</h2>
     <table>
         <thead>
             <tr>
                 <th>Usuario ID</th>
-                <th>Acao</th>
+                <th>Ação</th>
                 <th>Tela</th>
                 <th>Timestamp</th>
                 <th>Data hora</th>
