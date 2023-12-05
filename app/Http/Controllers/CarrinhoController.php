@@ -21,7 +21,8 @@ class CarrinhoController extends Controller
         $produto = Produto::find($id);
 
         if (!$produto) {
-            return redirect('/carrinho')->with('error', 'Produto não encontrado.');
+            flash('Message')->error();
+            return redirect('/carrinho');
         }
 
         $carrinho = Session::get('carrinho', []);
@@ -33,11 +34,12 @@ class CarrinhoController extends Controller
                 'produto' => $produto,
                 'quantidade' => 1,
             ];
+            
         }
-
+        flash('Produto adicionado ao carrinho')->success();
         Session::put('carrinho', $carrinho);
 
-        return redirect('/carrinho')->with('success', 'Produto adicionado ao carrinho com sucesso.');
+        return redirect('/carrinho');
     }
 
     public function verCarrinho()
@@ -50,8 +52,8 @@ class CarrinhoController extends Controller
     public function finalizarCompra()
     {
         Session::forget('carrinho');
-
-        return redirect('/carrinho')->with('success', 'Compra finalizada com sucesso!');
+        flash('Compra finalizada com sucesso!')->success();
+        return redirect('/carrinho');
     }
 }
 

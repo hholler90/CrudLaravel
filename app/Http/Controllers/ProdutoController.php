@@ -35,11 +35,14 @@ class ProdutoController extends Controller
 
     public function salvar(Request $request)
     {
+        copy( $request->upload->getRealPath(), public_path('imagens/') .  $request->upload->getClientOriginalName() );
         $req=$request->all();
         unset( $req['_token'] );
+        unset( $req['upload'] );
         $req['nome'] = trim($request->nome);
         $req['preco'] = trim($request->preco);
         $req['quantidade'] = trim($request->quantidade);
+        $req['imagem'] ='/imagens/' .  $request->upload->getClientOriginalName();
         $acao='criar';
         if(empty($req['id'])){
             Produto::create($req); 
