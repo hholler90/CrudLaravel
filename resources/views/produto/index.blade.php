@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="/js/DataTables/datatables.css" />
 <script src="/js/DataTables/datatables.js"></script>
 <h1 class="text-center">Produtos</h1>
-<div id="container">
+<div id="container" class="container">
   <div id="divtabela">
 
     <div class="col-8 m-auto">

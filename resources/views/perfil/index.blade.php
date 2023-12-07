@@ -9,7 +9,7 @@
   </ul>
 </div>
 </nav>
-<div id="divtabela">
+<div id="divtabela" class="container">
 
   <div class="col-8 m-auto">
     <table id="tabela" class="table text-center">

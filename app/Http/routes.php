@@ -20,6 +20,12 @@ Route::group(['prefix' => '', 'middleware' => ['auth']], function () {
         Route::post('deletar/{id}', 'PerfilController@deletar')->name('perfis.deletar');
         Route::get('formulario/{id}', 'PerfilController@formulario');
     });
+    Route::group(['prefix' => 'categorias'], function () {
+        Route::get('/', 'CategoriaController@index');
+        Route::post('/', 'CategoriaController@salvar');
+        Route::post('deletar/{id}', 'CategoriaController@deletar')->name('categorias.deletar');
+        Route::get('formulario/{id}', 'CategoriaController@formulario');
+    });
 });
 Route::get('/home', 'HomeController@index');
 Route::get('/login', 'LoginController@index');

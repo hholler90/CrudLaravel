@@ -7,7 +7,7 @@
     </div>
     <div class="row label">
         {{Form::label('preco','Preço')}}
-        {{Form::number('preco',null,['class' => 'inputTamanho','placeholder' => 'Proço','style' => 'width: 466px;'])}}
+        {{Form::number('preco',null,['class' => 'inputTamanho','placeholder' => 'Preço','style' => 'width: 466px;'])}}
     </div>
     <div class="row label">
         {{Form::label('quantidade','Quantidade')}}

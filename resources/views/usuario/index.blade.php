@@ -5,7 +5,7 @@
 <script src="/js/DataTables/datatables.js"></script>
 <h1 class="text-center">Usuarios</h1>
 <hr>
-<div id="container">
+<div id="container" class="container">
   <div id="divtabela">
 
     <div class="col-8 m-auto">

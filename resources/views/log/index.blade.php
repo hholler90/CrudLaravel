@@ -47,7 +47,7 @@ table + table {
     margin-top: 40px;
 }
 </style>
-
+<div class="container">
     <h2>Login Logs</h2>
     <table>
         <thead>
@@ -55,6 +55,7 @@ table + table {
                 <th>Usuario ID</th>
                 <th>Ação</th>
                 <th>Timestamp</th>
+                <th>Data hora</th>
             </tr>
         </thead>
         <tbody>
@@ -63,6 +64,7 @@ table + table {
                     <td>{{ $log->usuario_id }}</td>
                     <td>{{ $log->acao }}</td>
                     <td>{{ $log->created_at }}</td>
+                    <td>{{ $log->data_hora_formatada }}</td> 
                 </tr>
             @endforeach
         </tbody>
@@ -86,10 +88,11 @@ table + table {
                     <td>{{ $log->acao}}</td>
                     <td>{{ $log->tela}}</td>
                     <td>{{ $log->created_at }}</td>
-                    <td>{{ $log->datahora }}</td>                   
+                    <td>{{ $log->data_hora_formatada }}</td>                   
                 </tr>
             @endforeach
         </tbody>
     </table>
+</div>
 @endsection
 

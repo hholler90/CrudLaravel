@@ -202,3 +202,7 @@ body {
 #tabela tbody tr:hover {
   background-color: #e6f7ff;
 }
+
+.text-right{
+  text-align: right;
+}

@@ -4,15 +4,16 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Produtos Disponíveis</div>
+                <div style="display: flex;justify-content: space-between;" class="card-header">Produtos Disponíveis
+                        <a href="{{ url('carrinho/ver') }}" class="btn btn-sm btn-primary text-right">Ver Carrinho</a>                 
+                </div>
                 <div class="card-body">
-                    <a href="{{ url('carrinho/ver') }}" class="btn btn-sm btn-success">Ver Carrinho</a>
                     @if ($produtos->count() > 0)
                     <div class="row">
                         @foreach ($produtos as $produto)
                         <div class="col-md-4 mb-4">
                             <div class="card">
-                            <img src="{{ $produto->imagem }}" class="card-img-top" alt="{{ $produto->nome }}">
+                                <img src="{{ $produto->imagem }}" class="card-img-top" alt="{{ $produto->nome }}">
                                 <div class="card-body">
                                     <h5 class="card-title">{{ $produto->nome }}</h5>
                                     <p class="card-text">R$ {{ $produto->preco }}</p>

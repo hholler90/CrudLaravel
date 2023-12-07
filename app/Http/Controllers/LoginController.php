@@ -30,7 +30,7 @@ class LoginController extends Controller
         $req['password'] =trim($request->password);
         Auth::attempt($req);
         $this->log->registrar('Login');
-        return redirect('/produtos');
+        return redirect('/carrinho');
     }
     public function logout()
     {

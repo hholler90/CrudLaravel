@@ -22,9 +22,11 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
+      @if (Auth::user()->temPermissao('add'))
         <li class="nav-item">
           <a class="nav-link active" href="/produtos">Produtos</a>
         </li>
+        @endif
         @if (Auth::user()->temPermissao('del'))
         <li class="nav-item">
           <a class="nav-link active" href="/usuarios">Usuarios</a>
@@ -40,7 +42,7 @@
           <a class="nav-link active" href="/log">Logs</a>
         </li>
         @endif
-        <li class="nav-item">
+        <li class="nav-item text-right">
           <a class="nav-link active " href="/logout">Logout</a>
         </li>
       </ul>
