@@ -19,6 +19,7 @@
           <tr>
             <th scope="col">ID</th>
             <th scope="col">Nome</th>
+            <th scope="col">Categoria</th>
             <th scope="col">Preco</th>
             <th scope="col">Quantidade</th>
             <th scope="col">Ações</th>
@@ -29,6 +30,7 @@
           <tr>
             <th scope="row">{{$produto->id}}</th>
             <td>{{$produto->nome}}</td>
+            <td>{{$produto->categoria->nome}}</td>
             <td>{{$produto->preco}}</td>
             <td>{{$produto->quantidade}}</td>
             <td>

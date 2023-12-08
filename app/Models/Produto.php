@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Produto extends Model
 {
     protected $table='produtos';
-    protected $fillable=['nome','preco','quantidade','imagem','upload'];
+    protected $fillable=['nome','preco','quantidade','imagem','upload','categoria_id'];
 
     public function loginLogs()
     {
@@ -17,5 +17,10 @@ class Produto extends Model
     public function acaoLogs()
     {
         return $this->hasMany(AcaoLog::class);
+    }
+
+    public function categoria()
+    {
+        return $this->belongsTo(Categoria::class);
     }
 }

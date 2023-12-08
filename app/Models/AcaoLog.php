@@ -24,7 +24,6 @@ class AcaoLog extends Model
     public function registrar($acao)
     { 
         $this->datahora=time();
-        return date('d/m/Y H: i', $this->datahora);
         $this->acao=$acao;
         $this->save();
     }

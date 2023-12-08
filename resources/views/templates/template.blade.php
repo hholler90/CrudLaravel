@@ -42,6 +42,14 @@
           <a class="nav-link active" href="/log">Logs</a>
         </li>
         @endif
+        @if (Auth::user()->temPermissao('root'))
+        <li class="nav-item">
+          <a class="nav-link active" href="/categorias">Categorias</a>
+        </li>
+        @endif
+        <li class="nav-item text-right">
+          <a class="nav-link active " href="/carrinho">Loja</a>
+        </li>
         <li class="nav-item text-right">
           <a class="nav-link active " href="/logout">Logout</a>
         </li>

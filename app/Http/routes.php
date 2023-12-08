@@ -23,8 +23,8 @@ Route::group(['prefix' => '', 'middleware' => ['auth']], function () {
     Route::group(['prefix' => 'categorias'], function () {
         Route::get('/', 'CategoriaController@index');
         Route::post('/', 'CategoriaController@salvar');
-        Route::post('deletar/{id}', 'CategoriaController@deletar')->name('categorias.deletar');
-        Route::get('formulario/{id}', 'CategoriaController@formulario');
+        Route::post('deletar/{id}', 'CategoriaController@deletar')->name('categoria.deletar');
+        Route::get('formulario/{id?}', 'CategoriaController@formulario');
     });
 });
 Route::get('/home', 'HomeController@index');
@@ -41,4 +41,4 @@ Route::get('/log', 'RelatorioController@exibirLogs')->name('log.index');
 Route::get('/carrinho', 'CarrinhoController@index');
 Route::get('/carrinho/adicionar/{id}', 'CarrinhoController@adicionarAoCarrinho');
 Route::get('/carrinho/ver', 'CarrinhoController@verCarrinho');
-Route::post('/carrinho/finalizar', 'CarrinhoController@finalizarCompra');
+Route::get('/carrinho/finalizar', 'CarrinhoController@finalizarCompra');

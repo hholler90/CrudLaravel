@@ -50,10 +50,24 @@ class CarrinhoController extends Controller
     }
 
     public function finalizarCompra()
-    {
-        Session::forget('carrinho');
-        flash('Compra finalizada com sucesso!')->success();
-        return redirect('/carrinho');
+{
+    $carrinhoItens = Session::get('carrinho', []);
+
+    foreach ($carrinhoItens as $item) {
+        $produto = $item['produto'];
+        $quantidade = $item['quantidade'];
+        if ($produto->quantidade >= $quantidade) {
+            $produto->decrement('quantidade', $quantidade);
+        } else {
+            flash('Produto sem estoque!')->success();
+        }
     }
+    Session::forget('carrinho');
+
+    flash('Compra finalizada com sucesso!')->success();
+
+    return redirect('/carrinho');
+}
+
 }
 

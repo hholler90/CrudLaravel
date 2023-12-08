@@ -14,8 +14,13 @@
         {{Form::number('quantidade',null,['class' => 'inputTamanho','placeholder' => 'Quantidade','style' => 'width: 466px;'])}}
     </div>
     <div class="row label">
+        {{Form::label('categoria_id','Categoria')}}
+        {{Form::select('categoria_id',$categorias,null,['class' => 'inputTamanho','style' => 'width: 466px;'])}}
+    </div>
+    <div class="row label">
     {{ Form::hidden('imagem') }}
-        {{ Form::file("upload", null, ['class' => "form-control", "required"]) }}
+    {{ Form::label('upload', 'Escolher Arquivo') }}
+    {{ Form::file('upload', ['class' => 'inputTamanho']) }}
     </div>
 </div>
 <div class="modal-footer">
