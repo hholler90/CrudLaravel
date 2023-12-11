@@ -22,36 +22,44 @@ class CategoriaController extends Controller
         return view('categoria.index')->with([
             'categorias' => $categorias,
             'formulario' => new Categoria()
-
-
         ]);
     }
     public function formulario($id = null)
     {
         $ultimasCategorias = Categoria::latest()->take(5)->get();
-
-        $categoria = Categoria::find($id);
+        $categoria = (object)[ 
+            'id' =>$id,
+            'categoria' => (empty($id))
+                ? [''] : Categoria::where('id','=',$id)->lists('nome')->toArray()
+        ];
+      
         return view('categoria.formulario')->with([
             'formulario' => $categoria,
             'ultimasCategorias' => $ultimasCategorias,
+            'id' => $id,
         ]);
     }
 
 
     public function salvar(Request $request)
     {
-        dd($request->all());
         $req = $request->all();
-        unset($req['_token']);
-        unset($req['permissoes']);
-        $req['nome'] = trim($request->nome);
         $acao = 'criar';
         if (empty($req['id'])) {
-            Categoria::create($req);
+            // foreach($request->categoria as $categoria){
+            //     Categoria::create(['nome'=>$categoria]);
+            // }            
+            // collect($request->categoria)->map(function($categoria){
+            //     Categoria::create(['nome'=>$categoria]);
+            // });
+            $categorias=collect($request->categoria)->map(function($categoria){
+                return ['nome'=>trim($categoria)];
+            })->toArray();
+            Categoria::insert($categorias);
         } else {
             $acao = 'Editar';
             Categoria::find($req['id']);
-            Categoria::whereId($req['id'])->update($req);
+            Categoria::whereId($req['id'])->update(['nome' => $req['categoria'][0]]);
         }
 
         $this->log->registrar($acao);

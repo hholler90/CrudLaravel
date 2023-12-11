@@ -18,9 +18,13 @@
         {{Form::select('categoria_id',$categorias,null,['class' => 'inputTamanho','style' => 'width: 466px;'])}}
     </div>
     <div class="row label">
-    {{ Form::hidden('imagem') }}
-    {{ Form::label('upload', 'Escolher Arquivo') }}
-    {{ Form::file('upload', ['class' => 'inputTamanho']) }}
+        {{ Form::label('destaque', 'Destaque') }}
+        {{ Form::select('destaque', ['0' => 'Padrão', '1' => 'Destaque'], null, ['class' => 'inputTamanho', 'style' => 'width: 466px;']) }}
+    </div>
+    <div class="row label">
+        {{ Form::hidden('imagem') }}
+        {{ Form::label('upload', 'Escolher Arquivo') }}
+        {{ Form::file('upload', ['class' => 'inputTamanho']) }}
     </div>
 </div>
 <div class="modal-footer">

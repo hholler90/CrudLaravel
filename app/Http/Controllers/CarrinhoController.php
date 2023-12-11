@@ -12,6 +12,8 @@ class CarrinhoController extends Controller
     public function index()
     {
         $produtos = Produto::all();
+        $produtosDestaque = Produto::where('destaque', '>', 0)->inRandomOrder()->limit(3)->get();
+        return view('carrinho.index', compact('produtos', 'produtosDestaque'));
 
         return view('carrinho.index', compact('produtos'));
     }

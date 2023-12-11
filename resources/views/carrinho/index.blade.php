@@ -1,11 +1,40 @@
 @extends('templates.template')
 @section('content')
+<div class="container">
+    <h2>Destaques</h2>
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            @foreach ($produtosDestaque as $index => $produto)
+            <li data-target="#carouselExampleIndicators" data-slide-to="{{ $index }}" class="{{ $index == 0 ? 'active' : '' }}"></li>
+            @endforeach
+        </ol>
+        <div class="carousel-inner">
+            @foreach ($produtosDestaque as $index => $produto)
+            <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
+                <img class="d-block w-25 mx-auto" src="{{ $produto->imagem }}" alt="{{ $produto->nome }}">
+                <div class="d-none d-md-block text-center " >
+                        <h5>{{ $produto->nome }}</h5>
+                        <p>R$ {{ $produto->preco }}</p>
+                    </div>
+            </div>
+            @endforeach
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Anterior</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Próximo</span>
+        </a>
+    </div>
+</div>
 <div class="container mt-4">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
                 <div style="display: flex;justify-content: space-between;" class="card-header">Produtos Disponíveis
-                        <a href="{{ url('carrinho/ver') }}" class="btn btn-sm btn-primary text-right">Ver Carrinho</a>                 
+                    <a href="{{ url('carrinho/ver') }}" class="btn btn-sm btn-primary text-right">Ver Carrinho</a>
                 </div>
                 <div class="card-body">
                     @if ($produtos->count() > 0)

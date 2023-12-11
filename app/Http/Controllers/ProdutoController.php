@@ -27,6 +27,7 @@ class ProdutoController extends Controller
             'categorias' => Categoria::lists('nome', 'id'),
             'formulario' => new Produto()
         ]);
+        
     }
     public function formulario($id)
     {
@@ -37,7 +38,8 @@ class ProdutoController extends Controller
     }
 
     public function salvar(Request $request)
-    {   
+    {
+        return redirect()->back();
         $req = $request->except(['_token', 'upload']);
         if (!empty($request->upload)) {
             $nomeArquivo = $request->upload->getClientOriginalName();
@@ -59,11 +61,10 @@ class ProdutoController extends Controller
             copy($request->upload->getRealPath(), $destino);
             $req['imagem'] = '/imagens/' . $nomeArquivoUnico;
         }
-        
+
         $req['nome'] = trim($request->nome);
         $req['preco'] = trim($request->preco);
         $req['quantidade'] = trim($request->quantidade);
-        
         try {
             $acao = 'criar';
             if (!empty($req['id'])) {
@@ -72,12 +73,12 @@ class ProdutoController extends Controller
             } else {
                 Produto::create($req);
             }
-    
-            $this->log->registrar($acao); 
-        }catch(\Exception $e){
+
+            $this->log->registrar($acao);
+        } catch (\Exception $e) {
             dd($e->getMessage());
         }
-        
+
         return redirect('/produtos');
     }
     public function deletar($id)
