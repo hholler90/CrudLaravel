@@ -5,14 +5,10 @@
     <h2>Carrinho de Compras</h2>
 
     @if(count($carrinhoItens) > 0)
-    @php
-    $totalCarrinho = 0;
-    @endphp
 
-    @foreach($carrinhoItens as $item)
+    @foreach($carrinhoItens ['produtos'] as $item)
     @php
     $totalItem = $item['quantidade'] * $item['produto']->preco;
-    $totalCarrinho += $totalItem;
     @endphp
 
     <div class="media mb-4 container">
@@ -29,7 +25,7 @@
     @endforeach
     <div class="text-right">
         <div class="text-right">
-            <strong>Total: R$ {{ number_format($totalCarrinho, 2, ',', '.') }}</strong>
+            <strong>Total: R$ {{ number_format($carrinhoItens ['valor_total'], 2, ',', '.') }}</strong>
         </div>
         <div class="text-right mt-3">  
             <a href="{{ url('/carrinho') }}" class="btn btn-primary ml-2">Continuar Comprando</a>

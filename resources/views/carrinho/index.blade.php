@@ -12,10 +12,10 @@
             @foreach ($produtosDestaque as $index => $produto)
             <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
                 <img class="d-block w-25 mx-auto" src="{{ $produto->imagem }}" alt="{{ $produto->nome }}">
-                <div class="d-none d-md-block text-center " >
-                        <h5>{{ $produto->nome }}</h5>
-                        <p>R$ {{ $produto->preco }}</p>
-                    </div>
+                <div class="d-none d-md-block text-center ">
+                    <h5>{{ $produto->nome }}</h5>
+                    <p>R$ {{ $produto->preco }}</p>
+                </div>
             </div>
             @endforeach
         </div>
@@ -33,8 +33,20 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
+                <div class="container mt-4">
+                    <h2>Filtrar por Categoria</h2>
+                    <form action="{{ url('carrinho/filtrar') }}" method="get">
+                        <select name="categoria" class="form-control">
+                            <option value="0">Todas as Categorias</option>
+                            @foreach ($categorias as $categoria)
+                            <option value="{{ $categoria->id }}">{{ $categoria->nome }}</option>
+                            @endforeach
+                        </select>
+                        <button type="submit" class="btn btn-primary mt-2">Filtrar</button>
+                    </form>
+                </div>
                 <div style="display: flex;justify-content: space-between;" class="card-header">Produtos Disponíveis
-                    <a href="{{ url('carrinho/ver') }}" class="btn btn-sm btn-primary text-right">Ver Carrinho</a>
+                    
                 </div>
                 <div class="card-body">
                     @if ($produtos->count() > 0)

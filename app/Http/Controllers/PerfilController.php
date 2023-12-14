@@ -40,7 +40,7 @@ class PerfilController extends Controller
         unset($req['_token']);
         unset($req['permissoes']);
         $req['nome'] = trim($request->nome);
-        $acao='criar';
+        $acao='Criar';
         if (empty($req['id'])) {
             $perfil= Perfil::create($req);
         } else {

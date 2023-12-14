@@ -36,9 +36,14 @@ Route::get('/register', 'CadastroController@index');
 Route::post('/register', 'CadastroController@formulario');
 Route::post('/register', 'CadastroController@salvar');
 
-Route::get('/log', 'RelatorioController@exibirLogs')->name('log.index');
+Route::group(['prefix' => 'relatorios'], function () {
+Route::get('login', 'RelatorioController@logsLogin');
+Route::get('acao', 'RelatorioController@logsAcao');
+Route::get('compra', 'RelatorioController@logsCompra');
+});
 
 Route::get('/carrinho', 'CarrinhoController@index');
 Route::get('/carrinho/adicionar/{id}', 'CarrinhoController@adicionarAoCarrinho');
 Route::get('/carrinho/ver', 'CarrinhoController@verCarrinho');
 Route::get('/carrinho/finalizar', 'CarrinhoController@finalizarCompra');
+Route::get('/carrinho/filtrar', 'CarrinhoController@filtrarPorCategoria');

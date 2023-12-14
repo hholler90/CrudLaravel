@@ -14,7 +14,7 @@ class UsuarioController extends Controller
     private $log;
     public function __construct()
     {
-        $this->log=new AcaoLog('usuario');
+        $this->log=new AcaoLog('Usuario');
     }
 
     public function index()
@@ -42,13 +42,13 @@ class UsuarioController extends Controller
         $req['nome'] = trim($request->nome);
         $req['email'] = trim($request->email);
         $req['password'] = bcrypt(trim($request->password));
-        $acao='criar';
+        $acao='Criar';
         if (empty($req['id'])) {
             Usuario::create($req);
             
         } 
         else {
-            $acao='editar';
+            $acao='Editar';
             Usuario::whereId($req['id'])->update($req);    
         }
         $this->log->registrar($acao);

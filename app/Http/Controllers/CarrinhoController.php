@@ -4,18 +4,27 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Models\Produto;
+use App\Models\Categoria;
+use App\Models\CompraProduto;
+use App\Models\Compra;
 use Illuminate\Support\Facades\Session;
+
 
 class CarrinhoController extends Controller
 {
+
+    public function __construct()
+    {
+    }
+
     public function index()
     {
+        $categorias = Categoria::all();
         $produtos = Produto::all();
         $produtosDestaque = Produto::where('destaque', '>', 0)->inRandomOrder()->limit(3)->get();
-        return view('carrinho.index', compact('produtos', 'produtosDestaque'));
-
-        return view('carrinho.index', compact('produtos'));
+        return view('carrinho.index', compact('produtos', 'produtosDestaque', 'categorias'));
     }
 
     public function adicionarAoCarrinho($id)
@@ -29,18 +38,24 @@ class CarrinhoController extends Controller
 
         $carrinho = Session::get('carrinho', []);
 
-        if (isset($carrinho[$produto->id])) {
-            $carrinho[$produto->id]['quantidade']++;
+        if (!isset($carrinho['produtos'])) {
+            $carrinho['produtos'] = [];
+        }
+        if (isset($carrinho['produtos'][$produto->id])) {
+            $carrinho['produtos'][$produto->id]['quantidade']++;
         } else {
-            $carrinho[$produto->id] = [
+            $carrinho['produtos'][$produto->id] = [
                 'produto' => $produto,
                 'quantidade' => 1,
             ];
-            
         }
+        if (!isset($carrinho['valor_total'])) {
+            $carrinho['valor_total'] = 0;
+        }
+        $carrinho['valor_total'] += $produto->preco;
         flash('Produto adicionado ao carrinho')->success();
-        Session::put('carrinho', $carrinho);
 
+        Session::put('carrinho', $carrinho);
         return redirect('/carrinho');
     }
 
@@ -52,24 +67,56 @@ class CarrinhoController extends Controller
     }
 
     public function finalizarCompra()
-{
-    $carrinhoItens = Session::get('carrinho', []);
+    {
+        try {
+            \DB::transaction(function (){
+                $carrinhoItens = Session::get('carrinho', []);
+                $compra = new Compra();
+                $compra->registrar($carrinhoItens['valor_total']);
 
-    foreach ($carrinhoItens as $item) {
-        $produto = $item['produto'];
-        $quantidade = $item['quantidade'];
-        if ($produto->quantidade >= $quantidade) {
-            $produto->decrement('quantidade', $quantidade);
-        } else {
-            flash('Produto sem estoque!')->success();
+                foreach ($carrinhoItens['produtos'] as $item) {
+                    $produto = $item['produto'];
+                    $quantidade = $item['quantidade'];
+                    $produtoQuantidade = Produto::find($produto->id);
+
+                    if ($produtoQuantidade->quantidade >= $quantidade) {
+                        $compraProduto = new CompraProduto();
+                        $produtoCarrinho =  [
+                            'produto_id' => $produto->id,
+                            'valor_un' => $produto->preco,
+                            'valor_total' => $produto->preco * $quantidade,
+                            'quantidade' => $quantidade
+                        ];
+
+                        $produto->decrement('quantidade', $quantidade);
+                        $compraProduto->registrar($compra->id, $produtoCarrinho);
+                    } else {
+                        throw new \Exception('Produto sem estoque!');
+                    }
+                }
+                Session::forget('carrinho');
+
+                flash('Compra finalizada com sucesso!')->success();
+            });
+        } catch (\Exception $e) {
+            flash($e->getMessage())->error();
         }
+        return redirect('/carrinho');
     }
-    Session::forget('carrinho');
 
-    flash('Compra finalizada com sucesso!')->success();
+    public function filtrarPorCategoria(Request $request)
+    {
+        $categoriaId = $request->input('categoria');
 
-    return redirect('/carrinho');
+        if ($categoriaId == 0) {
+            $produtos = Produto::all();
+        } else {
+            $produtos = Produto::where('categoria_id', $categoriaId)->get();
+        }
+
+        $categorias = Categoria::all();
+        $produtosDestaque = Produto::where('destaque', '>', 0)->inRandomOrder()->limit(3)->get();
+
+        return view('carrinho.index', compact('produtos', 'categorias', 'produtosDestaque'));
+    }
 }
-
-}
-

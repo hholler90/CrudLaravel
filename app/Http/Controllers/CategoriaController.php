@@ -44,7 +44,7 @@ class CategoriaController extends Controller
     public function salvar(Request $request)
     {
         $req = $request->all();
-        $acao = 'criar';
+        $acao = 'Criar';
         if (empty($req['id'])) {
             // foreach($request->categoria as $categoria){
             //     Categoria::create(['nome'=>$categoria]);
