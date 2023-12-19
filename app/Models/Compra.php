@@ -32,6 +32,6 @@ class Compra extends Model
 
     public function getDataHoraFormatadaAttribute()
     {
-        return $this->attributes['datahora']->format('d/m/Y H:i');
+        return date('d/m/Y H:i', $this->datahora);
     }
 }

@@ -3,38 +3,56 @@
 @section('content')
 <div class="container">
     <link rel="stylesheet" href="{{ asset('js/DataTables/datatables.css') }}" />
+    <link rel="stylesheet" href="{{ asset('js/datepicker/jquery-ui.min.css') }}" />
     <script src="{{ asset('js/jQuery.js') }}"></script>
     <script src="{{ asset('js/DataTables/datatables.js') }}"></script>
     <script src="{{ asset('js/DataTables/language/pt-br.js') }}"></script>
+    <script src="{{ asset('js/jMask/dist/jquery.mask.js') }}"></script>
+    <script src="{{ asset('js/datepicker/jquery-ui.min.js') }}"></script>
+    <h2>Compras Logs</h2>
 
-    <h2>Compra Logs</h2>
-    <table class="table" id="compraProdutoTable">
+    {!! Form::model($relatorio,['url' => '/relatorios/compra_filtro', 'method' => 'post']) !!}
+    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
+    <div class="row">
+        <div class="col-md-3">
+            <label for="dataInicial" class="form-label">Data Inicial:</label>
+            {{Form::text('dataInicial',null,[ 'id'=>'dataInicial','class' => 'form-control','placeholder' => 'Selecione a Data Inicial'])}}
+        </div>
+
+        <div class="col-md-3">
+            <label for="dataFinal" class="form-label">Data Final:</label>
+            {{Form::text('dataFinal',null,[ 'id'=>'dataFinal' , 'class' => 'form-control','placeholder' => 'Selecione a Data Final'])}}
+        </div>
+        <div class="col-md-3">
+            <label for="valorMinimo" class="form-label">Valor</label>
+            {{Form::number('valorMinimo',null,[ 'id'=>'valorMinimo' , 'class' => 'form-control','placeholder' => 'Valor'])}}
+        </div>
+        <div class="col-md-12 mt-3 p-3">
+            <button type="submit" class="btn btn-primary">Filtrar</button>
+        </div>
+    </div>
+
+    {!! Form::close() !!}
+    <table class="table" id="compraLogs">
         <thead class="">
             <tr>
-                <th>Data/Hora</th>
-                <th>Produto</th>
-                <th>Compra</th>
-                <th>Valor Unitário</th>
+                <th>Usuario ID</th>
+                <th>Data Hora</th>
                 <th>Valor Total</th>
-                <th>Quantidade</th>
             </tr>
         </thead>
         <tbody>
-            @foreach($compraProduto as $log)
+            @foreach($compraLogs as $log)
             <tr>
+                <td>{{ $log->usuario->nome }}</td>
                 <td>{{ $log->data_hora_formatada }}</td>
-                <td>{{ $log->produto->nome }}</td>
-                <td>{{ $log->compra->id }}</td>
-                <td>{{ $log->valor_un }}</td>
                 <td>{{ $log->valor_total }}</td>
-                <td>{{ $log->quantidade }}</td>
                 @endforeach
         </tbody>
     </table>
 </div>
-{!!Html::script("js/jQuery.js")!!}
-{!!Html::script("js/DataTables/language/pt-br.js")!!}
-<script>
+<script type="text/javascript">
     $(function() {
         let parametro = {
             "language": pt_br,
@@ -42,8 +60,27 @@
             "pageLength": 250,
             "searching": false
         }
-        let tableCompraProduto = new DataTable('#compraProdutoTable', parametro);
+        let tableLogin = new DataTable('#loginLogsTable', parametro);
+
+        $('#dataInicial,#dataFinal').mask('00/00/0000 00:00')
+        $('#dataInicial').datepicker({
+            dateFormat: `dd/mm/yy 00:00`,
+            timeFormat: "hh:mm:ss",
+            dayNames: ['Domingo', 'Segunda', 'Ter&ccedil;a', 'Quarta', 'Quinta', 'Sexta', 'S&aacute;bado'],
+            dayNamesMin: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'],
+            dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'S&aacute;b'],
+            monthNames: ['Janeiro', 'Fevereiro', 'Mar&ccedil;o', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+            monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez']
+        });
+        $('#dataFinal').datepicker({
+            dateFormat: `dd/mm/yy 23:59:59`,
+            timeFormat: "hh:mm:ss",
+            dayNames: ['Domingo', 'Segunda', 'Ter&ccedil;a', 'Quarta', 'Quinta', 'Sexta', 'S&aacute;bado'],
+            dayNamesMin: ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'],
+            dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'S&aacute;b'],
+            monthNames: ['Janeiro', 'Fevereiro', 'Mar&ccedil;o', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+            monthNamesShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez']
+        });
     })
 </script>
-
 @endsection

@@ -46,10 +46,6 @@
           <a class="nav-link active" href="/categorias">Categorias</a>
         </li>
         @endif
-
-        <li class="nav-item text-right">
-          <a class="nav-link active " href="/logout">Logout</a>
-        </li>
         <li class="nav-item">
           @if (Auth::user()->temPermissao('root'))
           <div class="dropdown">
@@ -69,9 +65,15 @@
     <span class="nav-item">
       <a class="nav-link  " href="/carrinho">Loja</a>
     </span>
-    <span class="nav-item">
+    @if (Auth::check())
+    <span class="nav-item text-right">
+      <a class="nav-link active" href="/logout">Logout</a>
+    </span>
+    @else
+    <span class="nav-item text-right">
       <a class="nav-link" href="{{ url('/login') }}">Login</a>
     </span>
+    @endif
     <span class="nav-item">
       <a href="{{ url('carrinho/ver') }}" class="btn btn btn-primary">Ver Carrinho</a>
     </span>
@@ -79,4 +81,5 @@
   @include('flash::message')
   @yield('content')
 </body>
+
 </html>

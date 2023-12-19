@@ -11,7 +11,7 @@ class LoginLog extends Model
 {
     protected $appends = ['data_hora_formatada'];
     protected $table = 'login_logs';
-    protected $fillable = ['usuario_id', 'acao'];
+    protected $fillable = ['usuario_id', 'acao','datahora'];
 
     public function __construct()
     {

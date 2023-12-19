@@ -40,6 +40,10 @@ Route::group(['prefix' => 'relatorios'], function () {
 Route::get('login', 'RelatorioController@logsLogin');
 Route::get('acao', 'RelatorioController@logsAcao');
 Route::get('compra', 'RelatorioController@logsCompra');
+Route::post('login_filtro', 'RelatorioController@filtroLogin');
+Route::post('acao_filtro', 'RelatorioController@filtroAcao');
+Route::post('compra_filtro', 'RelatorioController@filtroCompra');
+
 });
 
 Route::get('/carrinho', 'CarrinhoController@index');
