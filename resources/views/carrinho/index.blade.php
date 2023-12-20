@@ -34,19 +34,22 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="container mt-4">
-                    <h2>Filtrar por Categoria</h2>
+                    <h2>Categorias</h2>
                     <form action="{{ url('carrinho/filtrar') }}" method="get">
-                        <select name="categoria" class="form-control">
-                            <option value="0">Todas as Categorias</option>
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <a href="{{ url('carrinho/filtrar?categoria=0') }}">Todas as Categorias</a>
+                            </li>
                             @foreach ($categorias as $categoria)
-                            <option value="{{ $categoria->id }}">{{ $categoria->nome }}</option>
+                            <li class="list-group-item">
+                                <a href="{{ url('carrinho/filtrar?categoria=' . $categoria->id) }}">{{ $categoria->nome }}</a>
+                            </li>
                             @endforeach
-                        </select>
-                        <button type="submit" class="btn btn-primary mt-2">Filtrar</button>
+                        </ul>
                     </form>
+
                 </div>
                 <div style="display: flex;justify-content: space-between;" class="card-header">Produtos Disponíveis
-                    
                 </div>
                 <div class="card-body">
                     @if ($produtos->count() > 0)

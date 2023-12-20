@@ -18,7 +18,7 @@ class AcaoLog extends Model
     $this->tela=$tela;
     
     }
-    public function user()
+    public function usuario()
     {
         return $this->belongsTo(Usuario::class);
     }

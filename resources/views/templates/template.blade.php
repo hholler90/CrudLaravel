@@ -56,6 +56,7 @@
               <a class="dropdown-item" href="/relatorios/login">Login</a>
               <a class="dropdown-item" href="/relatorios/acao">Ação</a>
               <a class="dropdown-item" href="/relatorios/compra">Compra</a>
+              <a class="dropdown-item" href="/relatorios/produto">Grafico Produtos</a>
             </div>
           </div>
           @endif

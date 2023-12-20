@@ -39,10 +39,13 @@ Route::post('/register', 'CadastroController@salvar');
 Route::group(['prefix' => 'relatorios'], function () {
 Route::get('login', 'RelatorioController@logsLogin');
 Route::get('acao', 'RelatorioController@logsAcao');
+Route::get('produto', 'RelatorioController@produtoRelatorio');
 Route::get('compra', 'RelatorioController@logsCompra');
+Route::get('compraProduto/{id}', 'RelatorioController@logsCompraProduto');
 Route::post('login_filtro', 'RelatorioController@filtroLogin');
 Route::post('acao_filtro', 'RelatorioController@filtroAcao');
 Route::post('compra_filtro', 'RelatorioController@filtroCompra');
+Route::post('compraProduto_filtro', 'RelatorioController@filtroCompraProduto');
 
 });
 

@@ -34,15 +34,21 @@
         <button type="reset" id="btnLimpar" class="btn btn-primary">Limpar</button>
         <input type="submit" class="btn btn-primary" value="Salvar" id="btnAdicionar">
     </div>
-    <div class="">
-        <span class="p-3 m-3">Últimas Categorias Cadastradas</span>
-        <ul>
-            <ul>
+    <div class="container-left" style="width: 476px;">
+        <table class="table" style="width: 466px;">
+            <thead>
+                <tr>
+                    <th >Últimas Categorias</th>
+                </tr>
+            </thead>
+            <tbody>
                 @foreach($ultimasCategorias as $ultimaCategoria)
-                <li>{{ $ultimaCategoria->nome }}</li>
+                <tr >
+                    <td>{{ $ultimaCategoria->nome }}</td>
+                </tr>
                 @endforeach
-            </ul>
-        </ul>
+            </tbody>
+        </table>
     </div>
     {!! Form::close() !!}
 </div>

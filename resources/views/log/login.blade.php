@@ -47,7 +47,7 @@
         <tbody>
             @foreach($loginLogs as $log)
             <tr>
-                <td>{{ $log->usuario_id }}</td>
+                <td>{{ $log->usuario->nome }}</td>
                 <td>{{ $log->acao }}</td>
                 <td>{{ $log->data_hora_formatada }}</td>
             </tr>

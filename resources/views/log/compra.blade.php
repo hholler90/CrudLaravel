@@ -40,6 +40,7 @@
                 <th>Usuario ID</th>
                 <th>Data Hora</th>
                 <th>Valor Total</th>
+                <th>Opções</th>
             </tr>
         </thead>
         <tbody>
@@ -48,6 +49,9 @@
                 <td>{{ $log->usuario->nome }}</td>
                 <td>{{ $log->data_hora_formatada }}</td>
                 <td>{{ $log->valor_total }}</td>
+                <td><a  href="/relatorios/compraProduto/{{$log->id}}" class="btn btn-md btn-primary" >
+                        Ver Detalhes
+                    </a></td>
                 @endforeach
         </tbody>
     </table>
@@ -60,7 +64,7 @@
             "pageLength": 250,
             "searching": false
         }
-        let tableLogin = new DataTable('#loginLogsTable', parametro);
+        let tableLogin = new DataTable('#compraLogs', parametro);
 
         $('#dataInicial,#dataFinal').mask('00/00/0000 00:00')
         $('#dataInicial').datepicker({

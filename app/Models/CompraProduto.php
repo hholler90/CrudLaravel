@@ -14,13 +14,13 @@ class CompraProduto extends Model
     {
     }
 
-    public function user()
+    public function usuario()
     {
         return $this->belongsTo(Usuario::class);
     }
     public function produto()
     {
-        return $this->belongsTo(Produto::class);
+        return $this->belongsTo(Produto::class, 'produto_id');
     }
     public function compra()
     {

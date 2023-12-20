@@ -17,7 +17,7 @@ class LoginLog extends Model
     {
     }
 
-    public function user()
+    public function usuario()
     {
         return $this->belongsTo(Usuario::class);
     }

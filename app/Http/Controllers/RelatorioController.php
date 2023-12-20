@@ -7,6 +7,7 @@ use App\Models\LoginLog;
 use App\Models\AcaoLog;
 use App\Models\Compra;
 use App\Models\CompraProduto;
+use App\Models\Produto;
 use DateTime;
 use Auth;
 
@@ -43,11 +44,27 @@ class RelatorioController extends Controller
         return view('log.acao')->with(['acaoLogs' => $acaoLogs, 'relatorio' => $relatorio]);
     }
 
-    // public function logsCompraProduto()
-    // {
-    //     $compraProduto = CompraProduto::all();
-    //     return view('log.compra', compact('compraProduto'));
-    // }
+    public function logsCompraProduto($id)
+    {
+
+        $compraProduto = CompraProduto::with('produto')->where('compra_id', '=', $id)->get();
+
+        $listaProdutoId = $compraProduto->lists('produto_id')->toArray();
+
+        $produto = Produto::whereIn('id', $listaProdutoId)
+            ->orderBy('nome', 'desc')
+            ->get()
+            ->lists('nome', 'id')
+            ->put('', 'Todos os Produtos')
+            ->reverse()
+            ->toArray();
+
+        $relatorio = (object)[
+            'id' => $id,
+            'acaoFiltro' => null
+        ];
+        return view('log.compraProduto')->with(['compraProduto' => $compraProduto, 'relatorio' => $relatorio, 'produto' => $produto]);
+    }
     public function logsCompra()
     {
         $compraLogs = Compra::with('usuario')->get();
@@ -137,14 +154,134 @@ class RelatorioController extends Controller
         $query = Compra::query();
 
         if ($request->has('valorMinimo')) {
-            $query->where('valor_total', '>=' ,$request->input('valorMinimo'));
+            $query->where('valor_total', '>=', $request->input('valorMinimo'));
         }
 
         $this->datahoraRelatorio($request, $query);
 
         $compraLogs = $query->get();
 
-         $relatorio = (object)['valorMinimo' => $request->valorMinimo, 'dataInicial' => $request->dataInicial, 'dataFinal' => $request->dataFinal];
+        $relatorio = (object)['valorMinimo' => $request->valorMinimo, 'dataInicial' => $request->dataInicial, 'dataFinal' => $request->dataFinal];
         return view('log.compra')->with(['compraLogs' => $compraLogs, 'relatorio' => $relatorio]);
     }
+
+    public function filtroCompraProduto(Request $request)
+    {
+        $query = CompraProduto::where('compra_id', '=', $request->id)->with('produto');
+        $compraProduto = $query->get();
+        if ($request->has('valorMinimo')) {
+            $query->where('valor_total', '>=', $request->input('valorMinimo'));
+        }
+        if ($request->has('produtoFiltro')) {
+            $query->where('produto_id', '=', $request->input('produtoFiltro'));
+        }
+
+        $logsCompraProduto = $query->get();
+        $listaProdutoId = $compraProduto->lists('produto_id')->toArray();
+
+        $produto = Produto::whereIn('id', $listaProdutoId)
+            ->orderBy('nome', 'desc')
+            ->get()
+            ->lists('nome', 'id')
+            ->put('', 'Todos os Produtos')
+            ->reverse()
+            ->toArray();
+
+        $relatorio = (object)['valorMinimo' => $request->valorMinimo, 'id' => $request->id, 'produto' => $request->produto];
+        return view('log.compraProduto')->with(['compraProduto' => $logsCompraProduto, 'relatorio' => $relatorio, 'produto' => $produto]);
+    }
+
+    public function produtoRelatorio()
+    {
+
+        $compra=CompraProduto::select(\DB::raw('produto_id,sum(quantidade) as qtd'))->groupBy('produto_id')->get()->lists('qtd','produto_id');
+        $produtos=Produto::all()->map(function($produto) use ($compra){
+            if(isset($compra[ $produto->id ]))
+                $produto->qtd_vendido = $compra[ $produto->id ];
+            else
+                $produto->qtd_vendido = 0;
+            return $produto;
+        });
+        
+        $opcoes = "
+        {
+            type: 'bar',
+            data: {
+              labels: ['" . $produtos->lists('nome')->implode("','") . "'],
+              datasets: [{
+                label: 'Produtos Vendidos',
+                data: [" . $produtos->lists('qtd_vendido')->implode(',') . "],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(255, 159, 64, 0.2)',
+                    'rgba(255, 205, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                ],
+                borderColor: [
+                    'rgb(255, 99, 132)',
+                    'rgb(255, 159, 64)',
+                    'rgb(255, 205, 86)',
+                    'rgb(75, 192, 192)',
+                    'rgb(54, 162, 235)',
+                    'rgb(153, 102, 255)',
+                ],
+                borderWidth: 1
+              }]
+            },
+            options: {
+              scales: {
+                y: {
+                  beginAtZero: true
+                }
+              }
+            }
+          }
+        ";
+
+
+
+        $opcoes2 = "
+        {
+            type: 'bar',
+            data: {
+              labels: ['" . $produtos->lists('nome')->implode("','") . "'],
+              datasets: [{
+                label: 'Estoque de Produtos',
+                data: [" . $produtos->lists('quantidade')->implode(',') . "],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(255, 159, 64, 0.2)',
+                    'rgba(255, 205, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                ],
+                borderColor: [
+                    'rgb(255, 99, 132)',
+                    'rgb(255, 159, 64)',
+                    'rgb(255, 205, 86)',
+                    'rgb(75, 192, 192)',
+                    'rgb(54, 162, 235)',
+                    'rgb(153, 102, 255)',
+                ],
+                borderWidth: 1
+              }]
+            },
+            options: {
+              scales: {
+                y: {
+                  beginAtZero: true
+                }
+              }
+            }
+          }
+        ";
+        return view('log.produto')->with(['opcoes' => $opcoes,'opcoes2'=> $opcoes2]);
+    }
+
+
+
+    
 }

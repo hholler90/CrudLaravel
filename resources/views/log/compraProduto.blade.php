@@ -9,56 +9,48 @@
     <script src="{{ asset('js/DataTables/language/pt-br.js') }}"></script>
     <script src="{{ asset('js/jMask/dist/jquery.mask.js') }}"></script>
     <script src="{{ asset('js/datepicker/jquery-ui.min.js') }}"></script>
-    <h2>Ações Logs</h2>
+    <h2>Compras Produto Logs</h2>
 
-    {!! Form::model($relatorio,['url' => '/relatorios/acao_filtro', 'method' => 'post']) !!}
+    {!! Form::model($relatorio,['url' => '/relatorios/compraProduto_filtro', 'method' => 'post']) !!}
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
     <div class="row">
+    {{ Form::hidden('id') }}
         <div class="col-md-3">
-            <label for="dataInicial" class="form-label">Data Inicial:</label>
-            {{Form::text('dataInicial',null,[ 'id'=>'dataInicial','class' => 'form-control','placeholder' => 'Selecione a Data Inicial'])}}
+            <label for="valorMinimo" class="form-label">Valor</label>
+            {{Form::number('valorMinimo',null,[ 'id'=>'valorMinimo' , 'class' => 'form-control','placeholder' => 'Valor'])}}
         </div>
-
         <div class="col-md-3">
-            <label for="dataFinal" class="form-label">Data Final:</label>
-            {{Form::text('dataFinal',null,[ 'id'=>'dataFinal' , 'class' => 'form-control','placeholder' => 'Selecione a Data Final'])}}
+            <label for="produtoFiltro" class="form-label">Filtrar por Produto:</label>
+            {{ Form::select('produtoFiltro',  $produto, null, ['class' => 'form-control', 'id' => 'produtoFiltro']) }}
         </div>
-
-        <div class="col-md-3">
-            <label for="acaoFiltro" class="form-label">Filtrar por Ação:</label>
-            {{ Form::select('acaoFiltro', ['' => 'Todas as Ações', 'editar' => 'Editar', 'delete' => 'Delete','criar' => 'Criar'], null, ['class' => 'form-control', 'id' => 'acaoFiltro']) }}
-        </div>
-
-        <div class="col-md-3">
-            <label for="telaFiltro" class="form-label">Filtrar por Tela:</label>
-            {{ Form::select('telaFiltro', ['' => 'Todas as Telas', 'produto' => 'Produto', 'categoria' => 'Categoria','usuario' => 'Usuario' ,'perfil' => 'Perfil'], null, ['class' => 'form-control', 'id' => 'telaFiltro']) }}
-        </div>
-
         <div class="col-md-12 mt-3 p-3">
             <button type="submit" class="btn btn-primary">Filtrar</button>
         </div>
     </div>
 
     {!! Form::close() !!}
-    <table class="table" id="acaoLogsTable">
-        <thead>
+    <table class="table" id="compraProduto">
+        <thead class="">
             <tr>
                 <th>Usuario ID</th>
-                <th>Ação</th>
-                <th>Tela</th>
-                <th>Data hora</th>
+                <th>Nome Produto</th>
+                <th>Valor Total</th>
+                <th>Valor Un</th>
+                <th>Quantidade</th>
+                <th>Data Hora</th>
             </tr>
         </thead>
         <tbody>
-            @foreach($acaoLogs as $log)
+            @foreach($compraProduto as $log)
             <tr>
                 <td>{{ $log->usuario->nome }}</td>
-                <td>{{ $log->acao }}</td>
-                <td>{{ $log->tela }}</td>
+                <td>{{ $log->produto->nome}}</td>
+                <td>{{ $log->valor_total }}</td>
+                <td>{{ $log->valor_un }}</td>
+                <td>{{ $log->quantidade }}</td>
                 <td>{{ $log->data_hora_formatada }}</td>
-            </tr>
-            @endforeach
+                @endforeach
         </tbody>
     </table>
 </div>
@@ -70,7 +62,7 @@
             "pageLength": 250,
             "searching": false
         }
-        let tableLogin = new DataTable('#acaoLogsTable', parametro);
+        let tableLogin = new DataTable('#compraProduto', parametro);
 
         $('#dataInicial,#dataFinal').mask('00/00/0000 00:00')
         $('#dataInicial').datepicker({
@@ -93,5 +85,4 @@
         });
     })
 </script>
-
 @endsection
