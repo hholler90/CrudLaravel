@@ -46,6 +46,7 @@
         margin-top: 40px;
     }
 </style>
+@if (Auth::user()->temPermissao('del'))
 <div class="container">
     <h2>Categorias</h2>
     <table id="tabela" class="table text-center">
@@ -97,6 +98,7 @@
             @endforeach
         </tbody>
     </table>
+    @endif
 
     @endsection
 

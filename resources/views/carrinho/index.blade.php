@@ -21,36 +21,36 @@
         </div>
         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Anterior</span>
+            <span style="color:black" class="sr-only">Anterior</span>
         </a>
         <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Próximo</span>
+            <span style="color:black" class="sr-only">Próximo</span>
         </a>
     </div>
 </div>
 <div class="container mt-4">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="container">
+                <h2>Categorias</h2>
+                <form action="{{ url('carrinho/filtrar') }}" method="get">
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <a href="{{ url('carrinho/filtrar?categoria=0') }}">Todas as Categorias</a>
+                        </li>
+                        @foreach ($categorias as $categoria)
+                        <li class="list-group-item">
+                            <a href="{{ url('carrinho/filtrar?categoria=' . $categoria->id) }}">{{ $categoria->nome }}</a>
+                        </li>
+                        @endforeach
+                    </ul>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-9">
             <div class="card">
-                <div class="container mt-4">
-                    <h2>Categorias</h2>
-                    <form action="{{ url('carrinho/filtrar') }}" method="get">
-                        <ul class="list-group">
-                            <li class="list-group-item">
-                                <a href="{{ url('carrinho/filtrar?categoria=0') }}">Todas as Categorias</a>
-                            </li>
-                            @foreach ($categorias as $categoria)
-                            <li class="list-group-item">
-                                <a href="{{ url('carrinho/filtrar?categoria=' . $categoria->id) }}">{{ $categoria->nome }}</a>
-                            </li>
-                            @endforeach
-                        </ul>
-                    </form>
-
-                </div>
-                <div style="display: flex;justify-content: space-between;" class="card-header">Produtos Disponíveis
-                </div>
+                <div class="card-header">Produtos Disponíveis</div>
                 <div class="card-body">
                     @if ($produtos->count() > 0)
                     <div class="row">
